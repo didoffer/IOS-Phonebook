@@ -7,7 +7,65 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "DataControllerDelegate.h"
+#import "DbDataController.h"
+#import "DetailViewController.h"
+#import "MBProgressHUD.h"
 
-@interface ViewController : UIViewController
+
+@interface ViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource, NSXMLParserDelegate, MBProgressHUDDelegate>{
+    MBProgressHUD *HUD;
+
+@private
+    
+    BOOL searching;
+    
+    NSMutableDictionary *EMPLOYEE;
+    NSXMLParser *xmlParser;
+    NSString *currentElement;
+    NSInteger depth;
+    NSMutableString *currentname;
+
+   
+    
+    
+    
+    NSMutableString *INIT;
+    NSMutableString *EMP_NO;
+    NSMutableString *EMAIL;
+    NSMutableString *BUSINESSAREA_NAME;
+    NSMutableString *PHONE;
+    NSMutableString *MOBIL;
+    NSMutableString *SUPERIOR;
+    NSMutableString *LOCATION;
+    NSMutableString *EXTERNAL_DISPLAY_NAME;
+    
+    
+    NSMutableArray *contactList;
+    NSMutableArray *contactNamesArray;
+    NSMutableArray *contactNamesArrayEXTERNAL_DISPLAY_NAME;
+    NSMutableArray *contactNamesArrayEMAIL;
+    NSMutableArray *contactNamesArrayPHONE;
+    NSMutableArray *contactNamesArrayINIT;
+    NSMutableArray *contactNamesArrayEMP_NO;
+    NSMutableArray *contactNamesArrayBUSINESSAREA_NAME;
+    NSMutableArray *contactNamesArrayMOBIL;
+    NSMutableArray *contactNamesArraySUPERIOR;
+    NSMutableArray *contactNamesArrayLOCATION;
+    
+    
+    
+}
+
+@property(strong, retain)NSMutableArray *contactList;
+@property(strong, retain)NSMutableArray *contactNamesArray;
+@property(strong, retain)NSMutableArray *filteredTableDate;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, assign) bool isFiltered;
+
+@property (nonatomic, strong) id <DataControllerDelegate> dcDelegate;
+- (void)getContactsFromDB;
+
 
 @end

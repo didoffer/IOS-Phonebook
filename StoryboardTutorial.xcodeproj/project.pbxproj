@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC4646B515A581BD00E0258D /* Contact.png in Resources */ = {isa = PBXBuildFile; fileRef = EC4646B415A581BD00E0258D /* Contact.png */; };
+		EC4646BB15A5A0A000E0258D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4646BA15A5A0A000E0258D /* AddressBook.framework */; };
+		EC4646BD15A5A0BF00E0258D /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4646BC15A5A0BF00E0258D /* AddressBookUI.framework */; };
+		EC7F020515A455CE00F55735 /* DbDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7F020415A455CE00F55735 /* DbDataController.m */; };
+		EC7F020915A4568500F55735 /* Contacts.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7F020815A4568500F55735 /* Contacts.m */; };
+		EC7F020C15A4570A00F55735 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7F020B15A4570A00F55735 /* MessageUI.framework */; };
+		EC7F020E15A4571600F55735 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7F020D15A4571600F55735 /* libsqlite3.0.dylib */; };
+		EC7F021015A4579300F55735 /* Contact.rdb in Resources */ = {isa = PBXBuildFile; fileRef = EC7F020F15A4579300F55735 /* Contact.rdb */; };
+		EC7F021115A457B800F55735 /* Contact.rdb in Resources */ = {isa = PBXBuildFile; fileRef = EC7F020F15A4579300F55735 /* Contact.rdb */; };
+		EC8222EA15AEBDE2006B57BC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8222E915AEBDE2006B57BC /* MBProgressHUD.m */; };
 		FC1FF1BC144FD76E008429F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BB144FD76E008429F9 /* UIKit.framework */; };
 		FC1FF1BE144FD76E008429F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BD144FD76E008429F9 /* Foundation.framework */; };
 		FC1FF1C0144FD76E008429F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BF144FD76E008429F9 /* CoreGraphics.framework */; };
@@ -20,6 +30,9 @@
 		FC1FF1DC144FD76F008429F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BD144FD76E008429F9 /* Foundation.framework */; };
 		FC1FF1E4144FD76F008429F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC1FF1E2144FD76F008429F9 /* InfoPlist.strings */; };
 		FC1FF1E7144FD76F008429F9 /* StoryboardTutorialTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1FF1E6144FD76F008429F9 /* StoryboardTutorialTests.m */; };
+		FC1FF1F2144FE1B6008429F9 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1FF1F1144FE1B6008429F9 /* DetailViewController.m */; };
+		FC1FF1F5144FE696008429F9 /* LightGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = FC1FF1F3144FE696008429F9 /* LightGrey.png */; };
+		FC1FF1F6144FE696008429F9 /* LightGrey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC1FF1F4144FE696008429F9 /* LightGrey@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,25 +46,42 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC4646B415A581BD00E0258D /* Contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Contact.png; sourceTree = "<group>"; };
+		EC4646BA15A5A0A000E0258D /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		EC4646BC15A5A0BF00E0258D /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		EC7F020315A455CE00F55735 /* DbDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DbDataController.h; sourceTree = "<group>"; };
+		EC7F020415A455CE00F55735 /* DbDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DbDataController.m; sourceTree = "<group>"; };
+		EC7F020715A4565B00F55735 /* Contacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contacts.h; sourceTree = "<group>"; };
+		EC7F020815A4568500F55735 /* Contacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contacts.m; sourceTree = "<group>"; };
+		EC7F020A15A456BA00F55735 /* DataControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataControllerDelegate.h; sourceTree = "<group>"; };
+		EC7F020B15A4570A00F55735 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		EC7F020D15A4571600F55735 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		EC7F020F15A4579300F55735 /* Contact.rdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = Contact.rdb; sourceTree = "<group>"; };
+		EC8222E715AEBDDC006B57BC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		EC8222E915AEBDE2006B57BC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		FC1FF1B7144FD76E008429F9 /* StoryboardTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryboardTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1FF1BB144FD76E008429F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FC1FF1BD144FD76E008429F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FC1FF1BF144FD76E008429F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		FC1FF1C3144FD76E008429F9 /* StoryboardTutorial-Info.plist */ = {isa = PBXFileReference; path = "StoryboardTutorial-Info.plist"; sourceTree = "<group>"; };
+		FC1FF1C3144FD76E008429F9 /* StoryboardTutorial-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StoryboardTutorial-Info.plist"; sourceTree = "<group>"; };
 		FC1FF1C5144FD76E008429F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC1FF1C7144FD76E008429F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FC1FF1C9144FD76E008429F9 /* StoryboardTutorial-Prefix.pch */ = {isa = PBXFileReference; path = "StoryboardTutorial-Prefix.pch"; sourceTree = "<group>"; };
-		FC1FF1CA144FD76E008429F9 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		FC1FF1C9144FD76E008429F9 /* StoryboardTutorial-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StoryboardTutorial-Prefix.pch"; sourceTree = "<group>"; };
+		FC1FF1CA144FD76E008429F9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FC1FF1CB144FD76E008429F9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FC1FF1CE144FD76E008429F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		FC1FF1D0144FD76E008429F9 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		FC1FF1D0144FD76E008429F9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		FC1FF1D1144FD76E008429F9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		FC1FF1D8144FD76F008429F9 /* StoryboardTutorialTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoryboardTutorialTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1FF1D9144FD76F008429F9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		FC1FF1E1144FD76F008429F9 /* StoryboardTutorialTests-Info.plist */ = {isa = PBXFileReference; path = "StoryboardTutorialTests-Info.plist"; sourceTree = "<group>"; };
+		FC1FF1E1144FD76F008429F9 /* StoryboardTutorialTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StoryboardTutorialTests-Info.plist"; sourceTree = "<group>"; };
 		FC1FF1E3144FD76F008429F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FC1FF1E5144FD76F008429F9 /* StoryboardTutorialTests.h */ = {isa = PBXFileReference; path = StoryboardTutorialTests.h; sourceTree = "<group>"; };
+		FC1FF1E5144FD76F008429F9 /* StoryboardTutorialTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoryboardTutorialTests.h; sourceTree = "<group>"; };
 		FC1FF1E6144FD76F008429F9 /* StoryboardTutorialTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoryboardTutorialTests.m; sourceTree = "<group>"; };
+		FC1FF1F0144FE1B6008429F9 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		FC1FF1F1144FE1B6008429F9 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		FC1FF1F3144FE696008429F9 /* LightGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LightGrey.png; sourceTree = "<group>"; };
+		FC1FF1F4144FE696008429F9 /* LightGrey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LightGrey@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +89,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC4646BD15A5A0BF00E0258D /* AddressBookUI.framework in Frameworks */,
+				EC4646BB15A5A0A000E0258D /* AddressBook.framework in Frameworks */,
+				EC7F020E15A4571600F55735 /* libsqlite3.0.dylib in Frameworks */,
+				EC7F020C15A4570A00F55735 /* MessageUI.framework in Frameworks */,
 				FC1FF1BC144FD76E008429F9 /* UIKit.framework in Frameworks */,
 				FC1FF1BE144FD76E008429F9 /* Foundation.framework in Frameworks */,
 				FC1FF1C0144FD76E008429F9 /* CoreGraphics.framework in Frameworks */,
@@ -78,6 +112,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC7600AD15AEC4960011E681 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				EC8222E915AEBDE2006B57BC /* MBProgressHUD.m */,
+				EC8222E715AEBDDC006B57BC /* MBProgressHUD.h */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		EC7600AF15AEC4F20011E681 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				EC7F020A15A456BA00F55735 /* DataControllerDelegate.h */,
+				EC7F020815A4568500F55735 /* Contacts.m */,
+				EC7F020715A4565B00F55735 /* Contacts.h */,
+				EC7F020415A455CE00F55735 /* DbDataController.m */,
+				EC7F020315A455CE00F55735 /* DbDataController.h */,
+			);
+			name = DB;
+			sourceTree = "<group>";
+		};
 		FC1FF1AC144FD76E008429F9 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +155,9 @@
 		FC1FF1BA144FD76E008429F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC4646BC15A5A0BF00E0258D /* AddressBookUI.framework */,
+				EC4646BA15A5A0A000E0258D /* AddressBook.framework */,
+				EC7F020B15A4570A00F55735 /* MessageUI.framework */,
 				FC1FF1BB144FD76E008429F9 /* UIKit.framework */,
 				FC1FF1BD144FD76E008429F9 /* Foundation.framework */,
 				FC1FF1BF144FD76E008429F9 /* CoreGraphics.framework */,
@@ -111,9 +169,13 @@
 		FC1FF1C1144FD76E008429F9 /* StoryboardTutorial */ = {
 			isa = PBXGroup;
 			children = (
-				FC1FF1CA144FD76E008429F9 /* AppDelegate.h */,
-				FC1FF1CB144FD76E008429F9 /* AppDelegate.m */,
 				FC1FF1CD144FD76E008429F9 /* MainStoryboard.storyboard */,
+				FC1FF1CB144FD76E008429F9 /* AppDelegate.m */,
+				FC1FF1CA144FD76E008429F9 /* AppDelegate.h */,
+				EC7600AF15AEC4F20011E681 /* DB */,
+				EC7600AD15AEC4960011E681 /* MBProgressHUD */,
+				FC1FF1F0144FE1B6008429F9 /* DetailViewController.h */,
+				FC1FF1F1144FE1B6008429F9 /* DetailViewController.m */,
 				FC1FF1D0144FD76E008429F9 /* ViewController.h */,
 				FC1FF1D1144FD76E008429F9 /* ViewController.m */,
 				FC1FF1C2144FD76E008429F9 /* Supporting Files */,
@@ -124,7 +186,12 @@
 		FC1FF1C2144FD76E008429F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FC1FF1F3144FE696008429F9 /* LightGrey.png */,
+				EC4646B415A581BD00E0258D /* Contact.png */,
+				FC1FF1F4144FE696008429F9 /* LightGrey@2x.png */,
+				EC7F020D15A4571600F55735 /* libsqlite3.0.dylib */,
 				FC1FF1C3144FD76E008429F9 /* StoryboardTutorial-Info.plist */,
+				EC7F020F15A4579300F55735 /* Contact.rdb */,
 				FC1FF1C4144FD76E008429F9 /* InfoPlist.strings */,
 				FC1FF1C7144FD76E008429F9 /* main.m */,
 				FC1FF1C9144FD76E008429F9 /* StoryboardTutorial-Prefix.pch */,
@@ -221,8 +288,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC7F021115A457B800F55735 /* Contact.rdb in Resources */,
 				FC1FF1C6144FD76E008429F9 /* InfoPlist.strings in Resources */,
 				FC1FF1CF144FD76E008429F9 /* MainStoryboard.storyboard in Resources */,
+				FC1FF1F5144FE696008429F9 /* LightGrey.png in Resources */,
+				FC1FF1F6144FE696008429F9 /* LightGrey@2x.png in Resources */,
+				EC4646B515A581BD00E0258D /* Contact.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC1FF1E4144FD76F008429F9 /* InfoPlist.strings in Resources */,
+				EC7F021015A4579300F55735 /* Contact.rdb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +332,10 @@
 				FC1FF1C8144FD76E008429F9 /* main.m in Sources */,
 				FC1FF1CC144FD76E008429F9 /* AppDelegate.m in Sources */,
 				FC1FF1D2144FD76E008429F9 /* ViewController.m in Sources */,
+				FC1FF1F2144FE1B6008429F9 /* DetailViewController.m in Sources */,
+				EC7F020515A455CE00F55735 /* DbDataController.m in Sources */,
+				EC7F020915A4568500F55735 /* Contacts.m in Sources */,
+				EC8222EA15AEBDE2006B57BC /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +505,7 @@
 				FC1FF1EC144FD76F008429F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FC1FF1ED144FD76F008429F9 /* Build configuration list for PBXNativeTarget "StoryboardTutorialTests" */ = {
 			isa = XCConfigurationList;
@@ -437,6 +514,7 @@
 				FC1FF1EF144FD76F008429F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
