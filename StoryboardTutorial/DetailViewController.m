@@ -11,7 +11,7 @@
 #import "ViewController.h"
 
 @implementation DetailViewController
-@synthesize lb_name, lb_mobil, lb_phone,phone, mobil, email, name, location, superior, emp_no, init, business_area_name,email_bt;
+@synthesize lb_name, lb_mobil, lb_phone, email_bt,emp;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,9 +45,9 @@
 {
     [super viewDidLoad];
     
-    lb_name.text = name;
-    lb_phone.text = phone;
-    lb_mobil.text = mobil;
+    lb_name.text = emp.EXTERNAL_DISPLAY_NAME;
+    lb_phone.text = emp.PHONE;
+    lb_mobil.text = emp.MOBIL;
     
     //change text of a button
     //[email_bt setTitle:email forState:UIControlStateNormal];
@@ -78,7 +78,7 @@
         
         [mailer setSubject:@""];
         
-        NSArray *toRecipients = [NSArray arrayWithObjects:email, nil];
+        NSArray *toRecipients = [NSArray arrayWithObjects:emp.EMAIL, nil];
         [mailer setToRecipients:toRecipients];
         
         //UIImage *myImage = [UIImage imageNamed:@"mercantec.jpg"];
@@ -114,18 +114,18 @@
     ABRecordRef person = ABPersonCreate();  
     
     // Setting basic properties  
-    ABRecordSetValue(person, kABPersonFirstNameProperty, (__bridge_retained CFStringRef)name, nil);  
+    ABRecordSetValue(person, kABPersonFirstNameProperty, (__bridge_retained CFStringRef)emp.EXTERNAL_DISPLAY_NAME, nil);  
     ABRecordSetValue(person, kABPersonLastNameProperty,(__bridge_retained CFStringRef) @"", nil);  
     ABRecordSetValue(person, kABPersonJobTitleProperty,(__bridge_retained CFStringRef) @"", nil);  
     ABRecordSetValue(person, kABPersonDepartmentProperty,(__bridge_retained CFStringRef) @"", nil);  
-    ABRecordSetValue(person, kABPersonOrganizationProperty, (__bridge_retained CFStringRef)business_area_name, nil);  
+    ABRecordSetValue(person, kABPersonOrganizationProperty, (__bridge_retained CFStringRef)emp.BUSINESSAREA_NAME, nil);  
     ABRecordSetValue(person, kABPersonNoteProperty, @"", nil);  
     
     
     // Adding phone numbers  
     ABMutableMultiValueRef phoneNumberMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);  
-    ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)phone ,(__bridge_retained CFStringRef)@"Terma", NULL);  
-    ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)mobil ,(__bridge_retained CFStringRef)@"Terma mobil", NULL);  
+    ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)emp.PHONE ,(__bridge_retained CFStringRef)@"Terma", NULL);  
+    ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)emp.MOBIL ,(__bridge_retained CFStringRef)@"Terma mobil", NULL);  
     ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)@"+45 23232323" ,(__bridge_retained CFStringRef)@"Private", NULL);  
     ABRecordSetValue(person, kABPersonPhoneProperty, phoneNumberMultiValue, nil);  
     CFRelease(phoneNumberMultiValue);  
@@ -138,7 +138,7 @@
     
     // Adding emails  
     ABMutableMultiValueRef emailMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);  
-    ABMultiValueAddValueAndLabel(emailMultiValue,(__bridge_retained CFStringRef)email, (CFStringRef)@"Terma", NULL);  
+    ABMultiValueAddValueAndLabel(emailMultiValue,(__bridge_retained CFStringRef)emp.EMAIL, (CFStringRef)@"Terma", NULL);  
     ABMultiValueAddValueAndLabel(emailMultiValue,(__bridge_retained CFStringRef)@"test@gmail.com", (CFStringRef)@"Private", NULL);  
     ABRecordSetValue(person, kABPersonURLProperty, emailMultiValue, nil);  
     CFRelease(emailMultiValue);  
@@ -185,13 +185,13 @@
     
     if([title isEqualToString:@"Local"])
     {
-        NSLog(@"Calling %@", phone);
-         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phone]]];
+        NSLog(@"Calling %@", emp.PHONE);
+         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", emp.PHONE]]];
     }
     else if([title isEqualToString:@"Mobile"])
     {
-        NSLog(@"Calling %@",mobil);
-         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", mobil]]];
+        NSLog(@"Calling %@",emp.MOBIL);
+         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", emp.MOBIL]]];
     }
     
 }
@@ -249,6 +249,6 @@
 }
 
 - (IBAction)bt_sendmsg:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@", mobil]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@", emp.MOBIL]]];
 }
 @end

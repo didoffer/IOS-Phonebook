@@ -18,7 +18,7 @@
 @implementation ViewController
 
 
-@synthesize dcDelegate,contactList,contactNamesArray,filteredTableDate,searchBar,isFiltered;
+@synthesize dcDelegate,contactList,contactNamesArray,filteredTableData,isFiltered,searchBar;
 
 NSURLConnection *theConnection;
 NSURLConnection *myConnection;
@@ -284,6 +284,7 @@ NSString *dump;
 - (void)viewDidLoad
 {
     [self flushdb];
+    searchBar.delegate = (id)self;
     [self progressSpinner];
      self.dcDelegate = [[DbDataController alloc] init];
     [self getData];
@@ -295,14 +296,25 @@ NSString *dump;
     //[self. selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
 }
 
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //return 1;
-   	return [contactList count];
+    return 1;
+   	//return [contactList count];
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [contactList count];
+    
+    int rowCount;
+    if(self.isFiltered)
+        rowCount = filteredTableData.count;
+    else
+        rowCount = contactList.count;
+    
+    return rowCount;
+    //return [contactList count];
     
 
     //#warning Incomplete method implementation.
@@ -321,9 +333,20 @@ NSString *dump;
     
     //}
     
-    Contacts *contact;
+      
+    Contacts* emp;
+    if(isFiltered)
+        emp = [filteredTableData objectAtIndex:indexPath.row];
+    else
+        emp = [contactList objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = emp.EXTERNAL_DISPLAY_NAME;
+    cell.detailTextLabel.text = emp.INIT;
+    
+    
+   // Contacts *contact;
         
-        contact = [contactList objectAtIndex:indexPath.row];
+     //   contact = [contactList objectAtIndex:indexPath.row];
     
         // Configure the cell...
     
@@ -340,41 +363,85 @@ NSString *dump;
     
     [[cell detailTextLabel] setBackgroundColor:[UIColor clearColor]];
    
-    cell.textLabel.text = contact.EXTERNAL_DISPLAY_NAME;
+    //cell.textLabel.text = contact.EXTERNAL_DISPLAY_NAME;
     
     //subtitle
-    NSString *subtitle = [contactNamesArrayINIT objectAtIndex:indexPath.row];
+    //NSString *subtitle = [contactNamesArrayINIT objectAtIndex:indexPath.row];
     
-    cell.detailTextLabel.text = subtitle ;
+    //cell.detailTextLabel.text = subtitle ;
 
     //Arrow 
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
-// parsing data to detailview controller when employee in the tableview is selected
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+-(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
+{
+    if(text.length == 0)
+    {
+        isFiltered = FALSE;
+    }
+    else
+    {
+        isFiltered = true;
+        filteredTableData = [[NSMutableArray alloc] init];
+        
+        for (Contacts* emp in contactList)
+        {
+            NSRange nameRange = [emp.EXTERNAL_DISPLAY_NAME rangeOfString:text options:NSCaseInsensitiveSearch];
+            NSRange descriptionRange = [emp.INIT rangeOfString:text options:NSCaseInsensitiveSearch];
+            if(nameRange.location != NSNotFound || descriptionRange.location != NSNotFound)
+            {
+                [filteredTableData addObject:emp];
+            }	
+        }
+    }
     
-    DetailViewController *detail = [self.storyboard instantiateViewControllerWithIdentifier:@"detail"];
-    detail.email = [contactNamesArrayEMAIL objectAtIndex:indexPath.row];
-    detail.phone = [contactNamesArrayPHONE objectAtIndex:indexPath.row];
-    detail.mobil = [contactNamesArrayMOBIL objectAtIndex:indexPath.row];
-    detail.name = [contactNamesArrayEXTERNAL_DISPLAY_NAME objectAtIndex:indexPath.row];
-    detail.location = [contactNamesArrayLOCATION objectAtIndex:indexPath.row];
-    detail.superior = [contactNamesArraySUPERIOR objectAtIndex:indexPath.row];
-    detail.emp_no = [contactNamesArrayEMP_NO objectAtIndex:indexPath.row];
-    detail.init = [contactNamesArrayINIT objectAtIndex:indexPath.row];
-    detail.business_area_name = [contactNamesArrayBUSINESSAREA_NAME objectAtIndex:indexPath.row];
-    
-    [self.navigationController pushViewController:detail animated:YES];
-    
+    [self.tableView reloadData];
 }
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self showDetailsForIndexPath:indexPath];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self showDetailsForIndexPath:indexPath];
+}
+// parsing data to detailview controller when employee in the tableview is selected
+
+-(void) showDetailsForIndexPath:(NSIndexPath*)indexPath
+{
+     DetailViewController *detail = [self.storyboard instantiateViewControllerWithIdentifier:@"detail"];
+    
+    [self.searchBar resignFirstResponder];
+    
+    Contacts *emp;
+    
+    if(isFiltered)
+    {
+        emp = [filteredTableData objectAtIndex:indexPath.row];
+
+    }
+    else
+    {
+        emp = [contactList objectAtIndex:indexPath.row];
+    }
+    
+    detail.emp = emp;
+    
+    
+    [self.navigationController pushViewController:detail animated:YES];    
+}
+
 
 //----------------------TABLEVIEWCELL HEIGHT -------------------------------------------
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 60;
+    return 45;
     
 }
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
@@ -418,6 +485,7 @@ NSString *dump;
 - (void)viewDidUnload
 {
    
+    [self setSearchBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

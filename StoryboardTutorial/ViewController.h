@@ -14,12 +14,15 @@
 #import "MBProgressHUD.h"
 
 
-@interface ViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource, NSXMLParserDelegate, MBProgressHUDDelegate>{
+@interface ViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource, NSXMLParserDelegate, MBProgressHUDDelegate, UISearchBarDelegate, UISearchDisplayDelegate>{
     MBProgressHUD *HUD;
 
 @private
     
-    BOOL searching;
+    
+    
+   
+    
     
     NSMutableDictionary *EMPLOYEE;
     NSXMLParser *xmlParser;
@@ -59,13 +62,16 @@
 }
 
 @property(strong, retain)NSMutableArray *contactList;
+
 @property(strong, retain)NSMutableArray *contactNamesArray;
-@property(strong, retain)NSMutableArray *filteredTableDate;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property(strong, retain)NSMutableArray *filteredTableData;
+
 @property (nonatomic, assign) bool isFiltered;
 
 @property (nonatomic, strong) id <DataControllerDelegate> dcDelegate;
 - (void)getContactsFromDB;
+
 
 
 @end

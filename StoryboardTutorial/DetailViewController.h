@@ -10,19 +10,10 @@
 #import <MessageUI/MessageUI.h>
 #import "AddressBook/AddressBook.h"
 #import "AddressBookUI/AddressBookUI.h"
+#import "Contacts.h"
 
 @interface DetailViewController : UIViewController <UIAlertViewDelegate,MFMailComposeViewControllerDelegate, ABNewPersonViewControllerDelegate> {
-    NSString *state;
-    NSString *capital;
-    NSString *phone;
-    NSString *mobil;
-    NSString *email;
-    NSString *name;
-    NSString *location;
-    NSString *superior;
-    NSString *emp_no;
-    NSString *init;
-    NSString * business_area_name;
+    
    
     
     IBOutlet UILabel *lb_name;
@@ -41,6 +32,7 @@
 - (IBAction)bt_sendmsg:(id)sender;
 
 @property(nonatomic, retain) IBOutlet UIButton *email_bt;
-@property (nonatomic, retain)NSString *phone, *mobil, *email, *name, *location, *superior, *emp_no, *init, *business_area_name;
+@property (strong, nonatomic) Contacts* emp;
+
 @property (nonatomic, retain)IBOutlet UILabel *lb_name, *lb_phone, *lb_mobil;
 @end
