@@ -17,6 +17,7 @@
 		EC7F021015A4579300F55735 /* Contact.rdb in Resources */ = {isa = PBXBuildFile; fileRef = EC7F020F15A4579300F55735 /* Contact.rdb */; };
 		EC7F021115A457B800F55735 /* Contact.rdb in Resources */ = {isa = PBXBuildFile; fileRef = EC7F020F15A4579300F55735 /* Contact.rdb */; };
 		EC8222EA15AEBDE2006B57BC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8222E915AEBDE2006B57BC /* MBProgressHUD.m */; };
+		EC828FB215B8236D006D1818 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC828FB115B8236D006D1818 /* SystemConfiguration.framework */; };
 		FC1FF1BC144FD76E008429F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BB144FD76E008429F9 /* UIKit.framework */; };
 		FC1FF1BE144FD76E008429F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BD144FD76E008429F9 /* Foundation.framework */; };
 		FC1FF1C0144FD76E008429F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BF144FD76E008429F9 /* CoreGraphics.framework */; };
@@ -59,6 +60,7 @@
 		EC7F020F15A4579300F55735 /* Contact.rdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = Contact.rdb; sourceTree = "<group>"; };
 		EC8222E715AEBDDC006B57BC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EC8222E915AEBDE2006B57BC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		EC828FB115B8236D006D1818 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		FC1FF1B7144FD76E008429F9 /* StoryboardTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryboardTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1FF1BB144FD76E008429F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FC1FF1BD144FD76E008429F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -89,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC828FB215B8236D006D1818 /* SystemConfiguration.framework in Frameworks */,
 				EC4646BD15A5A0BF00E0258D /* AddressBookUI.framework in Frameworks */,
 				EC4646BB15A5A0A000E0258D /* AddressBook.framework in Frameworks */,
 				EC7F020E15A4571600F55735 /* libsqlite3.0.dylib in Frameworks */,
@@ -155,6 +158,7 @@
 		FC1FF1BA144FD76E008429F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC828FB115B8236D006D1818 /* SystemConfiguration.framework */,
 				EC4646BC15A5A0BF00E0258D /* AddressBookUI.framework */,
 				EC4646BA15A5A0A000E0258D /* AddressBook.framework */,
 				EC7F020B15A4570A00F55735 /* MessageUI.framework */,

@@ -18,7 +18,7 @@
 @implementation ViewController
 
 
-@synthesize dcDelegate,contactList,contactNamesArray,filteredTableData,isFiltered,searchBar;
+@synthesize dcDelegate,contactList,contactNamesArray,filteredTableData,isFiltered,searchBar,keys;
 
 NSURLConnection *theConnection;
 NSURLConnection *myConnection;
@@ -45,13 +45,13 @@ NSString *dump;
     {}
 }
 
+//Truncate database
 - (void)flushdb
 {
-    //Truncate database
     [self.dcDelegate flush_contacts_db];
 }
 
-//For every employee in contactlist addobjects to tableview
+//For every employee in contactlist addobjects to each of the array's
 - (void)getContactsFromDB
 {
     
@@ -149,11 +149,8 @@ NSString *dump;
 }
 -(void)parserDidStartDocument:(NSXMLParser *)parser
 {
-    
     depth = 0;
     currentElement = nil;
-   
-    
 }
 
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
@@ -163,7 +160,7 @@ NSString *dump;
 
 
 
-
+// parse through the xml data for every start Employee element with child items
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     
@@ -202,17 +199,16 @@ NSString *dump;
     }
 
 }
-
+// Ends a employee element and insert it into the database
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     if ([elementName isEqualToString:@"Employee"]) {
         --depth;
         [self showCurrentDepth];
         NSLog(@"test  %@ %@ %@ %@", EXTERNAL_DISPLAY_NAME, INIT, PHONE, MOBIL);
-        //[self showCurrentDepth];
+       //Database insert function
         [self.dcDelegate insert_into_contacts_db:EXTERNAL_DISPLAY_NAME:INIT:EMP_NO:EMAIL:BUSINESSAREA_NAME:PHONE:MOBIL:SUPERIOR:LOCATION];
-        //currentElement =nil;
-        //[self.dcDelegate flush_contacts_db];
+       
     }
        
 }
@@ -254,7 +250,7 @@ NSString *dump;
        
 }
 
-
+//Function from MBProgressHUD.h/m which creates a progress spinner in another thread while downloading data from database (can be changed to downloading from webservice)
 -(void) progressSpinner{
     
     // The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
@@ -291,8 +287,10 @@ NSString *dump;
     //[self getContactsFromDB];
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     [super viewDidLoad];
+    
         
-	// Do any additional setup after loading the view, typically from a nib.
+	  
+    // Do any additional setup after loading the view, typically from a nib.
     //[self. selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
 }
 
@@ -304,6 +302,7 @@ NSString *dump;
    	//return [contactList count];
 }
 
+// Determine if table view should return the count of searched data or the full contactlist
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -322,6 +321,7 @@ NSString *dump;
     //return [contactNamesArray count];
 }
 
+// Creations of cell design
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -333,49 +333,42 @@ NSString *dump;
     
     //}
     
-      
+    // Inserts either the search result or full contactlist data into the tableview  
     Contacts* emp;
     if(isFiltered)
         emp = [filteredTableData objectAtIndex:indexPath.row];
     else
         emp = [contactList objectAtIndex:indexPath.row];
     
+    // What data to show in the table view at label text and subtitle. (This could be any data)
     cell.textLabel.text = emp.EXTERNAL_DISPLAY_NAME;
     cell.detailTextLabel.text = emp.INIT;
     
-    
-   // Contacts *contact;
-        
-     //   contact = [contactList objectAtIndex:indexPath.row];
-    
+      
         // Configure the cell...
     
     //---------- CELL BACKGROUND IMAGE -----------------------------
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.frame];
+    //UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.frame];
     
-    UIImage *image = [UIImage imageNamed:@"LightGrey.png"];
+    ///UIImage *image = [UIImage imageNamed:@"LightGrey.png"];
     
-    imageView.image = image;
+    //imageView.image = image;
     
-    cell.backgroundView = imageView;
+    //cell.backgroundView = imageView;
     
-    [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
+    //[[cell textLabel] setBackgroundColor:[UIColor clearColor]];
     
-    [[cell detailTextLabel] setBackgroundColor:[UIColor clearColor]];
+    //[[cell detailTextLabel] setBackgroundColor:[UIColor clearColor]];
    
-    //cell.textLabel.text = contact.EXTERNAL_DISPLAY_NAME;
     
-    //subtitle
-    //NSString *subtitle = [contactNamesArrayINIT objectAtIndex:indexPath.row];
-    
-    //cell.detailTextLabel.text = subtitle ;
 
-    //Arrow 
+    //Cell Arrow 
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
 
+// search bar function that runs when user types in search field
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
 {
     if(text.length == 0)
@@ -389,6 +382,7 @@ NSString *dump;
         
         for (Contacts* emp in contactList)
         {
+            //In this case we are searching for employee name and initials. (Add others if nessesary like phone, mobil ect.)
             NSRange nameRange = [emp.EXTERNAL_DISPLAY_NAME rangeOfString:text options:NSCaseInsensitiveSearch];
             NSRange descriptionRange = [emp.INIT rangeOfString:text options:NSCaseInsensitiveSearch];
             if(nameRange.location != NSNotFound || descriptionRange.location != NSNotFound)
@@ -397,10 +391,11 @@ NSString *dump;
             }	
         }
     }
-    
+    //refresh of the tableview
     [self.tableView reloadData];
 }
 
+// If user tabs the search button on the keyboard the keyboard dissapears
 -(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     
     [searchBar resignFirstResponder];
@@ -415,7 +410,7 @@ NSString *dump;
 {
     [self showDetailsForIndexPath:indexPath];
 }
-// parsing data to detailview controller when employee in the tableview is selected
+// parsing data to detailview controller when a employee in the tableview is selected
 
 -(void) showDetailsForIndexPath:(NSIndexPath*)indexPath
 {
@@ -449,43 +444,28 @@ NSString *dump;
     return 45;
     
 }
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-	
-	
-	
-	NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-	[tempArray addObject:@"A"];
-	[tempArray addObject:@"B"];
-	[tempArray addObject:@"C"];
-	[tempArray addObject:@"D"];
-	[tempArray addObject:@"E"];
-	[tempArray addObject:@"F"];
-	[tempArray addObject:@"G"];
-	[tempArray addObject:@"H"];
-	[tempArray addObject:@"I"];
-	[tempArray addObject:@"J"];
-	[tempArray addObject:@"K"];
-	[tempArray addObject:@"L"];
-	[tempArray addObject:@"M"];
-	[tempArray addObject:@"N"];
-	[tempArray addObject:@"O"];
-	[tempArray addObject:@"P"];
-	[tempArray addObject:@"Q"];
-	[tempArray addObject:@"R"];
-	[tempArray addObject:@"S"];
-	[tempArray addObject:@"T"];
-	[tempArray addObject:@"U"];
-	[tempArray addObject:@"V"];
-	[tempArray addObject:@"X"];
-	[tempArray addObject:@"Y"];
-	[tempArray addObject:@"Z"];
-	[tempArray addObject:@"Æ"];
-    [tempArray addObject:@"Ø"];
-    [tempArray addObject:@"Å"];
-    
-	return tempArray;
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    NSMutableArray *sectionedArray = [[NSMutableArray alloc]init]; 
+    for(char c ='A' ; c <= 'Z' ;  c++)
+    {
+        [sectionedArray addObject:[NSString stringWithFormat:@"%c",c]];
+    }
+    return sectionedArray;
 }
-
+/*- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index 
+{
+    NSInteger count = 0;
+    for(NSString *character in )
+    {
+        if([character isEqualToString:title])
+        {
+            return count;
+        }
+        count ++;
+    }
+    return 0;
+}*/
 
 - (void)viewDidUnload
 {

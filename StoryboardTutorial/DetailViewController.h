@@ -15,7 +15,7 @@
 @interface DetailViewController : UIViewController <UIAlertViewDelegate,MFMailComposeViewControllerDelegate, ABNewPersonViewControllerDelegate> {
     
    
-    
+    // labels
     IBOutlet UILabel *lb_name;
     IBOutlet UILabel *lb_phone;
     IBOutlet UILabel *lb_mobil;
@@ -25,14 +25,13 @@
     
     
 }
+//actions for the buttons
 - (IBAction)bt_addcontact:(id)sender;
-
 - (IBAction)bt_sendmail:(id)sender;
 - (IBAction)bt_call:(id)sender;
 - (IBAction)bt_sendmsg:(id)sender;
 
 @property(nonatomic, retain) IBOutlet UIButton *email_bt;
 @property (strong, nonatomic) Contacts* emp;
-
 @property (nonatomic, retain)IBOutlet UILabel *lb_name, *lb_phone, *lb_mobil;
 @end

@@ -45,6 +45,7 @@
 {
     [super viewDidLoad];
     
+    //What data to show in the labels
     lb_name.text = emp.EXTERNAL_DISPLAY_NAME;
     lb_phone.text = emp.PHONE;
     lb_mobil.text = emp.MOBIL;
@@ -68,6 +69,8 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+
+// Open mail cient which runs when user tabs the send mail button
 - (void)goToMailApp
 {
     if ([MFMailComposeViewController canSendMail])
@@ -88,9 +91,7 @@
         NSString *emailBody = @"";
         [mailer setMessageBody:emailBody isHTML:NO];
         
-        // only for iPad
-        //mailer.modalPresentationStyle = UIModalPresentationPageSheet;
-        
+               
         [self presentModalViewController:mailer animated:YES];
         
         
@@ -108,6 +109,34 @@
     
     }
 
+// returns in a log message when the user chooses to either cancel, save, send or the mail for some reason cant be send
+-(void) mailComposeController:(MFMailComposeViewController*) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail send");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail failed");
+            break;
+            
+            
+        default:
+            NSLog(@"Mail not sent");
+            break;
+    }
+    //close the mail client
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
+// add contact to the internal phonebook 
 - (void)addContact {  
     // Creating new entry  
     ABAddressBookRef addressBook = ABAddressBookCreate();  
@@ -179,6 +208,7 @@
     [self.navigationController popViewControllerAnimated:YES];  
 }  
 
+// call button which promts you which number to call, phone or mobil
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
@@ -201,39 +231,16 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
--(void) mailComposeController:(MFMailComposeViewController*) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-{
-    switch (result) {
-        case MFMailComposeResultCancelled:
-            NSLog(@"Mail cancelled");
-            break;
-        case MFMailComposeResultSaved:
-            NSLog(@"Mail saved");
-            break;
-        case MFMailComposeResultSent:
-            NSLog(@"Mail send");
-            break;
-        case MFMailComposeResultFailed:
-            NSLog(@"Mail failed");
-            break;
-            
-            
-        default:
-             NSLog(@"Mail not sent");
-            break;
-    }
-    [self dismissModalViewControllerAnimated:YES];
-}
 
-
+//button action add contact
 - (IBAction)bt_addcontact:(id)sender {
     [self addContact];
 }
-
+//button action send mail
 - (IBAction)bt_sendmail:(id)sender {
     [self goToMailApp];
     }
-
+//button action make phone call
 - (IBAction)bt_call:(id)sender {
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Call!"
                                                       message:@"Choose which number to call"
@@ -247,7 +254,7 @@
     [message show];
    
 }
-
+//button action send text message
 - (IBAction)bt_sendmsg:(id)sender {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@", emp.MOBIL]]];
 }
