@@ -15,10 +15,41 @@
 -(void) showCurrentDepth;
 @end
 
+@interface NSArray (SSArrayOfArrays)
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+@end
+
+@implementation NSArray (SSArrayOfArrays)
+
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [[self objectAtIndex:[indexPath section]] objectAtIndex:[indexPath row]];
+}
+
+@end
+
+@interface NSMutableArray (SSArrayOfArrays)
+// If idx is beyond the bounds of the reciever, this method automatically extends the reciever to fit with empty subarrays.
+- (void)addObject:(id)anObject toSubarrayAtIndex:(NSUInteger)idx;
+@end
+
+@implementation NSMutableArray (SSArrayOfArrays)
+
+- (void)addObject:(id)anObject toSubarrayAtIndex:(NSUInteger)idx
+{
+    while ([self count] <= idx) {
+        [self addObject:[NSMutableArray array]];
+    }
+    
+    [[self objectAtIndex:idx] addObject:anObject];
+}
+
+@end
+
 @implementation ViewController
 
 
-@synthesize dcDelegate,contactList,contactNamesArray,filteredTableData,isFiltered,searchBar,keys;
+@synthesize dcDelegate,contactList,contactNamesArray,filteredTableData,isFiltered,searchBar, sectionedListContent;
 
 NSURLConnection *theConnection;
 NSURLConnection *myConnection;
@@ -83,7 +114,7 @@ NSString *dump;
         
         nextContact = [NSString stringWithFormat:@"%@", contact.EXTERNAL_DISPLAY_NAME];
         
-        NSLog(@"Added: %@", nextContact);
+        //NSLog(@"Added: %@", nextContact);
         
         [contactNamesArray addObject:nextContact];
         [contactNamesArrayEXTERNAL_DISPLAY_NAME addObject:contact.EXTERNAL_DISPLAY_NAME];
@@ -95,7 +126,7 @@ NSString *dump;
         [contactNamesArrayMOBIL addObject:contact.MOBIL];
         [contactNamesArraySUPERIOR addObject:contact.SUPERIOR];
         [contactNamesArrayLOCATION addObject:contact.LOCATION];
-       
+        
     }
     
     // If Array is empty, then insert "Dummy"
@@ -112,7 +143,22 @@ NSString *dump;
         [contactNamesArrayBUSINESSAREA_NAME addObject:@""];
     }
     NSLog(@"count: %u", [contactNamesArray count]);
+                                  
     
+    NSMutableArray *sections = [NSMutableArray array];
+    UILocalizedIndexedCollation *collation = [UILocalizedIndexedCollation currentCollation];
+    for (Contacts *contact in contactList) {
+        NSInteger section = [collation sectionForObject:contact collationStringSelector:@selector(EXTERNAL_DISPLAY_NAME)];
+        [sections addObject:contact toSubarrayAtIndex:section];
+    }
+    
+    NSInteger section = 0;
+    for (section = 0; section < [sections count]; section++) {
+        NSArray *sortedSubarray = [collation sortedArrayFromArray:[sections objectAtIndex:section]
+                                          collationStringSelector:@selector(EXTERNAL_DISPLAY_NAME)];
+        [sections replaceObjectAtIndex:section withObject:sortedSubarray];
+    }
+    sectionedListContent = sections;
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -197,7 +243,7 @@ NSString *dump;
     else if ([currentElement isEqualToString:@"EXTERNAL_DISPLAY_NAME"]) {
         EXTERNAL_DISPLAY_NAME = [[NSMutableString alloc]init];
     }
-
+    
 }
 // Ends a employee element and insert it into the database
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
@@ -206,11 +252,11 @@ NSString *dump;
         --depth;
         [self showCurrentDepth];
         NSLog(@"test  %@ %@ %@ %@", EXTERNAL_DISPLAY_NAME, INIT, PHONE, MOBIL);
-       //Database insert function
+        //Database insert function
         [self.dcDelegate insert_into_contacts_db:EXTERNAL_DISPLAY_NAME:INIT:EMP_NO:EMAIL:BUSINESSAREA_NAME:PHONE:MOBIL:SUPERIOR:LOCATION];
-       
+        
     }
-       
+    
 }
 // takes the xml apart for every current element to get individual data
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
@@ -246,8 +292,8 @@ NSString *dump;
 
 -(void)parserDidEndDocument:(NSXMLParser *)parser
 {
-
-       
+    
+    
 }
 
 //Function from MBProgressHUD.h/m which creates a progress spinner in another thread while downloading data from database (can be changed to downloading from webservice)
@@ -257,17 +303,17 @@ NSString *dump;
 	HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     
 	[self.navigationController.view addSubview:HUD];
-	
+    
 	// Regiser for HUD callbacks so we can remove it from the window at the right time
 	HUD.delegate = self;
     
-    HUD.labelText = @"Loading";
-	
-	// Show the HUD while the provided method executes in a new thread
-	[HUD showWhileExecuting:@selector(getContactsFromDB) onTarget:self withObject:nil animated:YES];
+    HUD.labelText = @"Loading Contactlist";
     
-    //[self.tableView reloadData];
-
+	// Show the HUD while the provided method executes in a new thread
+	[HUD showWhileExecuting:@selector(getData) onTarget:self withObject:nil animated:YES];
+    
+    [self.tableView reloadData];
+    
 }
 - (void)didReceiveMemoryWarning
 {
@@ -279,17 +325,22 @@ NSString *dump;
 
 - (void)viewDidLoad
 {
-    [self flushdb];
-    searchBar.delegate = (id)self;
-    [self progressSpinner];
-     self.dcDelegate = [[DbDataController alloc] init];
-    [self getData];
-    //[self getContactsFromDB];
-    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-    [super viewDidLoad];
     
-        
-	  
+    self.title = @"Terma Employees";
+    [self flushdb];
+    
+    searchBar.delegate = (id)self;
+    
+    self.dcDelegate = [[DbDataController alloc] init];
+    //[self getData];
+    [self getContactsFromDB];
+    [self progressSpinner];
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    [self.tableView reloadData];
+        [super viewDidLoad];
+    
+    
+    
     // Do any additional setup after loading the view, typically from a nib.
     //[self. selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
 }
@@ -298,27 +349,30 @@ NSString *dump;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
-   	//return [contactList count];
+    if (isFiltered)
+	{
+        return 1;
+    }
+	else
+	{
+        return [self.sectionedListContent count];
+    }
 }
 
 // Determine if table view should return the count of searched data or the full contactlist
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    int rowCount;
-    if(self.isFiltered)
-        rowCount = filteredTableData.count;
-    else
-        rowCount = contactList.count;
-    
-    return rowCount;
-    //return [contactList count];
-    
-
-    //#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    //return [contactNamesArray count];
+	/*
+	 If the requesting table view is the search display controller's table view, return the count of the filtered list, otherwise return the count of the main list.
+	 */
+	if (isFiltered)
+	{
+        return [self.filteredTableData count];
+    }
+	else
+	{
+        return [[self.sectionedListContent objectAtIndex:section] count];
+    }
 }
 
 // Creations of cell design
@@ -329,23 +383,23 @@ NSString *dump;
     UITableViewCell *cell = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     //if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     
     //}
     
     // Inserts either the search result or full contactlist data into the tableview  
-    Contacts* emp;
+    Contacts* emp =nil;
     if(isFiltered)
         emp = [filteredTableData objectAtIndex:indexPath.row];
     else
-        emp = [contactList objectAtIndex:indexPath.row];
+        emp = [self.sectionedListContent objectAtIndexPath:indexPath];
     
-    // What data to show in the table view at label text and subtitle. (This could be any data)
+        // What data to show in the table view at label text and subtitle. (This could be any data)
     cell.textLabel.text = emp.EXTERNAL_DISPLAY_NAME;
     cell.detailTextLabel.text = emp.INIT;
     
-      
-        // Configure the cell...
+    
+    // Configure the cell...
     
     //---------- CELL BACKGROUND IMAGE -----------------------------
     //UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.frame];
@@ -359,9 +413,9 @@ NSString *dump;
     //[[cell textLabel] setBackgroundColor:[UIColor clearColor]];
     
     //[[cell detailTextLabel] setBackgroundColor:[UIColor clearColor]];
-   
     
-
+    
+    
     //Cell Arrow 
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -409,31 +463,33 @@ NSString *dump;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self showDetailsForIndexPath:indexPath];
-}
-// parsing data to detailview controller when a employee in the tableview is selected
-
--(void) showDetailsForIndexPath:(NSIndexPath*)indexPath
-{
-     DetailViewController *detail = [self.storyboard instantiateViewControllerWithIdentifier:@"detail"];
+    
+    DetailViewController *detail = [self.storyboard instantiateViewControllerWithIdentifier:@"detail"];
     
     [self.searchBar resignFirstResponder];
     
-    Contacts *emp;
+    Contacts *emp = nil;
     
     if(isFiltered)
     {
         emp = [filteredTableData objectAtIndex:indexPath.row];
-
+        
     }
     else
     {
-        emp = [contactList objectAtIndex:indexPath.row];
+        emp = [self.sectionedListContent objectAtIndexPath:indexPath];
     }
     
     detail.emp = emp;
     
     
-    [self.navigationController pushViewController:detail animated:YES];    
+    [self.navigationController pushViewController:detail animated:YES]; 
+}
+// parsing data to detailview controller when a employee in the tableview is selected
+
+-(void) showDetailsForIndexPath:(NSIndexPath*)indexPath
+{
+       
 }
 
 
@@ -444,32 +500,57 @@ NSString *dump;
     return 45;
     
 }
+/*- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index 
+ {
+ NSInteger count = 0;
+ for(NSString *character in )
+ {
+ if([character isEqualToString:title])
+ {
+ return count;
+ }
+ count ++;
+ }
+ return 0;
+ }*/
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	if (isFiltered) {
+        return nil;
+    } else {
+        return [[self.sectionedListContent objectAtIndex:section] count] ? [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section] : nil;
+    }
+}
+
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    NSMutableArray *sectionedArray = [[NSMutableArray alloc]init]; 
-    for(char c ='A' ; c <= 'Z' ;  c++)
-    {
-        [sectionedArray addObject:[NSString stringWithFormat:@"%c",c]];
+    if (isFiltered) {
+        return nil;
+    } else {
+        return [[NSArray arrayWithObject:UITableViewIndexSearch] arrayByAddingObjectsFromArray:
+                [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles]];
     }
-    return sectionedArray;
 }
-/*- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index 
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
-    NSInteger count = 0;
-    for(NSString *character in )
-    {
-        if([character isEqualToString:title])
-        {
-            return count;
+    if (isFiltered) {
+        return 0;
+    } else {
+        if (title == UITableViewIndexSearch) {
+            [tableView scrollRectToVisible:self.searchDisplayController.searchBar.frame animated:NO];
+            return -1;
+        } else {
+            return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index-1];
         }
-        count ++;
     }
-    return 0;
-}*/
+}
 
 - (void)viewDidUnload
 {
-   
+    self.filteredTableData = nil;
+    sectionedListContent = nil;
     [self setSearchBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -483,6 +564,7 @@ NSString *dump;
 
 - (void)viewDidAppear:(BOOL)animated
 {
+
     [super viewDidAppear:animated];
 }
 

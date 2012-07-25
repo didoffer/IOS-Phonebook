@@ -20,8 +20,8 @@
 
 @private
     
-    
-    
+    NSArray  *sectionedListContent;  // The content filtered into alphabetical sections.
+  
     NSMutableDictionary *EMPLOYEE;
     NSXMLParser *xmlParser;
     NSString *currentElement;
@@ -53,17 +53,21 @@
     NSMutableArray *contactNamesArraySUPERIOR;
     NSMutableArray *contactNamesArrayLOCATION;
     
-    
+   	
     
 }
 
-@property(strong, retain)NSMutableArray *contactList;
+@property(strong)NSMutableArray *contactList;// The master content.
+@property (nonatomic, readonly) NSArray *sectionedListContent;
 @property(strong, retain)NSMutableArray *contactNamesArray;
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property(strong, retain)NSMutableArray *filteredTableData;
+@property(strong)NSMutableArray *filteredTableData; // The content filtered as a result of a search.
 @property (nonatomic, assign) bool isFiltered;
-@property (strong, nonatomic) NSArray *keys;
+
+
+
+
 
 
 
