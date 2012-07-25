@@ -420,13 +420,15 @@ NSString *dump;
     
     return cell;
 }
-
+-(void) scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [self.searchBar resignFirstResponder];
+}
 // search bar function that runs when user types in search field
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
 {
     if(text.length == 0)
     {
-        [self.searchBar resignFirstResponder];
+        
         isFiltered = FALSE;
     }
     else
