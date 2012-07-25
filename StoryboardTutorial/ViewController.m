@@ -144,7 +144,7 @@ NSString *dump;
     }
     NSLog(@"count: %u", [contactNamesArray count]);
                                   
-    
+    //Creates array "sectionedListContent" to hold grouped data from contactlist
     NSMutableArray *sections = [NSMutableArray array];
     UILocalizedIndexedCollation *collation = [UILocalizedIndexedCollation currentCollation];
     for (Contacts *contact in contactList) {
@@ -167,7 +167,7 @@ NSString *dump;
     [receivedData setLength:0];
     
 }
-
+//append received data to data
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [receivedData appendData:data];
@@ -198,7 +198,7 @@ NSString *dump;
     depth = 0;
     currentElement = nil;
 }
-
+// xml parse error
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
     NSLog(@"Error: %@", [parseError localizedDescription]);
@@ -296,7 +296,7 @@ NSString *dump;
     
 }
 
-//Function from MBProgressHUD.h/m which creates a progress spinner in another thread while downloading data from database (can be changed to downloading from webservice)
+//Function from MBProgressHUD.h/m which creates a progress spinner in another thread while downloading data through webservice
 -(void) progressSpinner{
     
     // The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
@@ -325,28 +325,27 @@ NSString *dump;
 
 - (void)viewDidLoad
 {
-    
+    // Set table view title
     self.title = @"Terma Employees";
+    //flush database
     [self flushdb];
-    
+    //
     searchBar.delegate = (id)self;
-    
+    //initialize dcDelegate
     self.dcDelegate = [[DbDataController alloc] init];
-    //[self getData];
+    //Get contacts from local database
     [self getContactsFromDB];
+    //Get data from webservice and display progress spinner until all data is downloaded
     [self progressSpinner];
+    //Reload table view
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-    [self.tableView reloadData];
-        [super viewDidLoad];
     
     
-    
-    // Do any additional setup after loading the view, typically from a nib.
-    //[self. selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    [super viewDidLoad];
 }
 
 
-
+// number of section i table view. If seraching return only searched data else return data table in sections
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (isFiltered)
@@ -359,11 +358,11 @@ NSString *dump;
     }
 }
 
-// Determine if table view should return the count of searched data or the full contactlist
+// Number og rows (contacts) in sections
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	/*
-	 If the requesting table view is the search display controller's table view, return the count of the filtered list, otherwise return the count of the main list.
+	 If the requesting table view is the search, return the count of the filtered list, otherwise return the count of the main list.
 	 */
 	if (isFiltered)
 	{
@@ -427,6 +426,7 @@ NSString *dump;
 {
     if(text.length == 0)
     {
+        [self.searchBar resignFirstResponder];
         isFiltered = FALSE;
     }
     else
@@ -452,7 +452,7 @@ NSString *dump;
 // If user tabs the search button on the keyboard the keyboard dissapears
 -(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     
-    [searchBar resignFirstResponder];
+    [self.searchBar resignFirstResponder];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
@@ -460,6 +460,7 @@ NSString *dump;
     [self showDetailsForIndexPath:indexPath];
 }
 
+// parsing data to detailview controller when a employee in the tableview is selected
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self showDetailsForIndexPath:indexPath];
@@ -485,7 +486,7 @@ NSString *dump;
     
     [self.navigationController pushViewController:detail animated:YES]; 
 }
-// parsing data to detailview controller when a employee in the tableview is selected
+
 
 -(void) showDetailsForIndexPath:(NSIndexPath*)indexPath
 {
@@ -493,27 +494,13 @@ NSString *dump;
 }
 
 
-//----------------------TABLEVIEWCELL HEIGHT -------------------------------------------
-
+//table cell height
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 45;
     
 }
-/*- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index 
- {
- NSInteger count = 0;
- for(NSString *character in )
- {
- if([character isEqualToString:title])
- {
- return count;
- }
- count ++;
- }
- return 0;
- }*/
-
+// Set title for header contact in section
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	if (isFiltered) {
@@ -522,7 +509,7 @@ NSString *dump;
         return [[self.sectionedListContent objectAtIndex:section] count] ? [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section] : nil;
     }
 }
-
+// creates the alphabet section titles
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     if (isFiltered) {
@@ -532,7 +519,7 @@ NSString *dump;
                 [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles]];
     }
 }
-
+// creates the alphabet section titles
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
     if (isFiltered) {
