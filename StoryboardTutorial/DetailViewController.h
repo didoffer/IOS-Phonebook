@@ -17,8 +17,10 @@
    
     // labels
     IBOutlet UILabel *lb_name;
-    IBOutlet UILabel *lb_phone;
-    IBOutlet UILabel *lb_mobil;
+    
+    IBOutlet UILabel *lb_BUSINESSAREA_NAME;
+    
+    IBOutlet UILabel *lb_LOCATION;
     
     
     
@@ -30,8 +32,13 @@
 - (IBAction)bt_sendmail:(id)sender;
 - (IBAction)bt_call:(id)sender;
 - (IBAction)bt_sendmsg:(id)sender;
+- (IBAction)bt_phone:(id)sender;
+- (IBAction)bt_mobil:(id)sender;
 
-@property(nonatomic, retain) IBOutlet UIButton *email_bt;
+
+
 @property (strong, nonatomic) Contacts* emp;
-@property (nonatomic, retain)IBOutlet UILabel *lb_name, *lb_phone, *lb_mobil;
+@property (weak, nonatomic) IBOutlet UIButton *bt_mobil;
+@property (weak, nonatomic) IBOutlet UIButton *bt_phone;
+@property (nonatomic, retain)IBOutlet UILabel *lb_name, *lb_BUSINESSAREA_NAME, *lb_LOCATION;
 @end

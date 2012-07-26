@@ -11,7 +11,9 @@
 #import "ViewController.h"
 
 @implementation DetailViewController
-@synthesize lb_name, lb_mobil, lb_phone, email_bt,emp;
+@synthesize bt_mobil,bt_phone;
+
+@synthesize lb_name, lb_LOCATION, lb_BUSINESSAREA_NAME,emp;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,12 +34,6 @@
 
 #pragma mark - View lifecycle
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -47,12 +43,11 @@
     
     //What data to show in the labels
     lb_name.text = emp.EXTERNAL_DISPLAY_NAME;
-    lb_phone.text = emp.PHONE;
-    lb_mobil.text = emp.MOBIL;
+    lb_BUSINESSAREA_NAME.text = emp.BUSINESSAREA_NAME;
+    lb_LOCATION.text = emp.LOCATION;
+   
     
-    //change text of a button
-    //[email_bt setTitle:email forState:UIControlStateNormal];
-    
+    [self checkPhoneNumbers];
     
 }
 
@@ -60,16 +55,36 @@
 - (void)viewDidUnload
 {
    
-   
-    
     lb_name = nil;
-    lb_phone = nil;
-    lb_mobil = nil;
+    lb_BUSINESSAREA_NAME = nil;
+    lb_LOCATION = nil;
+    [self setBt_mobil:nil];
+    [self setBt_phone:nil];
+    [self setBt_mobil:nil];
+    lb_BUSINESSAREA_NAME = nil;
+    lb_LOCATION = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+-(void) checkPhoneNumbers
+{
+    if (emp.PHONE.length < 1 ) {
+        [bt_phone setTitle:@"No phone number" forState:UIControlStateNormal];
+    }
+    else {
+        [bt_phone setTitle:emp.PHONE forState:UIControlStateNormal];
+    }
+    
+    if (emp.MOBIL.length < 1 ) {
+        [bt_mobil setTitle:@"No mobile number" forState:UIControlStateNormal];
+    }
+    else {
+        [bt_mobil setTitle:emp.MOBIL forState:UIControlStateNormal];
+    }
 
+
+}
 // Open mail cient which runs when user tabs the send mail button
 - (void)goToMailApp
 {
@@ -256,6 +271,29 @@
 }
 //button action send text message
 - (IBAction)bt_sendmsg:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@", emp.MOBIL]]];
+    if (emp.MOBIL.length < 1) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"No mobile number"
+                                                          message:@"You can't send a text message to a contact with no mobile number"
+                                                         delegate:self
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+
+    }
+    else {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@", emp.MOBIL]]];
+        NSLog(@"Message send to %@", emp.MOBIL);
+    }
+    
+}
+//button action make phone call to local number
+- (IBAction)bt_phone:(id)sender {
+    NSLog(@"Calling %@", emp.PHONE);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", emp.PHONE]]];
+}
+//button action make phone call to mobile number
+- (IBAction)bt_mobil:(id)sender {
+    NSLog(@"Calling %@",emp.MOBIL);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", emp.MOBIL]]];
 }
 @end
