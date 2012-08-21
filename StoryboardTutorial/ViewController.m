@@ -64,7 +64,7 @@ NSString *dump;
 {
     receivedData = [[NSMutableData alloc] init];
     
-    NSURL *myURL = [NSURL URLWithString:@"http://midvm1.terma.com/kbni2/PubsService.svc/employees"];
+    NSURL *myURL = [NSURL URLWithString:@"http://midvm1.terma.com/kbni2/TermaService.svc/employees"];
     
     NSURLRequest *myRequest = [NSURLRequest requestWithURL:myURL];
     
@@ -189,7 +189,7 @@ NSString *dump;
         [xmlParser setShouldReportNamespacePrefixes:NO];
         [xmlParser setShouldResolveExternalEntities:NO];
         [xmlParser parse];
-        NSLog(@" here is the data: %@", xml);
+        //NSLog(@" here is the data: %@", xml);
     }
     
 }
@@ -325,6 +325,8 @@ NSString *dump;
 
 - (void)viewDidLoad
 {
+    
+    
     // Set table view title
     self.title = @"Terma Employees";
     //flush database
@@ -334,6 +336,7 @@ NSString *dump;
     //initialize dcDelegate
     self.dcDelegate = [[DbDataController alloc] init];
     //Get contacts from local database
+    
     [self getContactsFromDB];
     //Get data from webservice and display progress spinner until all data is downloaded
     [self progressSpinner];

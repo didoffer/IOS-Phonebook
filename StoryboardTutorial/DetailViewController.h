@@ -11,10 +11,10 @@
 #import "AddressBook/AddressBook.h"
 #import "AddressBookUI/AddressBookUI.h"
 #import "Contacts.h"
-
+#import "MBProgressHUD.h"
 @interface DetailViewController : UIViewController <UIAlertViewDelegate,MFMailComposeViewControllerDelegate, ABNewPersonViewControllerDelegate> {
     
-   
+    MBProgressHUD *HUD;
     // labels
     IBOutlet UILabel *lb_name;
     
@@ -22,6 +22,7 @@
     
     IBOutlet UILabel *lb_LOCATION;
     
+    IBOutlet UIImageView *imageView;
     
     
     

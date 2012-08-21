@@ -14,7 +14,6 @@
 		EC7F020915A4568500F55735 /* Contacts.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7F020815A4568500F55735 /* Contacts.m */; };
 		EC7F020C15A4570A00F55735 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7F020B15A4570A00F55735 /* MessageUI.framework */; };
 		EC7F020E15A4571600F55735 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7F020D15A4571600F55735 /* libsqlite3.0.dylib */; };
-		EC7F021015A4579300F55735 /* Contact.rdb in Resources */ = {isa = PBXBuildFile; fileRef = EC7F020F15A4579300F55735 /* Contact.rdb */; };
 		EC7F021115A457B800F55735 /* Contact.rdb in Resources */ = {isa = PBXBuildFile; fileRef = EC7F020F15A4579300F55735 /* Contact.rdb */; };
 		EC8222EA15AEBDE2006B57BC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8222E915AEBDE2006B57BC /* MBProgressHUD.m */; };
 		EC828FB215B8236D006D1818 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC828FB115B8236D006D1818 /* SystemConfiguration.framework */; };
@@ -26,25 +25,10 @@
 		FC1FF1CC144FD76E008429F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1FF1CB144FD76E008429F9 /* AppDelegate.m */; };
 		FC1FF1CF144FD76E008429F9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1FF1CD144FD76E008429F9 /* MainStoryboard.storyboard */; };
 		FC1FF1D2144FD76E008429F9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1FF1D1144FD76E008429F9 /* ViewController.m */; };
-		FC1FF1DA144FD76F008429F9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1D9144FD76F008429F9 /* SenTestingKit.framework */; };
-		FC1FF1DB144FD76F008429F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BB144FD76E008429F9 /* UIKit.framework */; };
-		FC1FF1DC144FD76F008429F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BD144FD76E008429F9 /* Foundation.framework */; };
-		FC1FF1E4144FD76F008429F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC1FF1E2144FD76F008429F9 /* InfoPlist.strings */; };
-		FC1FF1E7144FD76F008429F9 /* StoryboardTutorialTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1FF1E6144FD76F008429F9 /* StoryboardTutorialTests.m */; };
 		FC1FF1F2144FE1B6008429F9 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1FF1F1144FE1B6008429F9 /* DetailViewController.m */; };
 		FC1FF1F5144FE696008429F9 /* LightGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = FC1FF1F3144FE696008429F9 /* LightGrey.png */; };
 		FC1FF1F6144FE696008429F9 /* LightGrey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC1FF1F4144FE696008429F9 /* LightGrey@2x.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		FC1FF1DD144FD76F008429F9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FC1FF1AE144FD76E008429F9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FC1FF1B6144FD76E008429F9;
-			remoteInfo = StoryboardTutorial;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		EC4646B415A581BD00E0258D /* Contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Contact.png; sourceTree = "<group>"; };
@@ -61,6 +45,7 @@
 		EC8222E715AEBDDC006B57BC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EC8222E915AEBDE2006B57BC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EC828FB115B8236D006D1818 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		ECBD380B15C125E10095B789 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		FC1FF1B7144FD76E008429F9 /* StoryboardTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryboardTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1FF1BB144FD76E008429F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FC1FF1BD144FD76E008429F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -74,12 +59,7 @@
 		FC1FF1CE144FD76E008429F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		FC1FF1D0144FD76E008429F9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		FC1FF1D1144FD76E008429F9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		FC1FF1D8144FD76F008429F9 /* StoryboardTutorialTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoryboardTutorialTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1FF1D9144FD76F008429F9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		FC1FF1E1144FD76F008429F9 /* StoryboardTutorialTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StoryboardTutorialTests-Info.plist"; sourceTree = "<group>"; };
-		FC1FF1E3144FD76F008429F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FC1FF1E5144FD76F008429F9 /* StoryboardTutorialTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoryboardTutorialTests.h; sourceTree = "<group>"; };
-		FC1FF1E6144FD76F008429F9 /* StoryboardTutorialTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoryboardTutorialTests.m; sourceTree = "<group>"; };
 		FC1FF1F0144FE1B6008429F9 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		FC1FF1F1144FE1B6008429F9 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		FC1FF1F3144FE696008429F9 /* LightGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LightGrey.png; sourceTree = "<group>"; };
@@ -99,16 +79,6 @@
 				FC1FF1BC144FD76E008429F9 /* UIKit.framework in Frameworks */,
 				FC1FF1BE144FD76E008429F9 /* Foundation.framework in Frameworks */,
 				FC1FF1C0144FD76E008429F9 /* CoreGraphics.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FC1FF1D4144FD76F008429F9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FC1FF1DA144FD76F008429F9 /* SenTestingKit.framework in Frameworks */,
-				FC1FF1DB144FD76F008429F9 /* UIKit.framework in Frameworks */,
-				FC1FF1DC144FD76F008429F9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,8 +109,8 @@
 		FC1FF1AC144FD76E008429F9 = {
 			isa = PBXGroup;
 			children = (
+				ECBD380B15C125E10095B789 /* ImageIO.framework */,
 				FC1FF1C1144FD76E008429F9 /* StoryboardTutorial */,
-				FC1FF1DF144FD76F008429F9 /* StoryboardTutorialTests */,
 				FC1FF1BA144FD76E008429F9 /* Frameworks */,
 				FC1FF1B8144FD76E008429F9 /* Products */,
 			);
@@ -150,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				FC1FF1B7144FD76E008429F9 /* StoryboardTutorial.app */,
-				FC1FF1D8144FD76F008429F9 /* StoryboardTutorialTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,25 +172,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		FC1FF1DF144FD76F008429F9 /* StoryboardTutorialTests */ = {
-			isa = PBXGroup;
-			children = (
-				FC1FF1E5144FD76F008429F9 /* StoryboardTutorialTests.h */,
-				FC1FF1E6144FD76F008429F9 /* StoryboardTutorialTests.m */,
-				FC1FF1E0144FD76F008429F9 /* Supporting Files */,
-			);
-			path = StoryboardTutorialTests;
-			sourceTree = "<group>";
-		};
-		FC1FF1E0144FD76F008429F9 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				FC1FF1E1144FD76F008429F9 /* StoryboardTutorialTests-Info.plist */,
-				FC1FF1E2144FD76F008429F9 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -241,25 +191,6 @@
 			productName = StoryboardTutorial;
 			productReference = FC1FF1B7144FD76E008429F9 /* StoryboardTutorial.app */;
 			productType = "com.apple.product-type.application";
-		};
-		FC1FF1D7144FD76F008429F9 /* StoryboardTutorialTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FC1FF1ED144FD76F008429F9 /* Build configuration list for PBXNativeTarget "StoryboardTutorialTests" */;
-			buildPhases = (
-				FC1FF1D3144FD76F008429F9 /* Sources */,
-				FC1FF1D4144FD76F008429F9 /* Frameworks */,
-				FC1FF1D5144FD76F008429F9 /* Resources */,
-				FC1FF1D6144FD76F008429F9 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FC1FF1DE144FD76F008429F9 /* PBXTargetDependency */,
-			);
-			name = StoryboardTutorialTests;
-			productName = StoryboardTutorialTests;
-			productReference = FC1FF1D8144FD76F008429F9 /* StoryboardTutorialTests.octest */;
-			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -282,7 +213,6 @@
 			projectRoot = "";
 			targets = (
 				FC1FF1B6144FD76E008429F9 /* StoryboardTutorial */,
-				FC1FF1D7144FD76F008429F9 /* StoryboardTutorialTests */,
 			);
 		};
 /* End PBXProject section */
@@ -301,32 +231,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FC1FF1D5144FD76F008429F9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FC1FF1E4144FD76F008429F9 /* InfoPlist.strings in Resources */,
-				EC7F021015A4579300F55735 /* Contact.rdb in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		FC1FF1D6144FD76F008429F9 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FC1FF1B3144FD76E008429F9 /* Sources */ = {
@@ -343,23 +248,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FC1FF1D3144FD76F008429F9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FC1FF1E7144FD76F008429F9 /* StoryboardTutorialTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		FC1FF1DE144FD76F008429F9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FC1FF1B6144FD76E008429F9 /* StoryboardTutorial */;
-			targetProxy = FC1FF1DD144FD76F008429F9 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FC1FF1C4144FD76E008429F9 /* InfoPlist.strings */ = {
@@ -376,14 +265,6 @@
 				FC1FF1CE144FD76E008429F9 /* en */,
 			);
 			name = MainStoryboard.storyboard;
-			sourceTree = "<group>";
-		};
-		FC1FF1E2144FD76F008429F9 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FC1FF1E3144FD76F008429F9 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -456,40 +337,6 @@
 			};
 			name = Release;
 		};
-		FC1FF1EE144FD76F008429F9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/StoryboardTutorial.app/StoryboardTutorial";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "StoryboardTutorial/StoryboardTutorial-Prefix.pch";
-				INFOPLIST_FILE = "StoryboardTutorialTests/StoryboardTutorialTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		FC1FF1EF144FD76F008429F9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/StoryboardTutorial.app/StoryboardTutorial";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "StoryboardTutorial/StoryboardTutorial-Prefix.pch";
-				INFOPLIST_FILE = "StoryboardTutorialTests/StoryboardTutorialTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -507,15 +354,6 @@
 			buildConfigurations = (
 				FC1FF1EB144FD76F008429F9 /* Debug */,
 				FC1FF1EC144FD76F008429F9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FC1FF1ED144FD76F008429F9 /* Build configuration list for PBXNativeTarget "StoryboardTutorialTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FC1FF1EE144FD76F008429F9 /* Debug */,
-				FC1FF1EF144FD76F008429F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

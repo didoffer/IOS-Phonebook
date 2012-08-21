@@ -22,11 +22,11 @@
     
     NSArray  *sectionedListContent;  // The content filtered into alphabetical sections.
   
-    NSMutableDictionary *EMPLOYEE;
+    
     NSXMLParser *xmlParser;
     NSString *currentElement;
     NSInteger depth;
-    NSMutableString *currentname;
+    
 
        
     

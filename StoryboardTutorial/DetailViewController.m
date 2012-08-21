@@ -15,6 +15,8 @@
 
 @synthesize lb_name, lb_LOCATION, lb_BUSINESSAREA_NAME,emp;
 
+NSData* imageData;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -45,12 +47,32 @@
     lb_name.text = emp.EXTERNAL_DISPLAY_NAME;
     lb_BUSINESSAREA_NAME.text = emp.BUSINESSAREA_NAME;
     lb_LOCATION.text = emp.LOCATION;
-   
-    
     [self checkPhoneNumbers];
+    [self progressSpinner1];
+    //[self loadImage];
+    
+      
     
 }
-
+      
+     
+- (void)loadImage {
+    NSString *path =[NSString stringWithFormat:@"http://intranet.terma.com/phonebook/images/employee_images/thumbnail/%@",emp.INIT, @"-%@",emp.EMP_NO,@"-01.jpg"]; 
+    path = [path stringByAppendingFormat:@"-%@", emp.EMP_NO];
+    path =[path stringByAppendingFormat:@"-01.jpg"];
+    NSLog(@"se%@", path);
+         imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:path]];
+   
+         UIImage* image = [[UIImage alloc] initWithData:imageData];
+         
+         [self performSelectorOnMainThread:@selector(displayImage:) withObject:image waitUntilDone:NO];
+    
+    
+     }
+     
+     - (void)displayImage:(UIImage *)image {
+         [imageView setImage:image];
+     }
 
 - (void)viewDidUnload
 {
@@ -63,10 +85,29 @@
     [self setBt_mobil:nil];
     lb_BUSINESSAREA_NAME = nil;
     lb_LOCATION = nil;
+    imageView = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+
+-(void) progressSpinner1{
+    
+    // The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
+	HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    
+	[self.navigationController.view addSubview:HUD];
+    
+	// Regiser for HUD callbacks so we can remove it from the window at the right time
+	HUD.delegate = self;
+    
+    HUD.labelText = @"Loading Contactlist";
+    
+	// Show the HUD while the provided method executes in a new thread
+	[HUD showWhileExecuting:@selector(loadImage) onTarget:self withObject:nil animated:YES];
+  
+}
+
 -(void) checkPhoneNumbers
 {
     if (emp.PHONE.length < 1 ) {
@@ -173,6 +214,10 @@
     ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)@"+45 23232323" ,(__bridge_retained CFStringRef)@"Private", NULL);  
     ABRecordSetValue(person, kABPersonPhoneProperty, phoneNumberMultiValue, nil);  
     CFRelease(phoneNumberMultiValue);  
+    
+    //Adding picture to contact
+    CFDataRef dr =CFDataCreate(NULL, [imageData bytes], [imageData length]);
+    ABPersonSetImageData(person, dr, nil);
     
     /* Adding url  
     ABMutableMultiValueRef urlMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);  
