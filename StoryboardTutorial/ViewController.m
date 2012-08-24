@@ -238,7 +238,7 @@ NSString *dump;
 - (void)flushdb
 {
     [self.dcDelegate flush_contacts_db];
-    //[self.tableView reloadData];
+    [self.tableView reloadData];
 }
 
 //For every employee in contactlist addobjects to each of the array's
@@ -334,25 +334,6 @@ NSString *dump;
 }
 
 
-//Function from MBProgressHUD.h/m which creates a progress spinner in another thread while downloading data through webservice
--(void) progressSpinner{
-    
-    // The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
-	HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    
-	[self.navigationController.view addSubview:HUD];
-    
-	// Regiser for HUD callbacks so we can remove it from the window at the right time
-	HUD.delegate = self;
-    
-    HUD.labelText = @"Loading Contactlist";
-    
-	// Show the HUD while the provided method executes in a new thread
-	[HUD showWhileExecuting:@selector(getData) onTarget:self withObject:nil animated:YES];
-    
-    [self.tableView reloadData];
-    
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -367,14 +348,11 @@ NSString *dump;
     [self getData:self];
     // Set table view title
     self.title = @"Terma Employees";
-    //flush database
-    [self flushdb];
-    //
     searchBar.delegate = (id)self;
     //initialize dcDelegate
     self.dcDelegate = [[DbDataController alloc] init];
     //Get contacts from local database
-    [self performSelector:@selector(getContactsFromDB) withObject:self afterDelay:1.0 ];
+    [self performSelector:@selector(getContactsFromDB) withObject:self afterDelay:2.0 ];
     //[self.tableView reloadData];
     //[self getContactsFromDB];
     //Get data from webservice and display progress spinner until all data is downloaded
@@ -584,9 +562,14 @@ NSString *dump;
         }
     }
 }
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
 
 - (void)viewDidUnload
 {
+    
     self.filteredTableData = nil;
     sectionedListContent = nil;
     [self setSearchBar:nil];
@@ -616,17 +599,13 @@ NSString *dump;
 	[super viewDidDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
 
 - (IBAction)bt_update:(id)sender {
     [self flushdb];
+    //self.tableView = nil;
     [self getData:self];
     //[self performSelector:@selector(getData) withObject:self afterDelay:1.0 ];
-    [self performSelector:@selector(getContactsFromDB) withObject:self afterDelay:1.0 ];
+    [self performSelector:@selector(getContactsFromDB) withObject:self afterDelay:2.0 ];
     [self.tableView reloadData];
 }
 @end

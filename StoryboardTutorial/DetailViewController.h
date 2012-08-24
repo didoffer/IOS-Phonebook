@@ -31,7 +31,6 @@
 //actions for the buttons
 - (IBAction)bt_addcontact:(id)sender;
 - (IBAction)bt_sendmail:(id)sender;
-- (IBAction)bt_call:(id)sender;
 - (IBAction)bt_sendmsg:(id)sender;
 - (IBAction)bt_phone:(id)sender;
 - (IBAction)bt_mobil:(id)sender;

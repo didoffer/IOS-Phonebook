@@ -208,7 +208,7 @@ NSData* imageData;
     
     // Adding phone numbers  
     ABMutableMultiValueRef phoneNumberMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);  
-    ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)emp.PHONE ,(__bridge_retained CFStringRef)@"Home", NULL);  
+    ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)emp.PHONE ,(__bridge_retained CFStringRef)@"Work", NULL);  
     //ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)emp.MOBIL ,(__bridge_retained CFStringRef)@"Terma mobil", NULL);  
     //ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)@"" ,(__bridge_retained CFStringRef)@"Private", NULL);  
     ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)emp.MOBIL, kABPersonPhoneMobileLabel, NULL);
@@ -300,20 +300,6 @@ NSData* imageData;
 //button action send mail
 - (IBAction)bt_sendmail:(id)sender {
     [self goToMailApp];
-}
-//button action make phone call
-- (IBAction)bt_call:(id)sender {
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Call!"
-                                                      message:@"Choose which number to call"
-                                                     delegate:self
-                                            cancelButtonTitle:@"Cancel"
-                                            otherButtonTitles:nil];
-    
-    [message addButtonWithTitle:@"Local"];
-    [message addButtonWithTitle:@"Mobile"];
-    
-    [message show];
-    
 }
 //button action send text message
 - (IBAction)bt_sendmsg:(id)sender {
