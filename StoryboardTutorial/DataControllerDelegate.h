@@ -15,6 +15,6 @@
 
 - (NSMutableArray *) getAll:(ViewController *)controller;
 - (void)flush_contacts_db;
-- (void)insert_into_contacts_db:(NSString *)EXTERNAL_DISPLAY_NAME:(NSString *)INIT:(NSString *)EMP_NO:(NSString *)EMAIL: (NSString *)BUSINESSAREA_NAME: (NSString *)PHONE: (NSString *)MOBIL: (NSString *)SUPERIOR: (NSString *)LOCATION;
+- (void)insert_into_contacts_db:(NSString *)EXTERNAL_DISPLAY_NAME:(NSString *)FNAME:(NSString *)LNAME:(NSString *)INIT:(NSString *)EMP_NO:(NSString *)EMAIL: (NSString *)BUSINESSAREA_NAME: (NSString *)PHONE: (NSString *)MOBIL: (NSString *)SUPERIOR: (NSString *)LOCATION:(NSString *)IMAGE_URL;
 
 @end

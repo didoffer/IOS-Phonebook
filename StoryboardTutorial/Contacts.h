@@ -12,6 +12,8 @@
 @interface Contacts : NSObject{
     
     NSString *EXTERNAL_DISPLAY_NAME;
+    NSString *FNAME;
+    NSString *LNAME;
     NSString *INIT ;
     NSString *EMP_NO;
     NSString *EMAIL;
@@ -20,9 +22,12 @@
     NSString *MOBIL ;
     NSString *SUPERIOR ;
     NSString *LOCATION ;
+    NSString *IMAGE_URL;
 }
 
 @property (nonatomic, copy) NSString *EXTERNAL_DISPLAY_NAME;
+@property (nonatomic, copy) NSString *FNAME;
+@property (nonatomic, copy) NSString *LNAME;
 @property (nonatomic, copy) NSString *INIT;
 @property (nonatomic, copy) NSString *EMP_NO;
 @property (nonatomic, copy) NSString *EMAIL;
@@ -31,6 +36,7 @@
 @property (nonatomic, copy) NSString *MOBIL;
 @property (nonatomic, copy) NSString *SUPERIOR;
 @property (nonatomic, copy) NSString *LOCATION;
+@property (nonatomic, copy) NSString *IMAGE_URL;
 
 
 @end

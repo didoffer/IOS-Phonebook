@@ -12,6 +12,8 @@
 
 
 @synthesize EXTERNAL_DISPLAY_NAME;
+@synthesize FNAME;
+@synthesize LNAME;
 @synthesize INIT;
 @synthesize EMP_NO;
 @synthesize EMAIL;
@@ -20,6 +22,7 @@
 @synthesize MOBIL;
 @synthesize SUPERIOR;
 @synthesize LOCATION;
+@synthesize IMAGE_URL;
 
 
 @end

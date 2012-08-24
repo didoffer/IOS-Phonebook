@@ -100,52 +100,16 @@
 
 #pragma mark - DataControllerDelegate 
 
-// Fetch airfield objects from data storage
-// Return array with airfield objects, selected according to SQL statement
+// Fetch contact objects from data storage
+// Return array with contact objects, selected according to SQL statement
 - (NSMutableArray *) getAll:(ViewController *)controller
 {
-    /*
-     if (!stmt_query)  
-     {
-     // Prepare SQL select statement
-     NSString *sql = @"SELECT first_name, last_name, phone, email FROM contacts";
-     if (sqlite3_prepare_v2(dbh, [sql UTF8String], -1, &stmt_query, nil) != SQLITE_OK)
-     {
-     NSLog(@"Error preparing SQL query");
-     return data;
-     }
-     }
-     
-     // Reset state of query statement
-     sqlite3_reset(stmt_query);  
-     // Fetch selected rows in airfields table and populate data array
-     while (sqlite3_step(stmt_query) == SQLITE_ROW) 
-     {
-     Contacts *contacts = [[Contacts alloc] init];
-     
-     // Assign name property with id column in result
-     contacts.first_name = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 0)];
-     // Assign icao property with id column in result
-     contacts.last_name = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 1)];
-     // Assign icao property with id column in result
-     contacts.phone = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 2)];
-     // Assign icao property with id column in result
-     contacts.email = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 3)];
-     
-     // Append Airfield object to data array
-     [data addObject:contacts];
-     NSLog(@"Added Contact: %@ %@", contacts.first_name, contacts.last_name);
-     }
-     NSLog(@"size of data: %f", [data count]);
-     return data;
-     */
-    
-    
+        
     ///////////
     if (!stmt_query)  
     {
         // Prepare SQL select statement
-        NSString *sql = @"SELECT EXTERNAL_DISPLAY_NAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION FROM contacts";
+        NSString *sql = @"SELECT EXTERNAL_DISPLAY_NAME, FNAME, LNAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION, IMAGE_URL FROM contacts";
         if (sqlite3_prepare_v2(dbh, [sql UTF8String], -1, &stmt_query, nil) != SQLITE_OK)
         {
             NSLog(@"Error preparing SQL query");
@@ -164,16 +128,19 @@
         
         // Assign name property with id column in result
         contacts.EXTERNAL_DISPLAY_NAME = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 0)];
+        contacts.FNAME = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 1)];
+        contacts.LNAME = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 2)];
         // Assign icao property with id column in result
-        contacts.INIT = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 1)];
+        contacts.INIT = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 3)];
         // Assign country property with id column in result
-        contacts.EMP_NO = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 2)];
-        contacts.EMAIL = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 3)];
-        contacts.BUSINESSAREA_NAME = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 4)];
-        contacts.PHONE = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 5)];
-        contacts.MOBIL = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 6)];
-        contacts.SUPERIOR = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 7)];
-        contacts.LOCATION = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 8)];
+        contacts.EMP_NO = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 4)];
+        contacts.EMAIL = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 5)];
+        contacts.BUSINESSAREA_NAME = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 6)];
+        contacts.PHONE = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 7)];
+        contacts.MOBIL = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 8)];
+        contacts.SUPERIOR = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 9)];
+        contacts.LOCATION = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 10)];
+        contacts.IMAGE_URL = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 11)];
         
         
         // Append Contact object to data array
@@ -211,10 +178,10 @@
     NSLog(@"### End of DELETE ###");
 }
 
-- (void)insert_into_contacts_db:(NSString *)EXTERNAL_DISPLAY_NAME:(NSString *)INIT:(NSString *)EMP_NO:(NSString *)EMAIL: (NSString *)BUSINESSAREA_NAME: (NSString *)PHONE: (NSString *)MOBIL: (NSString *)SUPERIOR: (NSString *)LOCATION
+- (void)insert_into_contacts_db:(NSString *)EXTERNAL_DISPLAY_NAME:(NSString *)FNAME:(NSString *)LNAME:(NSString *)INIT:(NSString *)EMP_NO:(NSString *)EMAIL: (NSString *)BUSINESSAREA_NAME: (NSString *)PHONE: (NSString *)MOBIL: (NSString *)SUPERIOR: (NSString *)LOCATION: (NSString *)IMAGE_URL
 {
 
-        NSString *sql = [NSString stringWithFormat: @"INSERT INTO contacts (EXTERNAL_DISPLAY_NAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION) VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\")", EXTERNAL_DISPLAY_NAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION];
+        NSString *sql = [NSString stringWithFormat: @"INSERT INTO contacts (EXTERNAL_DISPLAY_NAME, FNAME, LNAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION, IMAGE_URL) VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\")", EXTERNAL_DISPLAY_NAME, FNAME, LNAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION, IMAGE_URL];
         if (sqlite3_prepare_v2(dbh, [sql UTF8String], -1, &stmt_insert, NULL) != SQLITE_OK) {
             NSLog(@"Error:prepare:%@", sqlite3_errmsg(dbh));
             return;
@@ -227,7 +194,7 @@
     sqlite3_reset(stmt_insert); 
     // Execute (step) delete statement
     if (sqlite3_step(stmt_insert) == SQLITE_DONE) {
-        NSLog(@"DONE %@", EXTERNAL_DISPLAY_NAME);
+        //NSLog(@"DONE %@", EXTERNAL_DISPLAY_NAME);
     } else {
         //NSLog(@"Error:delete:%@", sqlite3_errmsg(dbh));
     }

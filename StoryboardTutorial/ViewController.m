@@ -13,6 +13,7 @@
 
 @interface ViewController() 
 -(void) showCurrentDepth;
+
 @end
 
 @interface NSArray (SSArrayOfArrays)
@@ -49,7 +50,7 @@
 @implementation ViewController
 
 
-@synthesize dcDelegate,contactList,contactNamesArray,filteredTableData,isFiltered,searchBar, sectionedListContent;
+@synthesize dcDelegate,contactList,contactNamesArray,filteredTableData,isFiltered,searchBar, sectionedListContent, WebService;
 
 NSURLConnection *theConnection;
 NSURLConnection *myConnection;
@@ -60,8 +61,13 @@ NSString *dump;
 
 
 //Request data from url connection
-- (void)getData
+- (void)getData:(UIViewController *)controller;
 {
+    viewController = (ViewController *)controller;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:viewController.view animated:YES];
+    hud.labelText = @"Loading..."; 
+    
     receivedData = [[NSMutableData alloc] init];
     
     NSURL *myURL = [NSURL URLWithString:@"http://midvm1.terma.com/kbni2/TermaService.svc/employees"];
@@ -74,91 +80,6 @@ NSString *dump;
         receivedData = [NSMutableData data];
     else
     {}
-}
-
-//Truncate database
-- (void)flushdb
-{
-    [self.dcDelegate flush_contacts_db];
-}
-
-//For every employee in contactlist addobjects to each of the array's
-- (void)getContactsFromDB
-{
-    
-    NSLog(@"I was here contact...");
-    contactList = [[NSMutableArray alloc]init];
-    contactList = [self.dcDelegate getAll:self];
-    
-    NSLog(@"size: %u", [contactList count]);
-    
-    //Initialize Arrays
-    contactNamesArray      = [[NSMutableArray alloc] init];
-    contactNamesArrayEXTERNAL_DISPLAY_NAME = [[NSMutableArray alloc] init];
-    contactNamesArrayINIT = [[NSMutableArray alloc] init];
-    contactNamesArrayEMP_NO = [[NSMutableArray alloc] init]; 
-    contactNamesArrayEMAIL = [[NSMutableArray alloc] init];
-    contactNamesArrayBUSINESSAREA_NAME = [[NSMutableArray alloc] init];
-    contactNamesArrayPHONE = [[NSMutableArray alloc] init];
-    contactNamesArrayMOBIL = [[NSMutableArray alloc] init];
-    contactNamesArraySUPERIOR = [[NSMutableArray alloc] init];
-    contactNamesArrayLOCATION = [[NSMutableArray alloc] init];
-    
-    //NSMutableArray *contactNamesArray =  [[NSMutableArray alloc] init];
-    
-    //Loop through contactlist after contacts and add info to the arrays
-    for (Contacts *contact in contactList)
-    {
-        
-        //NSLog(@"EXTERNAL_DISPLAY_NAME: %@, INIT: %@, EMP_NO: %@, EMAIL: %@, BUSINESSAREA_NAME: %@, PHONE: %@, MOBIL: %@, SUPERIOR: %@, LOCATION: %@", contact.EXTERNAL_DISPLAY_NAME, contact.INIT, contact.EMP_NO, contact.EMAIL, contact.BUSINESSAREA_NAME, contact.PHONE, contact.MOBIL, contact.SUPERIOR, contact.LOCATION);
-        
-        nextContact = [NSString stringWithFormat:@"%@", contact.EXTERNAL_DISPLAY_NAME];
-        
-        //NSLog(@"Added: %@", nextContact);
-        
-        [contactNamesArray addObject:nextContact];
-        [contactNamesArrayEXTERNAL_DISPLAY_NAME addObject:contact.EXTERNAL_DISPLAY_NAME];
-        [contactNamesArrayINIT addObject:contact.INIT];
-        [contactNamesArrayEMP_NO addObject:contact.EMP_NO];
-        [contactNamesArrayEMAIL addObject:contact.EMAIL];
-        [contactNamesArrayBUSINESSAREA_NAME addObject:contact.BUSINESSAREA_NAME];
-        [contactNamesArrayPHONE addObject:contact.PHONE];
-        [contactNamesArrayMOBIL addObject:contact.MOBIL];
-        [contactNamesArraySUPERIOR addObject:contact.SUPERIOR];
-        [contactNamesArrayLOCATION addObject:contact.LOCATION];
-        
-    }
-    
-    // If Array is empty, then insert "Dummy"
-    if ([contactNamesArray count] < 1)
-    {
-        [contactNamesArray addObject:@"No contacts"];
-        [contactNamesArrayEMAIL addObject:@""];
-        [contactNamesArrayINIT addObject:@""];
-        [contactNamesArrayEMP_NO addObject:@""];
-        [contactNamesArrayPHONE addObject:@""];
-        [contactNamesArrayMOBIL addObject:@""];
-        [contactNamesArraySUPERIOR addObject:@""];
-        [contactNamesArrayLOCATION addObject:@""];
-        [contactNamesArrayBUSINESSAREA_NAME addObject:@""];
-    }
-    NSLog(@"count: %u", [contactNamesArray count]);
-                                  
-    //Creates array "sectionedListContent" to hold grouped data from contactlist
-    NSMutableArray *sections = [NSMutableArray array];
-    UILocalizedIndexedCollation *collation = [UILocalizedIndexedCollation currentCollation];
-    for (Contacts *contact in contactList) {
-        NSInteger section = [collation sectionForObject:contact collationStringSelector:@selector(EXTERNAL_DISPLAY_NAME)];
-        [sections addObject:contact toSubarrayAtIndex:section];
-    }
-    
-    NSInteger section = 0;
-    for (section = 0; section < [sections count]; section++) {
-        NSArray *sortedSubarray = [collation sortedArrayFromArray:[sections objectAtIndex:section]
-                                          collationStringSelector:@selector(EXTERNAL_DISPLAY_NAME)];
-        [sections replaceObjectAtIndex:section withObject:sortedSubarray];
-    }
-    sectionedListContent = sections;
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -219,6 +140,13 @@ NSString *dump;
     else if ([currentElement isEqualToString:@"EMP_NO"]) {
         EMP_NO = [[NSMutableString alloc]init];
     }
+    else if ([currentElement isEqualToString:@"FNAME"]) {
+        FNAME = [[NSMutableString alloc]init];
+    }
+    else if ([currentElement isEqualToString:@"LNAME"]) {
+        LNAME = [[NSMutableString alloc]init];
+    }
+    
     else if ([currentElement isEqualToString:@"INIT"]) {
         INIT = [[NSMutableString alloc]init];
     }
@@ -240,6 +168,10 @@ NSString *dump;
     else if ([currentElement isEqualToString:@"LOCATION"]) {
         LOCATION = [[NSMutableString alloc]init];
     }
+    else if ([currentElement isEqualToString:@"IMAGE_URL"]) {
+        IMAGE_URL = [[NSMutableString alloc]init];
+    }
+    
     else if ([currentElement isEqualToString:@"EXTERNAL_DISPLAY_NAME"]) {
         EXTERNAL_DISPLAY_NAME = [[NSMutableString alloc]init];
     }
@@ -251,9 +183,9 @@ NSString *dump;
     if ([elementName isEqualToString:@"Employee"]) {
         --depth;
         [self showCurrentDepth];
-        NSLog(@"test  %@ %@ %@ %@", EXTERNAL_DISPLAY_NAME, INIT, PHONE, MOBIL);
+        //NSLog(@"test  %@ %@ %@ %@", EXTERNAL_DISPLAY_NAME, INIT, PHONE, MOBIL);
         //Database insert function
-        [self.dcDelegate insert_into_contacts_db:EXTERNAL_DISPLAY_NAME:INIT:EMP_NO:EMAIL:BUSINESSAREA_NAME:PHONE:MOBIL:SUPERIOR:LOCATION];
+        [self.dcDelegate insert_into_contacts_db:EXTERNAL_DISPLAY_NAME:FNAME:LNAME:INIT:EMP_NO:EMAIL:BUSINESSAREA_NAME:PHONE:MOBIL:SUPERIOR:LOCATION:IMAGE_URL];
         
     }
     
@@ -264,6 +196,10 @@ NSString *dump;
     
     if ([currentElement isEqualToString:@"EMP_NO"]) 
         [EMP_NO appendString:string];
+    if ([currentElement isEqualToString:@"FNAME"]) 
+        [FNAME appendString:string];
+    if ([currentElement isEqualToString:@"LNAME"]) 
+        [LNAME appendString:string];
     if ([currentElement isEqualToString:@"INIT"]) 
         [INIT appendString:string];
     if ([currentElement isEqualToString:@"EMAIL"]) 
@@ -278,6 +214,8 @@ NSString *dump;
         [SUPERIOR appendString:string];
     if ([currentElement isEqualToString:@"LOCATION"]) 
         [LOCATION appendString:string];
+    if ([currentElement isEqualToString:@"IMAGE_URL"]) 
+        [IMAGE_URL appendString:string];
     if ([currentElement isEqualToString:@"EXTERNAL_DISPLAY_NAME"]) 
         [EXTERNAL_DISPLAY_NAME appendString:string];
     
@@ -295,6 +233,106 @@ NSString *dump;
     
     
 }
+
+//Truncate database
+- (void)flushdb
+{
+    [self.dcDelegate flush_contacts_db];
+    //[self.tableView reloadData];
+}
+
+//For every employee in contactlist addobjects to each of the array's
+- (void)getContactsFromDB
+{
+    
+    NSLog(@"I was here contact...");
+    contactList = [[NSMutableArray alloc]init];
+    contactList = [self.dcDelegate getAll:self];
+    
+    NSLog(@"size: %u", [contactList count]);
+    
+    //Initialize Arrays
+    contactNamesArray      = [[NSMutableArray alloc] init];
+    contactNamesArrayEXTERNAL_DISPLAY_NAME = [[NSMutableArray alloc] init];
+    contactNamesArrayFNAME = [[NSMutableArray alloc] init];
+    contactNamesArrayLNAME = [[NSMutableArray alloc] init];
+    contactNamesArrayINIT = [[NSMutableArray alloc] init];
+    contactNamesArrayEMP_NO = [[NSMutableArray alloc] init]; 
+    contactNamesArrayEMAIL = [[NSMutableArray alloc] init];
+    contactNamesArrayBUSINESSAREA_NAME = [[NSMutableArray alloc] init];
+    contactNamesArrayPHONE = [[NSMutableArray alloc] init];
+    contactNamesArrayMOBIL = [[NSMutableArray alloc] init];
+    contactNamesArraySUPERIOR = [[NSMutableArray alloc] init];
+    contactNamesArrayLOCATION = [[NSMutableArray alloc] init];
+    contactNamesArrayIMAGE_URL = [[NSMutableArray alloc] init];
+    
+    //NSMutableArray *contactNamesArray =  [[NSMutableArray alloc] init];
+    
+    //Loop through contactlist after contacts and add info to the arrays
+    for (Contacts *contact in contactList)
+    {
+        
+        //NSLog(@"EXTERNAL_DISPLAY_NAME: %@, INIT: %@, EMP_NO: %@, EMAIL: %@, BUSINESSAREA_NAME: %@, PHONE: %@, MOBIL: %@, SUPERIOR: %@, LOCATION: %@", contact.EXTERNAL_DISPLAY_NAME, contact.INIT, contact.EMP_NO, contact.EMAIL, contact.BUSINESSAREA_NAME, contact.PHONE, contact.MOBIL, contact.SUPERIOR, contact.LOCATION);
+        
+        nextContact = [NSString stringWithFormat:@"%@", contact.EXTERNAL_DISPLAY_NAME];
+        
+        //NSLog(@"Added: %@", nextContact);
+        
+        [contactNamesArray addObject:nextContact];
+        [contactNamesArrayEXTERNAL_DISPLAY_NAME addObject:contact.EXTERNAL_DISPLAY_NAME];
+        [contactNamesArrayFNAME addObject:contact.FNAME];
+        [contactNamesArrayLNAME addObject:contact.LNAME];
+        [contactNamesArrayINIT addObject:contact.INIT];
+        [contactNamesArrayEMP_NO addObject:contact.EMP_NO];
+        [contactNamesArrayEMAIL addObject:contact.EMAIL];
+        [contactNamesArrayBUSINESSAREA_NAME addObject:contact.BUSINESSAREA_NAME];
+        [contactNamesArrayPHONE addObject:contact.PHONE];
+        [contactNamesArrayMOBIL addObject:contact.MOBIL];
+        [contactNamesArraySUPERIOR addObject:contact.SUPERIOR];
+        [contactNamesArrayLOCATION addObject:contact.LOCATION];
+        [contactNamesArrayIMAGE_URL addObject:contact.IMAGE_URL];
+        
+    }
+    
+    // If Array is empty, then insert "Dummy"
+    if ([contactNamesArray count] < 1)
+    {
+        [contactNamesArray addObject:@"No contacts"];
+        [contactNamesArrayEMAIL addObject:@""];
+        [contactNamesArrayFNAME addObject:@""];
+        [contactNamesArrayLNAME addObject:@""];
+        [contactNamesArrayINIT addObject:@""];
+        [contactNamesArrayEMP_NO addObject:@""];
+        [contactNamesArrayPHONE addObject:@""];
+        [contactNamesArrayMOBIL addObject:@""];
+        [contactNamesArraySUPERIOR addObject:@""];
+        [contactNamesArrayLOCATION addObject:@""];
+        [contactNamesArrayIMAGE_URL addObject:@""];
+        [contactNamesArrayBUSINESSAREA_NAME addObject:@""];
+    }
+    NSLog(@"count: %u", [contactNamesArray count]);
+    
+    //Creates array "sectionedListContent" to hold grouped data from contactlist
+    NSMutableArray *sections = [NSMutableArray array];
+    UILocalizedIndexedCollation *collation = [UILocalizedIndexedCollation currentCollation];
+    for (Contacts *contact in contactList) {
+        NSInteger section = [collation sectionForObject:contact collationStringSelector:@selector(EXTERNAL_DISPLAY_NAME)];
+        [sections addObject:contact toSubarrayAtIndex:section];
+    }
+    
+    NSInteger section = 0;
+    for (section = 0; section < [sections count]; section++) {
+        NSArray *sortedSubarray = [collation sortedArrayFromArray:[sections objectAtIndex:section]
+                                          collationStringSelector:@selector(EXTERNAL_DISPLAY_NAME)];
+        [sections replaceObjectAtIndex:section withObject:sortedSubarray];
+    }
+    sectionedListContent = sections;
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [MBProgressHUD hideHUDForView:viewController.view animated:YES];
+    [self.tableView reloadData];
+}
+
 
 //Function from MBProgressHUD.h/m which creates a progress spinner in another thread while downloading data through webservice
 -(void) progressSpinner{
@@ -325,8 +363,8 @@ NSString *dump;
 
 - (void)viewDidLoad
 {
-    
-    
+   
+    [self getData:self];
     // Set table view title
     self.title = @"Terma Employees";
     //flush database
@@ -336,12 +374,14 @@ NSString *dump;
     //initialize dcDelegate
     self.dcDelegate = [[DbDataController alloc] init];
     //Get contacts from local database
-    
-    [self getContactsFromDB];
+    [self performSelector:@selector(getContactsFromDB) withObject:self afterDelay:1.0 ];
+    //[self.tableView reloadData];
+    //[self getContactsFromDB];
     //Get data from webservice and display progress spinner until all data is downloaded
-    [self progressSpinner];
+    //[self progressSpinner];
+    
     //Reload table view
-    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    //[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     
     
     [super viewDidLoad];
@@ -396,7 +436,7 @@ NSString *dump;
     else
         emp = [self.sectionedListContent objectAtIndexPath:indexPath];
     
-        // What data to show in the table view at label text and subtitle. (This could be any data)
+    // What data to show in the table view at label text and subtitle. (This could be any data)
     cell.textLabel.text = emp.EXTERNAL_DISPLAY_NAME;
     cell.detailTextLabel.text = emp.INIT;
     
@@ -422,6 +462,10 @@ NSString *dump;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
+    
+    
+    
+    
 }
 -(void) scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [self.searchBar resignFirstResponder];
@@ -429,6 +473,8 @@ NSString *dump;
 // search bar function that runs when user types in search field
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
 {
+    
+    
     if(text.length == 0)
     {
         
@@ -495,7 +541,7 @@ NSString *dump;
 
 -(void) showDetailsForIndexPath:(NSIndexPath*)indexPath
 {
-       
+    
 }
 
 
@@ -556,7 +602,7 @@ NSString *dump;
 
 - (void)viewDidAppear:(BOOL)animated
 {
-
+    
     [super viewDidAppear:animated];
 }
 
@@ -576,4 +622,11 @@ NSString *dump;
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (IBAction)bt_update:(id)sender {
+    [self flushdb];
+    [self getData:self];
+    //[self performSelector:@selector(getData) withObject:self afterDelay:1.0 ];
+    [self performSelector:@selector(getContactsFromDB) withObject:self afterDelay:1.0 ];
+    [self.tableView reloadData];
+}
 @end

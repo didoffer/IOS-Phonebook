@@ -51,32 +51,31 @@ NSData* imageData;
     [self progressSpinner1];
     //[self loadImage];
     
-      
+    
     
 }
-      
-     
+
+
 - (void)loadImage {
-    NSString *path =[NSString stringWithFormat:@"http://intranet.terma.com/phonebook/images/employee_images/thumbnail/%@",emp.INIT, @"-%@",emp.EMP_NO,@"-01.jpg"]; 
-    path = [path stringByAppendingFormat:@"-%@", emp.EMP_NO];
-    path =[path stringByAppendingFormat:@"-01.jpg"];
+    NSString *path =[NSString stringWithFormat:emp.IMAGE_URL]; 
+    
     NSLog(@"se%@", path);
-         imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:path]];
-   
-         UIImage* image = [[UIImage alloc] initWithData:imageData];
-         
-         [self performSelectorOnMainThread:@selector(displayImage:) withObject:image waitUntilDone:NO];
+    imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:path]];
+    
+    UIImage* image = [[UIImage alloc] initWithData:imageData];
+    
+    [self performSelectorOnMainThread:@selector(displayImage:) withObject:image waitUntilDone:NO];
     
     
-     }
-     
-     - (void)displayImage:(UIImage *)image {
-         [imageView setImage:image];
-     }
+}
+
+- (void)displayImage:(UIImage *)image {
+    [imageView setImage:image];
+}
 
 - (void)viewDidUnload
 {
-   
+    
     lb_name = nil;
     lb_BUSINESSAREA_NAME = nil;
     lb_LOCATION = nil;
@@ -105,7 +104,7 @@ NSData* imageData;
     
 	// Show the HUD while the provided method executes in a new thread
 	[HUD showWhileExecuting:@selector(loadImage) onTarget:self withObject:nil animated:YES];
-  
+    
 }
 
 -(void) checkPhoneNumbers
@@ -123,8 +122,8 @@ NSData* imageData;
     else {
         [bt_mobil setTitle:emp.MOBIL forState:UIControlStateNormal];
     }
-
-
+    
+    
 }
 // Open mail cient which runs when user tabs the send mail button
 - (void)goToMailApp
@@ -147,7 +146,7 @@ NSData* imageData;
         NSString *emailBody = @"";
         [mailer setMessageBody:emailBody isHTML:NO];
         
-               
+        
         [self presentModalViewController:mailer animated:YES];
         
         
@@ -163,7 +162,7 @@ NSData* imageData;
         
     }
     
-    }
+}
 
 // returns in a log message when the user chooses to either cancel, save, send or the mail for some reason cant be send
 -(void) mailComposeController:(MFMailComposeViewController*) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
@@ -199,8 +198,8 @@ NSData* imageData;
     ABRecordRef person = ABPersonCreate();  
     
     // Setting basic properties  
-    ABRecordSetValue(person, kABPersonFirstNameProperty, (__bridge_retained CFStringRef)emp.EXTERNAL_DISPLAY_NAME, nil);  
-    ABRecordSetValue(person, kABPersonLastNameProperty,(__bridge_retained CFStringRef) @"", nil);  
+    ABRecordSetValue(person, kABPersonFirstNameProperty, (__bridge_retained CFStringRef)emp.FNAME, nil);  
+    ABRecordSetValue(person, kABPersonLastNameProperty,(__bridge_retained CFStringRef) emp.LNAME, nil);  
     ABRecordSetValue(person, kABPersonJobTitleProperty,(__bridge_retained CFStringRef) @"", nil);  
     ABRecordSetValue(person, kABPersonDepartmentProperty,(__bridge_retained CFStringRef) @"", nil);  
     ABRecordSetValue(person, kABPersonOrganizationProperty, (__bridge_retained CFStringRef)emp.BUSINESSAREA_NAME, nil);  
@@ -209,9 +208,10 @@ NSData* imageData;
     
     // Adding phone numbers  
     ABMutableMultiValueRef phoneNumberMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);  
-    ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)emp.PHONE ,(__bridge_retained CFStringRef)@"Terma", NULL);  
-    ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)emp.MOBIL ,(__bridge_retained CFStringRef)@"Terma mobil", NULL);  
-    ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)@"+45 23232323" ,(__bridge_retained CFStringRef)@"Private", NULL);  
+    ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)emp.PHONE ,(__bridge_retained CFStringRef)@"Home", NULL);  
+    //ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)emp.MOBIL ,(__bridge_retained CFStringRef)@"Terma mobil", NULL);  
+    //ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)@"" ,(__bridge_retained CFStringRef)@"Private", NULL);  
+    ABMultiValueAddValueAndLabel(phoneNumberMultiValue,(__bridge_retained CFStringRef)emp.MOBIL, kABPersonPhoneMobileLabel, NULL);
     ABRecordSetValue(person, kABPersonPhoneProperty, phoneNumberMultiValue, nil);  
     CFRelease(phoneNumberMultiValue);  
     
@@ -220,30 +220,31 @@ NSData* imageData;
     ABPersonSetImageData(person, dr, nil);
     
     /* Adding url  
-    ABMutableMultiValueRef urlMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);  
-    ABMultiValueAddValueAndLabel(urlMultiValue, @"http://www.fuerteint.com", kABPersonHomePageLabel, NULL);  
-    ABRecordSetValue(person, kABPersonURLProperty, urlMultiValue, nil);  
-    CFRelease(urlMultiValue);*/  
+     ABMutableMultiValueRef urlMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);  
+     ABMultiValueAddValueAndLabel(urlMultiValue, @"http://www.fuerteint.com", kABPersonHomePageLabel, NULL);  
+     ABRecordSetValue(person, kABPersonURLProperty, urlMultiValue, nil);  
+     CFRelease(urlMultiValue);*/  
     
     // Adding emails  
     ABMutableMultiValueRef emailMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);  
-    ABMultiValueAddValueAndLabel(emailMultiValue,(__bridge_retained CFStringRef)emp.EMAIL, (CFStringRef)@"Terma", NULL);  
-    ABMultiValueAddValueAndLabel(emailMultiValue,(__bridge_retained CFStringRef)@"test@gmail.com", (CFStringRef)@"Private", NULL);  
+    //ABMultiValueAddValueAndLabel(emailMultiValue,(__bridge_retained CFStringRef)emp.EMAIL, (CFStringRef)@"Terma", NULL);  
+    //ABMultiValueAddValueAndLabel(emailMultiValue,(__bridge_retained CFStringRef)@"test@gmail.com", (CFStringRef)@"Private", NULL);  
+    ABMultiValueAddValueAndLabel(emailMultiValue,(__bridge_retained CFStringRef)emp.EMAIL, kABWorkLabel, NULL);
     ABRecordSetValue(person, kABPersonURLProperty, emailMultiValue, nil);  
-    CFRelease(emailMultiValue);  
+    CFRelease(emailMultiValue);    
     
     /* Adding address  
-    ABMutableMultiValueRef addressMultipleValue = ABMultiValueCreateMutable(kABMultiDictionaryPropertyType);  
-    NSMutableDictionary *addressDictionary = [[NSMutableDictionary alloc] init];  
-    [addressDictionary setObject:@"8-15 Dereham Place" forKey:(NSString *)kABPersonAddressStreetKey];  
-    [addressDictionary setObject:@"London" forKey:(NSString *)kABPersonAddressCityKey];  
-    [addressDictionary setObject:@"EC2A 3HJ" forKey:(NSString *)kABPersonAddressZIPKey];  
-    [addressDictionary setObject:@"United Kingdom" forKey:(NSString *)kABPersonAddressCountryKey];  
-    [addressDictionary setObject:@"gb" forKey:(NSString *)kABPersonAddressCountryCodeKey];  
-    ABMultiValueAddValueAndLabel(addressMultipleValue, addressDictionary, kABHomeLabel, NULL);  
-      
-    ABRecordSetValue(person, kABPersonAddressProperty, addressMultipleValue, nil);  
-    CFRelease(addressMultipleValue);  */
+     ABMutableMultiValueRef addressMultipleValue = ABMultiValueCreateMutable(kABMultiDictionaryPropertyType);  
+     NSMutableDictionary *addressDictionary = [[NSMutableDictionary alloc] init];  
+     [addressDictionary setObject:@"8-15 Dereham Place" forKey:(NSString *)kABPersonAddressStreetKey];  
+     [addressDictionary setObject:@"London" forKey:(NSString *)kABPersonAddressCityKey];  
+     [addressDictionary setObject:@"EC2A 3HJ" forKey:(NSString *)kABPersonAddressZIPKey];  
+     [addressDictionary setObject:@"United Kingdom" forKey:(NSString *)kABPersonAddressCountryKey];  
+     [addressDictionary setObject:@"gb" forKey:(NSString *)kABPersonAddressCountryCodeKey];  
+     ABMultiValueAddValueAndLabel(addressMultipleValue, addressDictionary, kABHomeLabel, NULL);  
+     
+     ABRecordSetValue(person, kABPersonAddressProperty, addressMultipleValue, nil);  
+     CFRelease(addressMultipleValue);  */
     
     // Adding person to the address book  
     ABAddressBookAddRecord(addressBook, person, nil);  
@@ -255,7 +256,7 @@ NSData* imageData;
     [c setDisplayedPerson:person];  
     CFRelease(person);  
     [self.navigationController pushViewController:c animated:YES];  
-     
+    
 }  
 //If user wants to save the contact 
 - (void)newPersonViewController:(ABNewPersonViewController *)newPersonView didCompleteWithNewPerson:(ABRecordRef)person {  
@@ -276,12 +277,12 @@ NSData* imageData;
     if([title isEqualToString:@"Local"])
     {
         NSLog(@"Calling %@", emp.PHONE);
-         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", emp.PHONE]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", emp.PHONE]]];
     }
     else if([title isEqualToString:@"Mobile"])
     {
         NSLog(@"Calling %@",emp.MOBIL);
-         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", emp.MOBIL]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", emp.MOBIL]]];
     }
     
 }
@@ -299,7 +300,7 @@ NSData* imageData;
 //button action send mail
 - (IBAction)bt_sendmail:(id)sender {
     [self goToMailApp];
-    }
+}
 //button action make phone call
 - (IBAction)bt_call:(id)sender {
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Call!"
@@ -312,7 +313,7 @@ NSData* imageData;
     [message addButtonWithTitle:@"Mobile"];
     
     [message show];
-   
+    
 }
 //button action send text message
 - (IBAction)bt_sendmsg:(id)sender {
@@ -323,7 +324,7 @@ NSData* imageData;
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-
+        
     }
     else {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@", emp.MOBIL]]];
