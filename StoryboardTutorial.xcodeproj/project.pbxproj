@@ -17,6 +17,7 @@
 		EC7F020E15A4571600F55735 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7F020D15A4571600F55735 /* libsqlite3.0.dylib */; };
 		EC8222EA15AEBDE2006B57BC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8222E915AEBDE2006B57BC /* MBProgressHUD.m */; };
 		EC828FB215B8236D006D1818 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC828FB115B8236D006D1818 /* SystemConfiguration.framework */; };
+		ECC966F115EBA54000CF1FCE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC966EE15EB987900CF1FCE /* Reachability.m */; };
 		FC1FF1BC144FD76E008429F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BB144FD76E008429F9 /* UIKit.framework */; };
 		FC1FF1BE144FD76E008429F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BD144FD76E008429F9 /* Foundation.framework */; };
 		FC1FF1C0144FD76E008429F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BF144FD76E008429F9 /* CoreGraphics.framework */; };
@@ -46,6 +47,10 @@
 		EC8222E915AEBDE2006B57BC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EC828FB115B8236D006D1818 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		ECBD380B15C125E10095B789 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		ECC966ED15EB987900CF1FCE /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		ECC966EE15EB987900CF1FCE /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		ECC966EF15EB987900CF1FCE /* ReachabilityAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityAppDelegate.h; sourceTree = "<group>"; };
+		ECC966F015EB987900CF1FCE /* ReachabilityAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReachabilityAppDelegate.m; sourceTree = "<group>"; };
 		FC1FF1B7144FD76E008429F9 /* StoryboardTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryboardTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1FF1BB144FD76E008429F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FC1FF1BD144FD76E008429F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -106,6 +111,17 @@
 			name = DB;
 			sourceTree = "<group>";
 		};
+		ECC966EB15EB986500CF1FCE /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				ECC966ED15EB987900CF1FCE /* Reachability.h */,
+				ECC966EE15EB987900CF1FCE /* Reachability.m */,
+				ECC966EF15EB987900CF1FCE /* ReachabilityAppDelegate.h */,
+				ECC966F015EB987900CF1FCE /* ReachabilityAppDelegate.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		FC1FF1AC144FD76E008429F9 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +158,7 @@
 		FC1FF1C1144FD76E008429F9 /* StoryboardTutorial */ = {
 			isa = PBXGroup;
 			children = (
+				ECC966EB15EB986500CF1FCE /* Reachability */,
 				FC1FF1CD144FD76E008429F9 /* MainStoryboard.storyboard */,
 				FC1FF1CB144FD76E008429F9 /* AppDelegate.m */,
 				FC1FF1CA144FD76E008429F9 /* AppDelegate.h */,
@@ -238,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECC966F115EBA54000CF1FCE /* Reachability.m in Sources */,
 				FC1FF1C8144FD76E008429F9 /* main.m in Sources */,
 				FC1FF1CC144FD76E008429F9 /* AppDelegate.m in Sources */,
 				FC1FF1D2144FD76E008429F9 /* ViewController.m in Sources */,

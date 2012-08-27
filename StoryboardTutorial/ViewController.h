@@ -13,12 +13,13 @@
 #import "DetailViewController.h"
 #import "MBProgressHUD.h"
 
-
+@class Reachability;
 
 @interface ViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource, NSXMLParserDelegate, MBProgressHUDDelegate, UISearchBarDelegate, UISearchDisplayDelegate>{
     MBProgressHUD *HUD;
     ViewController *viewController;
-
+    Reachability* internetReachable;
+    Reachability* hostReachable;
 
 @private
     
@@ -84,5 +85,6 @@
 - (void)getContactsFromDB;
 
 -(void)getData:(UIViewController *)controller;
+
 
 @end

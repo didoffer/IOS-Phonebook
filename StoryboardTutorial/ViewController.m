@@ -10,6 +10,9 @@
 #import "DetailViewController.h"
 #import "DbDataController.h"
 #import "Contacts.h"
+#import "Reachability.h"
+
+
 
 @interface ViewController() 
 -(void) showCurrentDepth;
@@ -63,6 +66,9 @@ NSString *dump;
 //Request data from url connection
 - (void)getData:(UIViewController *)controller;
 {
+    
+
+        
     viewController = (ViewController *)controller;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:viewController.view animated:YES];
@@ -80,7 +86,9 @@ NSString *dump;
         receivedData = [NSMutableData data];
     else
     {}
+    
 }
+
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -112,7 +120,7 @@ NSString *dump;
         [xmlParser parse];
         //NSLog(@" here is the data: %@", xml);
     }
-    
+    [self getContactsFromDB];
 }
 -(void)parserDidStartDocument:(NSXMLParser *)parser
 {
@@ -344,17 +352,20 @@ NSString *dump;
 
 - (void)viewDidLoad
 {
-   
+    
+    
     [self getData:self];
+    
     // Set table view title
     self.title = @"Terma Employees";
     searchBar.delegate = (id)self;
     //initialize dcDelegate
     self.dcDelegate = [[DbDataController alloc] init];
     //Get contacts from local database
-    [self performSelector:@selector(getContactsFromDB) withObject:self afterDelay:2.0 ];
+    //[self performSelector:@selector(getContactsFromDB) withObject:self afterDelay:6.0 ];
     //[self.tableView reloadData];
     //[self getContactsFromDB];
+
     //Get data from webservice and display progress spinner until all data is downloaded
     //[self progressSpinner];
     
@@ -580,7 +591,8 @@ NSString *dump;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    
+        [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -599,13 +611,79 @@ NSString *dump;
 	[super viewDidDisappear:animated];
 }
 
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if([title isEqualToString:@"No"])
+    {
+        //Cancel
+    }
+    else if([title isEqualToString:@"Yes"])
+    {
+        [self flushdb];
+       
+        [self getData:self];
+        
+        [self.tableView reloadData];
+    }
+    }
+-(BOOL)reachable {
+    Reachability *r = [Reachability reachabilityWithHostname:@"http://intranet.terma.com/portal/"];
+    NetworkStatus internetStatus = [r currentReachabilityStatus];
+    if(internetStatus == NotReachable) {
+        return NO;
+    }
+    return YES;
+}
 - (IBAction)bt_update:(id)sender {
+         
+    Reachability *reach = [Reachability reachabilityForInternetConnection];
+   
+    [reach startNotifier];
+    NetworkStatus status =[reach currentReachabilityStatus];
+    
+    if (status == NotReachable) {
+        
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Nerwork error!"
+                                                          message:@"No network connection"
+                                                         delegate:self
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles: nil];
+        [message show];
+    }
+    else if (status == ReachableViaWiFi) {
+        
+    
     [self flushdb];
-    //self.tableView = nil;
+    
     [self getData:self];
-    //[self performSelector:@selector(getData) withObject:self afterDelay:1.0 ];
-    [self performSelector:@selector(getContactsFromDB) withObject:self afterDelay:2.0 ];
+    
     [self.tableView reloadData];
+    }
+    
+    else if (status == ReachableViaWWAN) {
+        UIAlertView *alerview = [[UIAlertView alloc] initWithTitle:@"WARNING!"
+                                                          message:@"You connected via 3G. Do you want to update anyway?"
+                                                         delegate:self
+                                                cancelButtonTitle:@"No"
+                                                otherButtonTitles:@"Yes", nil];
+        [alerview show];}
+    
+    else if ([self reachable]) {
+            }
+    
+    else {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Nerwork error!"
+                                                          message:@"Not connected to VPN"
+                                                         delegate:self
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles: nil];
+        [message show];
+        
+
+    }
+    
+   
 }
 @end

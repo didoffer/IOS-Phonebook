@@ -215,7 +215,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
             <relationships>
                 <relationship kind="action" name="bt_addcontact:"/>
-                <relationship kind="action" name="bt_call:"/>
                 <relationship kind="action" name="bt_mobil:"/>
                 <relationship kind="action" name="bt_phone:"/>
                 <relationship kind="action" name="bt_sendmail:"/>
