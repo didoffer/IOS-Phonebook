@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "DataControllerDelegate.h"
-@interface DbDataController : NSObject <DataControllerDelegate>
+@interface DbDataController : NSObject <DataControllerDelegate>{
+NSMutableArray *data;           // Container for data returned from query
+}
 
-
+@property (nonatomic, retain) NSMutableArray *data;
 @end

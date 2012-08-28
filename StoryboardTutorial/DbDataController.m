@@ -14,12 +14,12 @@
 //
 @implementation DbDataController {
     NSString       *db;             // Database name string
-    NSMutableArray *data;           // Container for data returned from query
     sqlite3        *dbh;            // Database handle
     sqlite3_stmt   *stmt_query;     // Select statement handle
     sqlite3_stmt   *stmt_delete;    // Delete statement handle
     sqlite3_stmt   *stmt_insert;    // Insert statement handle
 }
+@synthesize data;
 
 // Copy a named resource from bundle to Documents/Data
 - (NSString *)copyResource:(NSString *)resource ofType:(NSString *)type
@@ -158,9 +158,13 @@
 // Flush all contacts
 - (void)flush_contacts_db
 {
+    //Initialize data AGAIN so the array is empty when you update
+    data = [[NSMutableArray alloc] init];
+    
     if (!stmt_delete)  {
         // Prepare SQL delete statement (once)
         NSString *sql = @"DELETE FROM contacts";
+
         if (sqlite3_prepare_v2(dbh, [sql UTF8String], -1, &stmt_delete, NULL) != SQLITE_OK) {
             NSLog(@"Error:prepare:%@", sqlite3_errmsg(dbh));
             return;
@@ -175,7 +179,10 @@
         NSLog(@"Error:delete:%@", sqlite3_errmsg(dbh));
         return;
     }
+    
+     NSLog(@"size of database: %u", [data count]);
     NSLog(@"### End of DELETE ###");
+    
 }
 
 - (void)insert_into_contacts_db:(NSString *)EXTERNAL_DISPLAY_NAME:(NSString *)FNAME:(NSString *)LNAME:(NSString *)INIT:(NSString *)EMP_NO:(NSString *)EMAIL: (NSString *)BUSINESSAREA_NAME: (NSString *)PHONE: (NSString *)MOBIL: (NSString *)SUPERIOR: (NSString *)LOCATION: (NSString *)IMAGE_URL

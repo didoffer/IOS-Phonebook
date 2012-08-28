@@ -29,7 +29,7 @@
     NSXMLParser *xmlParser;
     NSString *currentElement;
     NSInteger depth;
-    
+   
 
        
     NSMutableString *FNAME;
@@ -45,7 +45,7 @@
     NSMutableString *IMAGE_URL;
     NSMutableString *EXTERNAL_DISPLAY_NAME;
     
-    
+    NSMutableArray *databaseData;
     NSMutableArray *contactList;
     NSMutableArray *contactNamesArray;
     NSMutableArray *contactNamesArrayEXTERNAL_DISPLAY_NAME;

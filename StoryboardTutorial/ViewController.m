@@ -65,28 +65,36 @@ NSString *dump;
 
 //Request data from url connection
 - (void)getData:(UIViewController *)controller;
-{
+{   
+   // databaseData = [[NSMutableArray alloc]init];
+   // databaseData = [self.dcDelegate getAll:self];
+    //DbDataController *dbdata =[[DbDataController alloc] init];
+   // NSLog(@"size: %u", [databaseData count]);
     
-
-        
     viewController = (ViewController *)controller;
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:viewController.view animated:YES];
-    hud.labelText = @"Loading..."; 
     
-    receivedData = [[NSMutableData alloc] init];
     
-    NSURL *myURL = [NSURL URLWithString:@"http://midvm1.terma.com/kbni2/TermaService.svc/employees"];
+   // if (databaseData == nil ) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:viewController.view animated:YES];
+        hud.labelText = @"Loading..."; 
     
-    NSURLRequest *myRequest = [NSURLRequest requestWithURL:myURL];
+        receivedData = [[NSMutableData alloc] init];
     
-    theConnection = [[NSURLConnection alloc] initWithRequest:myRequest delegate:self];
+        NSURL *myURL = [NSURL URLWithString:@"http://midvm1.terma.com/kbni2/TermaService.svc/employees"];
     
-    if (theConnection)
-        receivedData = [NSMutableData data];
-    else
-    {}
+        NSURLRequest *myRequest = [NSURLRequest requestWithURL:myURL];
     
+        theConnection = [[NSURLConnection alloc] initWithRequest:myRequest delegate:self];
+    
+        if (theConnection)
+            receivedData = [NSMutableData data];
+        else
+        {}
+   // }
+   // else {
+    //    [self getContactsFromDB];
+   // }
 }
 
 
@@ -638,6 +646,18 @@ NSString *dump;
 }
 - (IBAction)bt_update:(id)sender {
          
+    
+    bool success = false;
+    const char *host_name = [@"172.20.0.201" 
+                             cStringUsingEncoding:NSASCIIStringEncoding];
+    
+    SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(NULL,
+                                                                                host_name);
+    SCNetworkReachabilityFlags flags;
+    success = SCNetworkReachabilityGetFlags(reachability, &flags);
+    bool isAvailable = success && (flags & kSCNetworkFlagsReachable) && 
+    !(flags & kSCNetworkFlagsConnectionRequired);
+        
     Reachability *reach = [Reachability reachabilityForInternetConnection];
    
     [reach startNotifier];
@@ -652,16 +672,18 @@ NSString *dump;
                                                 otherButtonTitles: nil];
         [message show];
     }
-    else if (status == ReachableViaWiFi) {
-        
     
-    [self flushdb];
-    
-    [self getData:self];
-    
-    [self.tableView reloadData];
+    else if (!isAvailable) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Nerwork error!"
+                                                          message:@"Not connected to VPN"
+                                                         delegate:self
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles: nil];
+        [message show];
+
     }
     
+            
     else if (status == ReachableViaWWAN) {
         UIAlertView *alerview = [[UIAlertView alloc] initWithTitle:@"WARNING!"
                                                           message:@"You connected via 3G. Do you want to update anyway?"
@@ -669,21 +691,26 @@ NSString *dump;
                                                 cancelButtonTitle:@"No"
                                                 otherButtonTitles:@"Yes", nil];
         [alerview show];}
-    
-    else if ([self reachable]) {
-            }
-    
-    else {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Nerwork error!"
-                                                          message:@"Not connected to VPN"
-                                                         delegate:self
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles: nil];
-        [message show];
+    else if (status == ReachableViaWiFi) {
         
-
+        
+        [self flushdb];
+        currentElement =nil;
+        contactList = nil;
+        sectionedListContent = nil;
+        filteredTableData = nil;
+        receivedData = nil;
+        nextContact = nil;
+        xml = nil;
+        dump = nil;
+        
+        [self getData:self];
+        
+        [self.tableView reloadData];
     }
+
     
+        
    
 }
 @end
