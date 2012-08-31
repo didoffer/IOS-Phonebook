@@ -29,7 +29,7 @@
     NSXMLParser *xmlParser;
     NSString *currentElement;
     NSInteger depth;
-   
+    NSInteger *test;
 
        
     NSMutableString *FNAME;

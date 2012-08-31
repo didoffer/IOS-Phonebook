@@ -64,37 +64,81 @@ NSString *dump;
 
 
 //Request data from url connection
-- (void)getData:(UIViewController *)controller;
-{   
-   // databaseData = [[NSMutableArray alloc]init];
-   // databaseData = [self.dcDelegate getAll:self];
-    //DbDataController *dbdata =[[DbDataController alloc] init];
-   // NSLog(@"size: %u", [databaseData count]);
+- (void)getWebserviceData{
     
-    viewController = (ViewController *)controller;
-    
-    
-   // if (databaseData == nil ) {
+        //Start progress spinner
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:viewController.view animated:YES];
         hud.labelText = @"Loading..."; 
-    
+        
         receivedData = [[NSMutableData alloc] init];
-    
+        
         NSURL *myURL = [NSURL URLWithString:@"http://midvm1.terma.com/kbni2/TermaService.svc/employees"];
-    
+        
         NSURLRequest *myRequest = [NSURLRequest requestWithURL:myURL];
-    
+        
         theConnection = [[NSURLConnection alloc] initWithRequest:myRequest delegate:self];
     
-        if (theConnection)
-            receivedData = [NSMutableData data];
-        else
-        {}
-   // }
-   // else {
-    //    [self getContactsFromDB];
-   // }
+    
+    if (theConnection){
+        receivedData = [NSMutableData data];}
+    else
+    {}
+
+    
+}
+//Load data from database. If non exists check for network connectivity, WIFI and WAN. IF network continue getting data from getWebserviceData
+- (void)getData:(UIViewController *)controller;
+{    
+    [self getContactsFromDB];
+   
+    NSLog(@"size of databaseData: %u", [contactList count]);
+    
+    viewController = (ViewController *)controller;
+    
+    Reachability *reach = [Reachability reachabilityForInternetConnection];
+    
+    [reach startNotifier];
+    NetworkStatus status =[reach currentReachabilityStatus];
+    
+    if ([contactList count] <1 ) {
+    
+        if (status == NotReachable) {
+        
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Nerwork error!"
+                                                              message:@"No network connection"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+            [message show];
+    }
+    
+    
+    
+    else if (status == ReachableViaWWAN) {
+        UIAlertView *alerview = [[UIAlertView alloc] initWithTitle:@"WARNING!"
+                                                           message:@"You connected via 3G. Do you want to update anyway?"
+                                                          delegate:self
+                                                 cancelButtonTitle:@"No"
+                                                 otherButtonTitles:@"Yes", nil];
+        [alerview show];}
+    
+    else if (status == ReachableViaWiFi) {
+        
+        
+        [self flushdb];
+        
+        sectionedListContent = nil;
+        filteredTableData = nil;
+        
+        [self getWebserviceData];
+        
+        [self.tableView reloadData];
+        }
+        
+    }
+    
+     
 }
 
 
@@ -114,6 +158,16 @@ NSString *dump;
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     
+      UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Nerwork error!"
+                                                      message:@"Not connected to VPN"
+                                                   delegate:self
+                                        cancelButtonTitle:@"OK"
+                                      otherButtonTitles: nil];
+    [message show];
+    //Stop progress spinner
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [MBProgressHUD hideHUDForView:viewController.view animated:YES];
+
 }
 // if it get connection to the url it starts parsing xml (try the NSlog further down the function to see the parsed xml data)
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -310,23 +364,7 @@ NSString *dump;
         
     }
     
-    // If Array is empty, then insert "Dummy"
-    if ([contactNamesArray count] < 1)
-    {
-        [contactNamesArray addObject:@"No contacts"];
-        [contactNamesArrayEMAIL addObject:@""];
-        [contactNamesArrayFNAME addObject:@""];
-        [contactNamesArrayLNAME addObject:@""];
-        [contactNamesArrayINIT addObject:@""];
-        [contactNamesArrayEMP_NO addObject:@""];
-        [contactNamesArrayPHONE addObject:@""];
-        [contactNamesArrayMOBIL addObject:@""];
-        [contactNamesArraySUPERIOR addObject:@""];
-        [contactNamesArrayLOCATION addObject:@""];
-        [contactNamesArrayIMAGE_URL addObject:@""];
-        [contactNamesArrayBUSINESSAREA_NAME addObject:@""];
-    }
-    NSLog(@"count: %u", [contactNamesArray count]);
+       NSLog(@"count: %u", [contactNamesArray count]);
     
     //Creates array "sectionedListContent" to hold grouped data from contactlist
     NSMutableArray *sections = [NSMutableArray array];
@@ -362,25 +400,17 @@ NSString *dump;
 {
     
     
-    [self getData:self];
+    
+    
     
     // Set table view title
     self.title = @"Terma Employees";
     searchBar.delegate = (id)self;
-    //initialize dcDelegate
+    //initialize dcDelegate dbdataController. REMEMBER TO PLACE FUNCTIONS AFTER THIS OR ELSE THERE ISN'T ANY DB CONNECTION
     self.dcDelegate = [[DbDataController alloc] init];
-    //Get contacts from local database
-    //[self performSelector:@selector(getContactsFromDB) withObject:self afterDelay:6.0 ];
-    //[self.tableView reloadData];
-    //[self getContactsFromDB];
-
-    //Get data from webservice and display progress spinner until all data is downloaded
-    //[self progressSpinner];
-    
-    //Reload table view
-    //[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-    
-    
+    //Get connect to webservice and get data
+    [self getData:self];
+    //[self checkConnections];
     [super viewDidLoad];
 }
 
@@ -487,7 +517,9 @@ NSString *dump;
             //In this case we are searching for employee name and initials. (Add others if nessesary like phone, mobil ect.)
             NSRange nameRange = [emp.EXTERNAL_DISPLAY_NAME rangeOfString:text options:NSCaseInsensitiveSearch];
             NSRange descriptionRange = [emp.INIT rangeOfString:text options:NSCaseInsensitiveSearch];
-            if(nameRange.location != NSNotFound || descriptionRange.location != NSNotFound)
+            NSRange phoneRange = [emp.PHONE rangeOfString:text options:NSCaseInsensitiveSearch];
+
+            if(nameRange.location != NSNotFound || descriptionRange.location != NSNotFound || phoneRange.location != NSNotFound)
             {
                 [filteredTableData addObject:emp];
             }	
@@ -618,7 +650,7 @@ NSString *dump;
 {
 	[super viewDidDisappear:animated];
 }
-
+// options for if the connections is 3G
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
@@ -631,37 +663,24 @@ NSString *dump;
     {
         [self flushdb];
        
-        [self getData:self];
+        [self getWebserviceData];
         
         [self.tableView reloadData];
     }
-    }
--(BOOL)reachable {
-    Reachability *r = [Reachability reachabilityWithHostname:@"http://intranet.terma.com/portal/"];
-    NetworkStatus internetStatus = [r currentReachabilityStatus];
-    if(internetStatus == NotReachable) {
-        return NO;
-    }
-    return YES;
+    
+    
 }
+
+
+
 - (IBAction)bt_update:(id)sender {
-         
     
-    bool success = false;
-    const char *host_name = [@"172.20.0.201" 
-                             cStringUsingEncoding:NSASCIIStringEncoding];
     
-    SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(NULL,
-                                                                                host_name);
-    SCNetworkReachabilityFlags flags;
-    success = SCNetworkReachabilityGetFlags(reachability, &flags);
-    bool isAvailable = success && (flags & kSCNetworkFlagsReachable) && 
-    !(flags & kSCNetworkFlagsConnectionRequired);
-        
     Reachability *reach = [Reachability reachabilityForInternetConnection];
-   
+    
     [reach startNotifier];
     NetworkStatus status =[reach currentReachabilityStatus];
+
     
     if (status == NotReachable) {
         
@@ -673,44 +692,31 @@ NSString *dump;
         [message show];
     }
     
-    else if (!isAvailable) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Nerwork error!"
-                                                          message:@"Not connected to VPN"
-                                                         delegate:self
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles: nil];
-        [message show];
-
-    }
     
-            
+    
     else if (status == ReachableViaWWAN) {
         UIAlertView *alerview = [[UIAlertView alloc] initWithTitle:@"WARNING!"
-                                                          message:@"You connected via 3G. Do you want to update anyway?"
-                                                         delegate:self
-                                                cancelButtonTitle:@"No"
-                                                otherButtonTitles:@"Yes", nil];
+                                                           message:@"You connected via 3G. Do you want to update anyway?"
+                                                          delegate:self
+                                                 cancelButtonTitle:@"No"
+                                                 otherButtonTitles:@"Yes", nil];
         [alerview show];}
+    
     else if (status == ReachableViaWiFi) {
         
         
         [self flushdb];
-        currentElement =nil;
-        contactList = nil;
+        
         sectionedListContent = nil;
         filteredTableData = nil;
-        receivedData = nil;
-        nextContact = nil;
-        xml = nil;
-        dump = nil;
         
-        [self getData:self];
+        [self getWebserviceData];
         
         [self.tableView reloadData];
     }
-
-    
-        
    
 }
+
+
+
 @end
