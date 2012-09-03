@@ -385,7 +385,7 @@ NSString *dump;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [MBProgressHUD hideHUDForView:viewController.view animated:YES];
     [self.tableView reloadData];
-}
+    }
 
 
 - (void)didReceiveMemoryWarning
@@ -401,8 +401,7 @@ NSString *dump;
     
     
     
-    
-    
+       
     // Set table view title
     self.title = @"Terma Employees";
     searchBar.delegate = (id)self;
@@ -514,7 +513,7 @@ NSString *dump;
         
         for (Contacts* emp in contactList)
         {
-            //In this case we are searching for employee name and initials. (Add others if nessesary like phone, mobil ect.)
+            //In this case we are searching for employee name,initials and local phone number. (Add others if nessesary like phone, mobil ect.)
             NSRange nameRange = [emp.EXTERNAL_DISPLAY_NAME rangeOfString:text options:NSCaseInsensitiveSearch];
             NSRange descriptionRange = [emp.INIT rangeOfString:text options:NSCaseInsensitiveSearch];
             NSRange phoneRange = [emp.PHONE rangeOfString:text options:NSCaseInsensitiveSearch];
@@ -605,8 +604,9 @@ NSString *dump;
     if (isFiltered) {
         return 0;
     } else {
-        if (title == UITableViewIndexSearch) {
-            [tableView scrollRectToVisible:self.searchDisplayController.searchBar.frame animated:NO];
+        if (index == 0) {
+            // search item
+            [tableView scrollRectToVisible:[[tableView tableHeaderView] bounds] animated:NO];
             return -1;
         } else {
             return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index-1];
@@ -617,6 +617,7 @@ NSString *dump;
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
 
 - (void)viewDidUnload
 {
@@ -707,8 +708,8 @@ NSString *dump;
         
         [self flushdb];
         
-        sectionedListContent = nil;
-        filteredTableData = nil;
+        //sectionedListContent = nil;
+        //filteredTableData = nil;
         
         [self getWebserviceData];
         

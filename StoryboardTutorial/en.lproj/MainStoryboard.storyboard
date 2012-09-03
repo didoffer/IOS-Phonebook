@@ -215,6 +215,31 @@
     <resources>
         <image name="Contact.png" width="122" height="120"/>
     </resources>
+    <classes>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bt_addcontact:"/>
+                <relationship kind="action" name="bt_mobil:"/>
+                <relationship kind="action" name="bt_phone:"/>
+                <relationship kind="action" name="bt_sendmail:"/>
+                <relationship kind="action" name="bt_sendmsg:"/>
+                <relationship kind="outlet" name="bt_mobil" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bt_phone" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lb_BUSINESSAREA_NAME" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lb_LOCATION" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lb_name" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bt_update:"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

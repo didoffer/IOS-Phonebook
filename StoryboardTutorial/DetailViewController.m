@@ -61,16 +61,21 @@ NSData* imageData;
     
     NSLog(@"se%@", path);
     imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:path]];
-    
+    NSLog(@"billede data %@",imageData);
     UIImage* image = [[UIImage alloc] initWithData:imageData];
     
     [self performSelectorOnMainThread:@selector(displayImage:) withObject:image waitUntilDone:NO];
-    
+    if (imageData == NULL) {
+        NSLog(@"billede data %@",imageData);
+        UIImageView *test = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Contact.png"]];
+        [self.view addSubview:test];
+    }
     
 }
 
 - (void)displayImage:(UIImage *)image {
     [imageView setImage:image];
+    
 }
 
 - (void)viewDidUnload
