@@ -23,6 +23,7 @@
     NSString *SUPERIOR ;
     NSString *LOCATION ;
     NSString *IMAGE_URL;
+    NSString *IMAGE_WEB_URL;
 }
 
 @property (nonatomic, copy) NSString *EXTERNAL_DISPLAY_NAME;
@@ -37,6 +38,7 @@
 @property (nonatomic, copy) NSString *SUPERIOR;
 @property (nonatomic, copy) NSString *LOCATION;
 @property (nonatomic, copy) NSString *IMAGE_URL;
+@property (nonatomic, copy) NSString *IMAGE_WEB_URL;
 
 
 @end

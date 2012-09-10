@@ -12,7 +12,8 @@
 #import "DbDataController.h"
 #import "DetailViewController.h"
 #import "MBProgressHUD.h"
-
+#import "VersionControllerDelegate.h"
+#import "VersionController.h"
 @class Reachability;
 
 @interface ViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource, NSXMLParserDelegate, MBProgressHUDDelegate, UISearchBarDelegate, UISearchDisplayDelegate>{
@@ -43,6 +44,7 @@
     NSMutableString *SUPERIOR;
     NSMutableString *LOCATION;
     NSMutableString *IMAGE_URL;
+    NSMutableString *IMAGE_WEB_URL;
     NSMutableString *EXTERNAL_DISPLAY_NAME;
     
     NSMutableArray *databaseData;
@@ -60,6 +62,7 @@
     NSMutableArray *contactNamesArraySUPERIOR;
     NSMutableArray *contactNamesArrayLOCATION;
     NSMutableArray *contactNamesArrayIMAGE_URL;
+    NSMutableArray *contactNamesArrayIMAGE_WEB_URL;
     
    	
     
@@ -79,9 +82,10 @@
 - (IBAction)bt_update:(id)sender;
 
 
-
+@property (strong, nonatomic) VersionController* ver;
 
 @property (nonatomic, strong) id <DataControllerDelegate> dcDelegate;
+@property (nonatomic, strong) id <VersionControllerDelegate> vDelegate;
 - (void)getContactsFromDB;
 
 -(void)getData:(UIViewController *)controller;

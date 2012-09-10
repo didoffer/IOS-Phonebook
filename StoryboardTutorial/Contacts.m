@@ -23,6 +23,7 @@
 @synthesize SUPERIOR;
 @synthesize LOCATION;
 @synthesize IMAGE_URL;
+@synthesize IMAGE_WEB_URL;
 
 
 @end

@@ -11,6 +11,8 @@
 #import "ViewController.h"
 
 @implementation DetailViewController
+@synthesize myimageView;
+@synthesize webView;
 @synthesize bt_mobil,bt_phone;
 
 @synthesize lb_name, lb_LOCATION, lb_BUSINESSAREA_NAME,emp;
@@ -49,26 +51,34 @@ NSData* imageData;
     lb_LOCATION.text = emp.LOCATION;
     [self checkPhoneNumbers];
     [self progressSpinner1];
-    //[self loadImage];
-    
-    
-    
+    [self webImage];
+    self.myimageView.hidden = YES;
+  
+}
+-(void)webImage {
+    NSString *fullURL = emp.IMAGE_WEB_URL;
+    NSURL *url = [NSURL URLWithString:fullURL];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [webView loadRequest:requestObj];
 }
 
-
 - (void)loadImage {
+    
     NSString *path =[NSString stringWithFormat:emp.IMAGE_URL]; 
     
     NSLog(@"se%@", path);
     imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:path]];
-    NSLog(@"billede data %@",imageData);
+    //NSLog(@"billede data %@",imageData);
     UIImage* image = [[UIImage alloc] initWithData:imageData];
     
     [self performSelectorOnMainThread:@selector(displayImage:) withObject:image waitUntilDone:NO];
+    
     if (imageData == NULL) {
-        NSLog(@"billede data %@",imageData);
-        UIImageView *test = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Contact.png"]];
-        [self.view addSubview:test];
+        self.webView.hidden = TRUE;
+        //self.myimageView.hidden = false;
+        //NSLog(@"billede data %@",imageData);
+        UIImageView *noContact = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Contact.png"]];
+        [self.view addSubview:noContact];
     }
     
 }
@@ -90,6 +100,8 @@ NSData* imageData;
     lb_BUSINESSAREA_NAME = nil;
     lb_LOCATION = nil;
     imageView = nil;
+    [self setWebView:nil];
+    [self setMyimageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

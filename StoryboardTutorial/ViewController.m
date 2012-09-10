@@ -11,6 +11,7 @@
 #import "DbDataController.h"
 #import "Contacts.h"
 #import "Reachability.h"
+#import "VersionController.h"
 
 
 
@@ -53,7 +54,7 @@
 @implementation ViewController
 
 
-@synthesize dcDelegate,contactList,contactNamesArray,filteredTableData,isFiltered,searchBar, sectionedListContent, WebService;
+@synthesize dcDelegate,contactList,contactNamesArray,filteredTableData,isFiltered,searchBar, sectionedListContent, WebService,vDelegate,ver;
 
 NSURLConnection *theConnection;
 NSURLConnection *myConnection;
@@ -182,6 +183,7 @@ NSString *dump;
         [xmlParser parse];
         //NSLog(@" here is the data: %@", xml);
     }
+    
     [self getContactsFromDB];
 }
 -(void)parserDidStartDocument:(NSXMLParser *)parser
@@ -241,6 +243,9 @@ NSString *dump;
     else if ([currentElement isEqualToString:@"IMAGE_URL"]) {
         IMAGE_URL = [[NSMutableString alloc]init];
     }
+    else if ([currentElement isEqualToString:@"IMAGE_WEB_URL"]) {
+        IMAGE_WEB_URL = [[NSMutableString alloc]init];
+    }
     
     else if ([currentElement isEqualToString:@"EXTERNAL_DISPLAY_NAME"]) {
         EXTERNAL_DISPLAY_NAME = [[NSMutableString alloc]init];
@@ -255,7 +260,7 @@ NSString *dump;
         [self showCurrentDepth];
         //NSLog(@"test  %@ %@ %@ %@", EXTERNAL_DISPLAY_NAME, INIT, PHONE, MOBIL);
         //Database insert function
-        [self.dcDelegate insert_into_contacts_db:EXTERNAL_DISPLAY_NAME:FNAME:LNAME:INIT:EMP_NO:EMAIL:BUSINESSAREA_NAME:PHONE:MOBIL:SUPERIOR:LOCATION:IMAGE_URL];
+        [self.dcDelegate insert_into_contacts_db:EXTERNAL_DISPLAY_NAME:FNAME:LNAME:INIT:EMP_NO:EMAIL:BUSINESSAREA_NAME:PHONE:MOBIL:SUPERIOR:LOCATION:IMAGE_URL:IMAGE_WEB_URL];
         
     }
     
@@ -286,10 +291,12 @@ NSString *dump;
         [LOCATION appendString:string];
     if ([currentElement isEqualToString:@"IMAGE_URL"]) 
         [IMAGE_URL appendString:string];
+    if ([currentElement isEqualToString:@"IMAGE_WEB_URL"]) 
+        [IMAGE_WEB_URL appendString:string];
     if ([currentElement isEqualToString:@"EXTERNAL_DISPLAY_NAME"]) 
         [EXTERNAL_DISPLAY_NAME appendString:string];
     
-    //NSLog(@" here is the contact: %@", EXTERNAL_DISPLAY_NAME);
+    //NSLog(@" here is the web: %@", IMAGE_WEB_URL);
     //NSLog(@" here is the contact: %@", LOCATION);
     
     
@@ -335,6 +342,7 @@ NSString *dump;
     contactNamesArraySUPERIOR = [[NSMutableArray alloc] init];
     contactNamesArrayLOCATION = [[NSMutableArray alloc] init];
     contactNamesArrayIMAGE_URL = [[NSMutableArray alloc] init];
+    contactNamesArrayIMAGE_WEB_URL =[[NSMutableArray alloc] init];
     
     //NSMutableArray *contactNamesArray =  [[NSMutableArray alloc] init];
     
@@ -361,6 +369,7 @@ NSString *dump;
         [contactNamesArraySUPERIOR addObject:contact.SUPERIOR];
         [contactNamesArrayLOCATION addObject:contact.LOCATION];
         [contactNamesArrayIMAGE_URL addObject:contact.IMAGE_URL];
+        [contactNamesArrayIMAGE_WEB_URL addObject:contact.IMAGE_WEB_URL];
         
     }
     
@@ -385,6 +394,7 @@ NSString *dump;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [MBProgressHUD hideHUDForView:viewController.view animated:YES];
     [self.tableView reloadData];
+    
     }
 
 
@@ -399,7 +409,7 @@ NSString *dump;
 - (void)viewDidLoad
 {
     
-    
+   
     
        
     // Set table view title
@@ -407,6 +417,8 @@ NSString *dump;
     searchBar.delegate = (id)self;
     //initialize dcDelegate dbdataController. REMEMBER TO PLACE FUNCTIONS AFTER THIS OR ELSE THERE ISN'T ANY DB CONNECTION
     self.dcDelegate = [[DbDataController alloc] init];
+    self.vDelegate =[[VersionController alloc]init];
+    [self.vDelegate getWebserviceVersion];
     //Get connect to webservice and get data
     [self getData:self];
     //[self checkConnections];

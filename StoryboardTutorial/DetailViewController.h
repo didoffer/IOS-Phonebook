@@ -36,7 +36,9 @@
 - (IBAction)bt_mobil:(id)sender;
 
 
+@property (weak, nonatomic) IBOutlet UIImageView *myimageView;
 
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) Contacts* emp;
 @property (weak, nonatomic) IBOutlet UIButton *bt_mobil;
 @property (weak, nonatomic) IBOutlet UIButton *bt_phone;
