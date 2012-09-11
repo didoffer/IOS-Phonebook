@@ -17,6 +17,8 @@
 		EC8222EA15AEBDE2006B57BC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8222E915AEBDE2006B57BC /* MBProgressHUD.m */; };
 		EC828FB215B8236D006D1818 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC828FB115B8236D006D1818 /* SystemConfiguration.framework */; };
 		EC84367D15F4C2B500F2D175 /* Contact.png in Resources */ = {isa = PBXBuildFile; fileRef = EC84367C15F4C2B500F2D175 /* Contact.png */; };
+		EC85A4AF15FF085600C37EF5 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = EC85A4AE15FF085600C37EF5 /* 19-gear.png */; };
+		EC85A4B415FF0A0600C37EF5 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC85A4B315FF0A0600C37EF5 /* SettingsController.m */; };
 		EC8B375E15FDB3CD00B4FB8D /* VersionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8B375D15FDB3CD00B4FB8D /* VersionController.m */; };
 		EC8B376215FE03FE00B4FB8D /* Contact.rdb in Resources */ = {isa = PBXBuildFile; fileRef = EC8B376115FE03F300B4FB8D /* Contact.rdb */; };
 		ECC966F115EBA54000CF1FCE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC966EE15EB987900CF1FCE /* Reachability.m */; };
@@ -50,6 +52,9 @@
 		EC828FB115B8236D006D1818 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EC84367B15F49F3B00F2D175 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EC84367C15F4C2B500F2D175 /* Contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Contact.png; sourceTree = "<group>"; };
+		EC85A4AE15FF085600C37EF5 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
+		EC85A4B215FF0A0600C37EF5 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
+		EC85A4B315FF0A0600C37EF5 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		EC8B375C15FDB3CD00B4FB8D /* VersionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionController.h; sourceTree = "<group>"; };
 		EC8B375D15FDB3CD00B4FB8D /* VersionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionController.m; sourceTree = "<group>"; };
 		EC8B376015FDBF7F00B4FB8D /* VersionControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionControllerDelegate.h; sourceTree = "<group>"; };
@@ -123,6 +128,7 @@
 		EC80090C15ECBD9E001C0CA0 /* Pics */ = {
 			isa = PBXGroup;
 			children = (
+				EC85A4AE15FF085600C37EF5 /* 19-gear.png */,
 				ECE7189F15F5E9D3008F6874 /* Default@2x.png */,
 				EC80090A15ECBD4D001C0CA0 /* T-mark-warmgray.png */,
 				FC1FF1F4144FE696008429F9 /* LightGrey@2x.png */,
@@ -130,6 +136,16 @@
 				FC1FF1F3144FE696008429F9 /* LightGrey.png */,
 			);
 			name = Pics;
+			sourceTree = "<group>";
+		};
+		EC85A4B115FF096000C37EF5 /* Version Control */ = {
+			isa = PBXGroup;
+			children = (
+				EC8B376015FDBF7F00B4FB8D /* VersionControllerDelegate.h */,
+				EC8B375D15FDB3CD00B4FB8D /* VersionController.m */,
+				EC8B375C15FDB3CD00B4FB8D /* VersionController.h */,
+			);
+			name = "Version Control";
 			sourceTree = "<group>";
 		};
 		ECC966EB15EB986500CF1FCE /* Reachability */ = {
@@ -179,6 +195,7 @@
 		FC1FF1C1144FD76E008429F9 /* StoryboardTutorial */ = {
 			isa = PBXGroup;
 			children = (
+				EC85A4B115FF096000C37EF5 /* Version Control */,
 				ECC966EB15EB986500CF1FCE /* Reachability */,
 				FC1FF1CD144FD76E008429F9 /* MainStoryboard.storyboard */,
 				FC1FF1CB144FD76E008429F9 /* AppDelegate.m */,
@@ -190,9 +207,8 @@
 				FC1FF1D0144FD76E008429F9 /* ViewController.h */,
 				FC1FF1D1144FD76E008429F9 /* ViewController.m */,
 				FC1FF1C2144FD76E008429F9 /* Supporting Files */,
-				EC8B375C15FDB3CD00B4FB8D /* VersionController.h */,
-				EC8B375D15FDB3CD00B4FB8D /* VersionController.m */,
-				EC8B376015FDBF7F00B4FB8D /* VersionControllerDelegate.h */,
+				EC85A4B215FF0A0600C37EF5 /* SettingsController.h */,
+				EC85A4B315FF0A0600C37EF5 /* SettingsController.m */,
 			);
 			path = StoryboardTutorial;
 			sourceTree = "<group>";
@@ -270,6 +286,7 @@
 				EC80090B15ECBD4D001C0CA0 /* T-mark-warmgray.png in Resources */,
 				EC84367D15F4C2B500F2D175 /* Contact.png in Resources */,
 				ECE718A015F5E9D3008F6874 /* Default@2x.png in Resources */,
+				EC85A4AF15FF085600C37EF5 /* 19-gear.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +306,7 @@
 				EC7F020915A4568500F55735 /* Contacts.m in Sources */,
 				EC8222EA15AEBDE2006B57BC /* MBProgressHUD.m in Sources */,
 				EC8B375E15FDB3CD00B4FB8D /* VersionController.m in Sources */,
+				EC85A4B415FF0A0600C37EF5 /* SettingsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

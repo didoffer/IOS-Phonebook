@@ -20,12 +20,13 @@
     //NSMutableString *version;
     //NSMutableString *name;
     NSMutableArray *appVerison;
-    
+    //NSMutableString *update;
     
 
 }
 @property(strong, retain)NSMutableArray *appVerison;
 @property (nonatomic, copy) NSMutableString *name;
 @property (nonatomic, copy) NSMutableString *version;
-
+//@property (nonatomic, retain) NSMutableString *update;
++(NSString*)update;
 @end

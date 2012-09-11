@@ -408,19 +408,23 @@ NSString *dump;
 
 - (void)viewDidLoad
 {
+    //Setting back button text to "back" instead of the table title "Terma Employees"
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] 
+                                  initWithTitle: @"Back" 
+                                  style: UIBarButtonItemStyleBordered
+                                  target: nil action: nil];
     
-   
-    
-       
+    [self.navigationItem setBackBarButtonItem: backButton];
+           
     // Set table view title
     self.title = @"Terma Employees";
     searchBar.delegate = (id)self;
     //initialize dcDelegate dbdataController. REMEMBER TO PLACE FUNCTIONS AFTER THIS OR ELSE THERE ISN'T ANY DB CONNECTION
     self.dcDelegate = [[DbDataController alloc] init];
+        //Get connect to webservice and get data
+    [self getData:self];
     self.vDelegate =[[VersionController alloc]init];
     [self.vDelegate getWebserviceVersion];
-    //Get connect to webservice and get data
-    [self getData:self];
     //[self checkConnections];
     [super viewDidLoad];
 }

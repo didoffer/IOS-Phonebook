@@ -14,7 +14,7 @@
 
 @implementation VersionController
 @synthesize appVerison,name,version;
-
+static NSString* newUpdate = nil;
 NSURLConnection *theConnection;
 NSURLConnection *myConnection;
 NSMutableData *receivedData;
@@ -23,7 +23,7 @@ NSString* xml;
 NSString *dump; 
                     /*--------Version update start-----------*/
 /*--------Change this value when a new version of the app i released-----------*/
- NSInteger vnumber = 0;
+ NSInteger hardcodedVersion = 1;
                     /*--------Version update finish-----------*/
 
 //Request data from url connection
@@ -63,15 +63,7 @@ NSString *dump;
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Nerwork error!"
-                                                      message:@"Not connected to VPN"
-                                                     delegate:self
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles: nil];
-    [message show];
-    //Stop progress spinner
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
+       
     
 }
 // if it get connection to the url it starts parsing xml (try the NSlog further down the function to see the parsed xml data)
@@ -129,10 +121,7 @@ NSString *dump;
         --depth;
         //[self showCurrentDepth];
         NSLog(@"test  %@", version);
-        //Database insert function
-        //[self.dcDelegate insert_into_contacts_db:EXTERNAL_DISPLAY_NAME:FNAME:LNAME:INIT:EMP_NO:EMAIL:BUSINESSAREA_NAME:PHONE:MOBIL:SUPERIOR:LOCATION:IMAGE_URL];
-        //NSString *immutableString = [NSString stringWithString:version];
-        //NSInteger *num=[NSIntegerMax decimalNumberWithString:immutableString];
+      
             }
     
 }
@@ -145,19 +134,20 @@ NSString *dump;
     if ([currentElement isEqualToString:@"VERSION"]) 
         [version appendString:string];
        
-    NSLog(@" here is the contact: %@", version);
+    //NSLog(@" here is the contact: %@", version);
     //NSLog(@" here is the contact: %@", name);
    
-    NSInteger i = [version intValue];
-    if (vnumber< i) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Update available!"
-                                                          message:@"Update app"
-                                                         delegate:self
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles: nil];
-        [message show];
-
+    NSInteger dbVersion = [version intValue];
+    NSLog(@" here is the contact: %d", dbVersion);
+    if (hardcodedVersion < dbVersion) {
+        newUpdate =@"YES";
     }
+    else {
+        newUpdate =@"NO";
+    }
+}
++(NSString*)update{
+    return newUpdate;
 }
 
 -(void)showCurrentDepth{

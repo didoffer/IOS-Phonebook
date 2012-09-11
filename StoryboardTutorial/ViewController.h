@@ -14,6 +14,7 @@
 #import "MBProgressHUD.h"
 #import "VersionControllerDelegate.h"
 #import "VersionController.h"
+
 @class Reachability;
 
 @interface ViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource, NSXMLParserDelegate, MBProgressHUDDelegate, UISearchBarDelegate, UISearchDisplayDelegate>{
@@ -86,6 +87,7 @@
 
 @property (nonatomic, strong) id <DataControllerDelegate> dcDelegate;
 @property (nonatomic, strong) id <VersionControllerDelegate> vDelegate;
+
 - (void)getContactsFromDB;
 
 -(void)getData:(UIViewController *)controller;
