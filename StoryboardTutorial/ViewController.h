@@ -14,15 +14,17 @@
 #import "MBProgressHUD.h"
 #import "VersionControllerDelegate.h"
 #import "VersionController.h"
+#import "ViewControllerDelegate.h"
+#import "SettingsController.h"
 
 @class Reachability;
 
-@interface ViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource, NSXMLParserDelegate, MBProgressHUDDelegate, UISearchBarDelegate, UISearchDisplayDelegate>{
+@interface ViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource, NSXMLParserDelegate, MBProgressHUDDelegate, UISearchBarDelegate, ViewControllerDelegate ,UISearchDisplayDelegate>{
     MBProgressHUD *HUD;
     ViewController *viewController;
     Reachability* internetReachable;
     Reachability* hostReachable;
-
+  
 @private
     
     NSArray  *sectionedListContent;  // The content filtered into alphabetical sections.
@@ -70,6 +72,7 @@
 }
 
 
+
 @property(strong)NSMutableArray *contactList;// The master content.
 @property (nonatomic, readonly) NSArray *sectionedListContent;
 @property(strong, retain)NSMutableArray *contactNamesArray;
@@ -81,6 +84,7 @@
 @property (strong, nonatomic) DbDataController *WebService;
 
 - (IBAction)bt_update:(id)sender;
+
 
 
 @property (strong, nonatomic) VersionController* ver;

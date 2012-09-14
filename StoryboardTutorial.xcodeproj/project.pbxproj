@@ -52,6 +52,7 @@
 		EC828FB115B8236D006D1818 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EC84367B15F49F3B00F2D175 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EC84367C15F4C2B500F2D175 /* Contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Contact.png; sourceTree = "<group>"; };
+		EC84BED21600557200EC25FC /* ViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerDelegate.h; sourceTree = "<group>"; };
 		EC85A4AE15FF085600C37EF5 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
 		EC85A4B215FF0A0600C37EF5 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		EC85A4B315FF0A0600C37EF5 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
@@ -209,6 +210,7 @@
 				FC1FF1C2144FD76E008429F9 /* Supporting Files */,
 				EC85A4B215FF0A0600C37EF5 /* SettingsController.h */,
 				EC85A4B315FF0A0600C37EF5 /* SettingsController.m */,
+				EC84BED21600557200EC25FC /* ViewControllerDelegate.h */,
 			);
 			path = StoryboardTutorial;
 			sourceTree = "<group>";

@@ -14,13 +14,14 @@
 @end
 
 @implementation SettingsController
+@synthesize bt_test;
 @synthesize bt_upApp;
-@synthesize bt_upData;
+@synthesize bt_upData,viewDelegate;
 
 
 
 
-@synthesize ver,vDelegate;
+@synthesize vDelegate;
 NSString *updates;
 -(void)versionCheck{
     updates = [VersionController update];
@@ -37,6 +38,8 @@ NSString *updates;
 
 - (void)viewDidLoad
 {
+    self.viewDelegate =[[ViewController alloc]init];
+    
     
 [self versionCheck];
     self.title = @"Settings";
@@ -52,6 +55,7 @@ NSString *updates;
     
     [self setBt_upApp:nil];
     [self setBt_upData:nil];
+    [self setBt_test:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -63,8 +67,7 @@ NSString *updates;
 
 
 - (IBAction)bt_upData:(id)sender {
-    
-    /*
+        
     Reachability *reach = [Reachability reachabilityForInternetConnection];
     
     [reach startNotifier];
@@ -93,17 +96,29 @@ NSString *updates;
     
     else if (status == ReachableViaWiFi) {
         
+        //[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        //MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:SettingsController. animated:YES];
+        //hud.labelText = @"Loading...";
         
-        [self.viewDelegate flushdb];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Updating" 
+                                                        message:@"Data updating" 
+                                                       delegate:nil 
+                                              cancelButtonTitle:nil 
+                                              otherButtonTitles: nil];
+        [alert show];
+
         
-        //sectionedListContent = nil;
-        //filteredTableData = nil;
+        [self.viewDelegate flushdb];    
         
+ 
         [self.viewDelegate getWebserviceData];
         
-      //  [self.viewDelegate.tableview reloadData];
-
-}*/
+        
+        [alert dismissWithClickedButtonIndex:0 animated:TRUE];
+               
+        
+         
+       }
 }
 - (IBAction)bt_upApp:(id)sender {
     if (updates ==@"YES") {
@@ -124,6 +139,10 @@ NSString *updates;
         [alert show];
         
     }
+}
+
+- (IBAction)bt_test:(id)sender {
+      [self.viewDelegate refreshDataTable];
 }
 @end
 

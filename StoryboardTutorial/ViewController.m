@@ -66,7 +66,7 @@ NSString *dump;
 
 //Request data from url connection
 - (void)getWebserviceData{
-    
+    NSLog(@"data startede");
         //Start progress spinner
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:viewController.view animated:YES];
@@ -85,6 +85,7 @@ NSString *dump;
         receivedData = [NSMutableData data];}
     else
     {}
+    
 
     
 }
@@ -314,6 +315,7 @@ NSString *dump;
 //Truncate database
 - (void)flushdb
 {
+    NSLog(@"delete startede");
     [self.dcDelegate flush_contacts_db];
     [self.tableView reloadData];
 }
@@ -321,6 +323,9 @@ NSString *dump;
 //For every employee in contactlist addobjects to each of the array's
 - (void)getContactsFromDB
 {
+    
+    [filteredTableData removeAllObjects];
+    [contactList removeAllObjects];
     
     NSLog(@"I was here contact...");
     contactList = [[NSMutableArray alloc]init];
@@ -393,8 +398,9 @@ NSString *dump;
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [MBProgressHUD hideHUDForView:viewController.view animated:YES];
-    [self.tableView reloadData];
-    
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    //[self.tableView reloadData];
+ 
     }
 
 
@@ -405,6 +411,14 @@ NSString *dump;
 }
 
 #pragma mark - View lifecycle
+-(void)refreshDataTable{
+    //[self getWebserviceData];
+    //[self.tableView reloadData];
+    [[self tableView] reloadData];
+}
+
+
+    
 
 - (void)viewDidLoad
 {
@@ -412,7 +426,9 @@ NSString *dump;
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] 
                                   initWithTitle: @"Back" 
                                   style: UIBarButtonItemStyleBordered
-                                  target: nil action: nil];
+                                  target: nil action:@selector(getWebserviceData)];
+    
+    
     
     [self.navigationItem setBackBarButtonItem: backButton];
            
@@ -541,7 +557,10 @@ NSString *dump;
         }
     }
     //refresh of the tableview
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
+    [self.tableView performSelectorOnMainThread:@selector(reloadData)
+                                     withObject:nil
+                                  waitUntilDone:NO];
 }
 
 // If user tabs the search button on the keyboard the keyboard dissapears
@@ -649,23 +668,37 @@ NSString *dump;
 - (void)viewWillAppear:(BOOL)animated
 {
     
+    
         [super viewWillAppear:animated];
+    //[self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    if (!isFiltered) {
+        [self getData:self];
+        [self.tableView reloadData];
+    }
+    else {
+        
+    }
+    
     
     [super viewDidAppear:animated];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
+    
+    	[super viewWillDisappear:animated];
+   
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
+   
 }
 // options for if the connections is 3G
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -729,7 +762,7 @@ NSString *dump;
         
         [self getWebserviceData];
         
-        [self.tableView reloadData];
+        
     }
    
 }

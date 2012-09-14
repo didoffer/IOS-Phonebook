@@ -29,9 +29,6 @@ NSString *dump;
 //Request data from url connection
 - (void)getWebserviceVersion{
     
-    //Start progress spinner
-    
-    
     receivedData = [[NSMutableData alloc] init];
     
     NSURL *myURL = [NSURL URLWithString:@"http://midvm1.terma.com/kbni2/TermaService.svc/version/phonebook"];

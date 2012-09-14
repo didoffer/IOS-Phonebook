@@ -116,6 +116,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="bt_test:" destination="XfV-ms-wKj" eventType="touchUpInside" id="8qo-DO-Dex"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JhK-lL-JcP">
                                 <rect key="frame" x="72" y="16" width="228" height="29"/>
@@ -137,6 +140,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="tFx-G1-JoW"/>
                     <connections>
+                        <outlet property="bt_test" destination="RJU-yH-0qx" id="Ae9-md-Sed"/>
                         <outlet property="bt_upApp" destination="JhK-lL-JcP" id="sQo-xf-CZL"/>
                         <outlet property="bt_upData" destination="4yK-ad-8HC" id="9zi-3q-pOq"/>
                     </connections>
@@ -294,6 +298,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yTJ-og-Fm9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="XZM-2U-q0D" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="ZeC-Wo-ECu"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="dcW-RK-rly">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -332,8 +337,10 @@
         <class className="SettingsController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsController.h"/>
             <relationships>
+                <relationship kind="action" name="bt_test:"/>
                 <relationship kind="action" name="bt_upApp:"/>
                 <relationship kind="action" name="bt_upData:"/>
+                <relationship kind="outlet" name="bt_test" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bt_upApp" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bt_upData" candidateClass="UIButton"/>
             </relationships>
@@ -341,6 +348,7 @@
         <class className="ViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="bt_test:"/>
                 <relationship kind="action" name="bt_update:"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
