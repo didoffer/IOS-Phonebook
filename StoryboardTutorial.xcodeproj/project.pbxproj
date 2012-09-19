@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		EC4646BB15A5A0A000E0258D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4646BA15A5A0A000E0258D /* AddressBook.framework */; };
 		EC4646BD15A5A0BF00E0258D /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4646BC15A5A0BF00E0258D /* AddressBookUI.framework */; };
+		EC54D0EA1606FF5600B6FCFC /* icon_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = EC54D0E91606FF5600B6FCFC /* icon_settings.png */; };
+		EC54D0ED1606FFB500B6FCFC /* icon_settings copy.png in Resources */ = {isa = PBXBuildFile; fileRef = EC54D0EC1606FFB500B6FCFC /* icon_settings copy.png */; };
 		EC7F020515A455CE00F55735 /* DbDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7F020415A455CE00F55735 /* DbDataController.m */; };
 		EC7F020915A4568500F55735 /* Contacts.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7F020815A4568500F55735 /* Contacts.m */; };
 		EC7F020C15A4570A00F55735 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7F020B15A4570A00F55735 /* MessageUI.framework */; };
@@ -16,7 +18,7 @@
 		EC80090B15ECBD4D001C0CA0 /* T-mark-warmgray.png in Resources */ = {isa = PBXBuildFile; fileRef = EC80090A15ECBD4D001C0CA0 /* T-mark-warmgray.png */; };
 		EC8222EA15AEBDE2006B57BC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8222E915AEBDE2006B57BC /* MBProgressHUD.m */; };
 		EC828FB215B8236D006D1818 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC828FB115B8236D006D1818 /* SystemConfiguration.framework */; };
-		EC84367D15F4C2B500F2D175 /* Contact.png in Resources */ = {isa = PBXBuildFile; fileRef = EC84367C15F4C2B500F2D175 /* Contact.png */; };
+		EC84BB5F1606F7B1008D9142 /* Contact.png in Resources */ = {isa = PBXBuildFile; fileRef = EC84BB5E1606F7B1008D9142 /* Contact.png */; };
 		EC85A4AF15FF085600C37EF5 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = EC85A4AE15FF085600C37EF5 /* 19-gear.png */; };
 		EC85A4B415FF0A0600C37EF5 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC85A4B315FF0A0600C37EF5 /* SettingsController.m */; };
 		EC8B375E15FDB3CD00B4FB8D /* VersionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8B375D15FDB3CD00B4FB8D /* VersionController.m */; };
@@ -39,6 +41,8 @@
 /* Begin PBXFileReference section */
 		EC4646BA15A5A0A000E0258D /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		EC4646BC15A5A0BF00E0258D /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		EC54D0E91606FF5600B6FCFC /* icon_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_settings.png; sourceTree = "<group>"; };
+		EC54D0EC1606FFB500B6FCFC /* icon_settings copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_settings copy.png"; sourceTree = "<group>"; };
 		EC7F020315A455CE00F55735 /* DbDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DbDataController.h; sourceTree = "<group>"; };
 		EC7F020415A455CE00F55735 /* DbDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DbDataController.m; sourceTree = "<group>"; };
 		EC7F020715A4565B00F55735 /* Contacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contacts.h; sourceTree = "<group>"; };
@@ -51,7 +55,7 @@
 		EC8222E915AEBDE2006B57BC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EC828FB115B8236D006D1818 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EC84367B15F49F3B00F2D175 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EC84367C15F4C2B500F2D175 /* Contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Contact.png; sourceTree = "<group>"; };
+		EC84BB5E1606F7B1008D9142 /* Contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Contact.png; sourceTree = "<group>"; };
 		EC84BED21600557200EC25FC /* ViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerDelegate.h; sourceTree = "<group>"; };
 		EC85A4AE15FF085600C37EF5 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
 		EC85A4B215FF0A0600C37EF5 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
@@ -130,13 +134,24 @@
 			isa = PBXGroup;
 			children = (
 				EC85A4AE15FF085600C37EF5 /* 19-gear.png */,
+				EC54D0E91606FF5600B6FCFC /* icon_settings.png */,
+				EC54D0EC1606FFB500B6FCFC /* icon_settings copy.png */,
 				ECE7189F15F5E9D3008F6874 /* Default@2x.png */,
 				EC80090A15ECBD4D001C0CA0 /* T-mark-warmgray.png */,
 				FC1FF1F4144FE696008429F9 /* LightGrey@2x.png */,
-				EC84367C15F4C2B500F2D175 /* Contact.png */,
+				EC84BB5E1606F7B1008D9142 /* Contact.png */,
 				FC1FF1F3144FE696008429F9 /* LightGrey.png */,
 			);
 			name = Pics;
+			sourceTree = "<group>";
+		};
+		EC84BB5D1606F62D008D9142 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EC85A4B315FF0A0600C37EF5 /* SettingsController.m */,
+				EC85A4B215FF0A0600C37EF5 /* SettingsController.h */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		EC85A4B115FF096000C37EF5 /* Version Control */ = {
@@ -196,21 +211,20 @@
 		FC1FF1C1144FD76E008429F9 /* StoryboardTutorial */ = {
 			isa = PBXGroup;
 			children = (
-				EC85A4B115FF096000C37EF5 /* Version Control */,
-				ECC966EB15EB986500CF1FCE /* Reachability */,
 				FC1FF1CD144FD76E008429F9 /* MainStoryboard.storyboard */,
 				FC1FF1CB144FD76E008429F9 /* AppDelegate.m */,
 				FC1FF1CA144FD76E008429F9 /* AppDelegate.h */,
+				EC85A4B115FF096000C37EF5 /* Version Control */,
+				ECC966EB15EB986500CF1FCE /* Reachability */,
 				EC7600AF15AEC4F20011E681 /* DB */,
 				EC7600AD15AEC4960011E681 /* MBProgressHUD */,
 				FC1FF1F0144FE1B6008429F9 /* DetailViewController.h */,
 				FC1FF1F1144FE1B6008429F9 /* DetailViewController.m */,
 				FC1FF1D0144FD76E008429F9 /* ViewController.h */,
 				FC1FF1D1144FD76E008429F9 /* ViewController.m */,
-				FC1FF1C2144FD76E008429F9 /* Supporting Files */,
-				EC85A4B215FF0A0600C37EF5 /* SettingsController.h */,
-				EC85A4B315FF0A0600C37EF5 /* SettingsController.m */,
 				EC84BED21600557200EC25FC /* ViewControllerDelegate.h */,
+				EC84BB5D1606F62D008D9142 /* Settings */,
+				FC1FF1C2144FD76E008429F9 /* Supporting Files */,
 			);
 			path = StoryboardTutorial;
 			sourceTree = "<group>";
@@ -286,9 +300,11 @@
 				FC1FF1F5144FE696008429F9 /* LightGrey.png in Resources */,
 				FC1FF1F6144FE696008429F9 /* LightGrey@2x.png in Resources */,
 				EC80090B15ECBD4D001C0CA0 /* T-mark-warmgray.png in Resources */,
-				EC84367D15F4C2B500F2D175 /* Contact.png in Resources */,
 				ECE718A015F5E9D3008F6874 /* Default@2x.png in Resources */,
 				EC85A4AF15FF085600C37EF5 /* 19-gear.png in Resources */,
+				EC84BB5F1606F7B1008D9142 /* Contact.png in Resources */,
+				EC54D0EA1606FF5600B6FCFC /* icon_settings.png in Resources */,
+				EC54D0ED1606FFB500B6FCFC /* icon_settings copy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

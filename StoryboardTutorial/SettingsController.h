@@ -12,16 +12,17 @@
 #import "MBProgressHUD.h"
 
 
-@interface SettingsController : UIViewController{
+@interface SettingsController : UIViewController<MBProgressHUDDelegate>{
     
- MBProgressHUD *HUD;
+ MBProgressHUD *HUUD;
+    SettingsController *settingsController;
 }
 - (IBAction)bt_upData:(id)sender;
 - (IBAction)bt_upApp:(id)sender;
-- (IBAction)bt_test:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIButton *bt_upApp;
 @property (weak, nonatomic) IBOutlet UIButton *bt_upData;
-@property (weak, nonatomic) IBOutlet UIButton *bt_test;
+
 
 
 
@@ -33,6 +34,6 @@
 
 @property (nonatomic, strong) id <VersionControllerDelegate> vDelegate;
 @property (nonatomic, strong) id <ViewControllerDelegate> viewDelegate;
-
+@property (nonatomic, strong) id <DataControllerDelegate> dcDelegate;
 
 @end

@@ -11,7 +11,6 @@
 @protocol ViewControllerDelegate <NSObject>
 -(void) getWebserviceData;
 -(void) flushdb;
--(void)refreshDataTable;
 -(void) getContactsFromDB;
 
 

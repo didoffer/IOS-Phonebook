@@ -14,17 +14,16 @@
 @end
 
 @implementation SettingsController
-@synthesize bt_test;
 @synthesize bt_upApp;
 @synthesize bt_upData,viewDelegate;
+@synthesize vDelegate,dcDelegate;
 
-
-
-
-@synthesize vDelegate;
 NSString *updates;
+
+//If newere version exists change button title to "update", if not "no updates"
 -(void)versionCheck{
     updates = [VersionController update];
+    
     NSLog(@"SKAL JEG OPDATERE %@",updates);
     if (updates ==@"YES") {
         [bt_upApp setTitle:@"New Update" forState:UIControlStateNormal];
@@ -38,25 +37,23 @@ NSString *updates;
 
 - (void)viewDidLoad
 {
-    self.viewDelegate =[[ViewController alloc]init];
-    
-    
-[self versionCheck];
-    self.title = @"Settings";
     [super viewDidLoad];
+    self.dcDelegate = [[DbDataController alloc] init];
+    self.viewDelegate =[[ViewController alloc]init];
+    [self versionCheck];
+    self.title = @"Settings";
+    
+    
+  
 	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidUnload
 {
-    
-    
-    
-    
+     [super viewDidUnload];
     [self setBt_upApp:nil];
     [self setBt_upData:nil];
-    [self setBt_test:nil];
-    [super viewDidUnload];
+   
     // Release any retained subviews of the main view.
 }
 
@@ -65,9 +62,31 @@ NSString *updates;
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
-- (IBAction)bt_upData:(id)sender {
+//3G alertview where you can choose to update or not
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if([title isEqualToString:@"No"])
+    {
+        //Cancel
+    }
+    else if([title isEqualToString:@"Yes"])
+    {
+         [self.dcDelegate flush_contacts_db];
         
+       //Redirect to viewcontroller view
+        ViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+        
+        [self.navigationController pushViewController:view animated:YES];
+        
+    }
+    
+}
+
+// Update data button action
+- (IBAction)bt_upData:(id)sender {
+   
     Reachability *reach = [Reachability reachabilityForInternetConnection];
     
     [reach startNotifier];
@@ -94,32 +113,20 @@ NSString *updates;
                                                  otherButtonTitles:@"Yes", nil];
         [alerview show];}
     
+    
     else if (status == ReachableViaWiFi) {
         
-        //[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        //MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:SettingsController. animated:YES];
-        //hud.labelText = @"Loading...";
+              
+             [self.dcDelegate flush_contacts_db];
+            
+        ViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Updating" 
-                                                        message:@"Data updating" 
-                                                       delegate:nil 
-                                              cancelButtonTitle:nil 
-                                              otherButtonTitles: nil];
-        [alert show];
-
-        
-        [self.viewDelegate flushdb];    
-        
- 
-        [self.viewDelegate getWebserviceData];
-        
-        
-        [alert dismissWithClickedButtonIndex:0 animated:TRUE];
-               
-        
-         
+        [self.navigationController pushViewController:view animated:YES];
+              
        }
 }
+
+// Update App button
 - (IBAction)bt_upApp:(id)sender {
     if (updates ==@"YES") {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update" 
@@ -141,8 +148,6 @@ NSString *updates;
     }
 }
 
-- (IBAction)bt_test:(id)sender {
-      [self.viewDelegate refreshDataTable];
-}
+
 @end
 

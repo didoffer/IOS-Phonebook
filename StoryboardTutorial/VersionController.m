@@ -74,7 +74,7 @@ NSString *dump;
         [xmlParser setShouldReportNamespacePrefixes:NO];
         [xmlParser setShouldResolveExternalEntities:NO];
         [xmlParser parse];
-        NSLog(@" here is the data: %@", xml);
+        //NSLog(@" here is the data: %@", xml);
     }
     //[self getContactsFromDB];
 }
@@ -117,7 +117,7 @@ NSString *dump;
     if ([elementName isEqualToString:@"AppVersion"]) {
         --depth;
         //[self showCurrentDepth];
-        NSLog(@"test  %@", version);
+        //NSLog(@"test  %@", version);
       
             }
     
@@ -135,7 +135,7 @@ NSString *dump;
     //NSLog(@" here is the contact: %@", name);
    
     NSInteger dbVersion = [version intValue];
-    NSLog(@" here is the contact: %d", dbVersion);
+    NSLog(@" here is the db version: %d", dbVersion);
     if (hardcodedVersion < dbVersion) {
         newUpdate =@"YES";
     }

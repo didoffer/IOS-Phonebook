@@ -10,7 +10,7 @@
         <scene sceneID="AeZ-zZ-yKT">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="69w-Mb-GIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="hby-cw-ZuM" customClass="ViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ViewController" id="hby-cw-ZuM" customClass="ViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kVt-HR-2Va">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,7 +47,7 @@
                                 <action selector="bt_update:" destination="hby-cw-ZuM" id="Gsa-3P-gBu"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="KJE-F7-et7">
+                        <barButtonItem key="rightBarButtonItem" image="icon_settings copy.png" id="KJE-F7-et7">
                             <connections>
                                 <segue destination="XfV-ms-wKj" kind="push" id="hSl-Wj-n1r"/>
                             </connections>
@@ -83,18 +83,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="8LF-xo-nhi">
-                                <rect key="frame" x="20" y="92" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4yK-ad-8HC">
                                 <rect key="frame" x="72" y="53" width="228" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <state key="normal" title="upData">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -105,26 +98,11 @@
                                     <action selector="bt_upData:" destination="XfV-ms-wKj" eventType="touchUpInside" id="T1n-CL-deK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RJU-yH-0qx">
-                                <rect key="frame" x="72" y="88" width="228" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="bt_test:" destination="XfV-ms-wKj" eventType="touchUpInside" id="8qo-DO-Dex"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JhK-lL-JcP">
                                 <rect key="frame" x="72" y="16" width="228" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                <state key="normal">
+                                <state key="normal" title="upApp">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -140,7 +118,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="tFx-G1-JoW"/>
                     <connections>
-                        <outlet property="bt_test" destination="RJU-yH-0qx" id="Ae9-md-Sed"/>
                         <outlet property="bt_upApp" destination="JhK-lL-JcP" id="sQo-xf-CZL"/>
                         <outlet property="bt_upData" destination="4yK-ad-8HC" id="9zi-3q-pOq"/>
                     </connections>
@@ -176,24 +153,24 @@
                                     <action selector="bt_addcontact:" destination="GON-cK-sVJ" eventType="touchUpInside" id="qY5-a7-oAt"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bussiness Area" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="HJb-1g-MWC">
-                                <rect key="frame" x="137" y="32" width="232" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bussiness Area" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="HJb-1g-MWC">
+                                <rect key="frame" x="137" y="44" width="163" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="y4x-gB-DGR">
-                                <rect key="frame" x="137" y="61" width="199" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Location" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="y4x-gB-DGR">
+                                <rect key="frame" x="137" y="82" width="163" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="lYI-yV-BYs">
-                                <rect key="frame" x="137" y="8" width="199" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="lYI-yV-BYs">
+                                <rect key="frame" x="137" y="6" width="163" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -232,7 +209,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -247,7 +224,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -279,6 +256,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Sww-hr-3sm"/>
                     <connections>
                         <outlet property="bt_mobil" destination="4Dg-wa-bLI" id="gxc-xp-WrX"/>
                         <outlet property="bt_phone" destination="NMM-yA-Ex0" id="0TV-R0-rgT"/>
@@ -314,6 +292,7 @@
     </scenes>
     <resources>
         <image name="Contact.png" width="122" height="120"/>
+        <image name="icon_settings copy.png" width="20" height="20"/>
     </resources>
     <classes>
         <class className="DetailViewController" superclassName="UIViewController">
@@ -337,10 +316,8 @@
         <class className="SettingsController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsController.h"/>
             <relationships>
-                <relationship kind="action" name="bt_test:"/>
                 <relationship kind="action" name="bt_upApp:"/>
                 <relationship kind="action" name="bt_upData:"/>
-                <relationship kind="outlet" name="bt_test" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bt_upApp" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bt_upData" candidateClass="UIButton"/>
             </relationships>
@@ -348,7 +325,6 @@
         <class className="ViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="bt_test:"/>
                 <relationship kind="action" name="bt_update:"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>

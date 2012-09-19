@@ -62,16 +62,17 @@ NSMutableData *receivedData;
 NSString *nextContact;
 NSString* xml;
 NSString *dump;
-
+UIWindow *window;
 
 //Request data from url connection
 - (void)getWebserviceData{
+    
     NSLog(@"data startede");
         //Start progress spinner
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:viewController.view animated:YES];
-        hud.labelText = @"Loading..."; 
-        
+   window = [[[UIApplication sharedApplication] windows] lastObject];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:window animated:YES];
+    hud.labelText = @"Loading...";    
+    
         receivedData = [[NSMutableData alloc] init];
         
         NSURL *myURL = [NSURL URLWithString:@"http://midvm1.terma.com/kbni2/TermaService.svc/employees"];
@@ -98,35 +99,11 @@ NSString *dump;
     
     viewController = (ViewController *)controller;
     
-    Reachability *reach = [Reachability reachabilityForInternetConnection];
     
-    [reach startNotifier];
-    NetworkStatus status =[reach currentReachabilityStatus];
     
     if ([contactList count] <1 ) {
     
-        if (status == NotReachable) {
-        
-            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Nerwork error!"
-                                                              message:@"No network connection"
-                                                             delegate:self
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles: nil];
-            [message show];
-    }
-    
-    
-    
-    else if (status == ReachableViaWWAN) {
-        UIAlertView *alerview = [[UIAlertView alloc] initWithTitle:@"WARNING!"
-                                                           message:@"You connected via 3G. Do you want to update anyway?"
-                                                          delegate:self
-                                                 cancelButtonTitle:@"No"
-                                                 otherButtonTitles:@"Yes", nil];
-        [alerview show];}
-    
-    else if (status == ReachableViaWiFi) {
-        
+               
         
         [self flushdb];
         
@@ -136,7 +113,7 @@ NSString *dump;
         [self getWebserviceData];
         
         [self.tableView reloadData];
-        }
+        
         
     }
     
@@ -168,12 +145,13 @@ NSString *dump;
     [message show];
     //Stop progress spinner
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [MBProgressHUD hideHUDForView:viewController.view animated:YES];
+    [MBProgressHUD hideHUDForView:window animated:YES];
 
 }
 // if it get connection to the url it starts parsing xml (try the NSlog further down the function to see the parsed xml data)
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    
     if (theConnection) {
         xml = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
         xmlParser = [[NSXMLParser alloc] initWithData:[xml dataUsingEncoding:NSUTF8StringEncoding]];
@@ -186,7 +164,11 @@ NSString *dump;
     }
     
     [self getContactsFromDB];
+   
 }
+
+
+
 -(void)parserDidStartDocument:(NSXMLParser *)parser
 {
     depth = 0;
@@ -397,11 +379,12 @@ NSString *dump;
     sectionedListContent = sections;
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [MBProgressHUD hideHUDForView:viewController.view animated:YES];
+    [MBProgressHUD hideHUDForView:window animated:YES];
+    
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-    //[self.tableView reloadData];
- 
+        
     }
+
 
 
 - (void)didReceiveMemoryWarning
@@ -411,22 +394,16 @@ NSString *dump;
 }
 
 #pragma mark - View lifecycle
--(void)refreshDataTable{
-    //[self getWebserviceData];
-    //[self.tableView reloadData];
-    [[self tableView] reloadData];
-}
-
-
     
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     //Setting back button text to "back" instead of the table title "Terma Employees"
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] 
                                   initWithTitle: @"Back" 
                                   style: UIBarButtonItemStyleBordered
-                                  target: nil action:@selector(getWebserviceData)];
+                                  target: nil action:nil];
     
     
     
@@ -438,11 +415,11 @@ NSString *dump;
     //initialize dcDelegate dbdataController. REMEMBER TO PLACE FUNCTIONS AFTER THIS OR ELSE THERE ISN'T ANY DB CONNECTION
     self.dcDelegate = [[DbDataController alloc] init];
         //Get connect to webservice and get data
-    [self getData:self];
+    //[self getData:self];
     self.vDelegate =[[VersionController alloc]init];
     [self.vDelegate getWebserviceVersion];
     //[self checkConnections];
-    [super viewDidLoad];
+    
 }
 
 
@@ -656,11 +633,11 @@ NSString *dump;
 
 - (void)viewDidUnload
 {
-    
+     [super viewDidUnload];
     self.filteredTableData = nil;
     sectionedListContent = nil;
     [self setSearchBar:nil];
-    [super viewDidUnload];
+   
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -675,6 +652,8 @@ NSString *dump;
 
 - (void)viewDidAppear:(BOOL)animated
 {
+  
+    [super viewDidAppear:animated];
     if (!isFiltered) {
         [self getData:self];
         [self.tableView reloadData];
@@ -683,8 +662,6 @@ NSString *dump;
         
     }
     
-    
-    [super viewDidAppear:animated];
     
 }
 
