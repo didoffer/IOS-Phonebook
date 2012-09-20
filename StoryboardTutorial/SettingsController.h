@@ -35,5 +35,5 @@
 @property (nonatomic, strong) id <VersionControllerDelegate> vDelegate;
 @property (nonatomic, strong) id <ViewControllerDelegate> viewDelegate;
 @property (nonatomic, strong) id <DataControllerDelegate> dcDelegate;
-
++(NSString*)btPressed;
 @end

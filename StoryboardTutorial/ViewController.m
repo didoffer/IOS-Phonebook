@@ -63,6 +63,7 @@ NSString *nextContact;
 NSString* xml;
 NSString *dump;
 UIWindow *window;
+NSString *upBtPressed;
 
 //Request data from url connection
 - (void)getWebserviceData{
@@ -312,7 +313,6 @@ UIWindow *window;
     NSLog(@"I was here contact...");
     contactList = [[NSMutableArray alloc]init];
     contactList = [self.dcDelegate getAll:self];
-    
     NSLog(@"size: %u", [contactList count]);
     
     //Initialize Arrays
@@ -416,8 +416,10 @@ UIWindow *window;
     self.dcDelegate = [[DbDataController alloc] init];
         //Get connect to webservice and get data
     //[self getData:self];
+    [self getContactsFromDB];
+     upBtPressed = [SettingsController btPressed];
     self.vDelegate =[[VersionController alloc]init];
-    [self.vDelegate getWebserviceVersion];
+    
     //[self checkConnections];
     
 }
@@ -647,6 +649,7 @@ UIWindow *window;
     
     
         [super viewWillAppear:animated];
+    [self.vDelegate getWebserviceVersion];
     //[self.tableView reloadData];
 }
 
@@ -654,93 +657,29 @@ UIWindow *window;
 {
   
     [super viewDidAppear:animated];
-    if (!isFiltered) {
+   
+    if (upBtPressed ==@"btpressed") {
         [self getData:self];
         [self.tableView reloadData];
+        
     }
     else {
         
     }
     
-    
+   
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     
     	[super viewWillDisappear:animated];
-   
+        upBtPressed =nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
-   
-}
-// options for if the connections is 3G
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-    
-    if([title isEqualToString:@"No"])
-    {
-        //Cancel
-    }
-    else if([title isEqualToString:@"Yes"])
-    {
-        [self flushdb];
-       
-        [self getWebserviceData];
-        
-        [self.tableView reloadData];
-    }
-    
-    
-}
-
-
-
-- (IBAction)bt_update:(id)sender {
-    
-    
-    Reachability *reach = [Reachability reachabilityForInternetConnection];
-    
-    [reach startNotifier];
-    NetworkStatus status =[reach currentReachabilityStatus];
-
-    
-    if (status == NotReachable) {
-        
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Nerwork error!"
-                                                          message:@"No network connection"
-                                                         delegate:self
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles: nil];
-        [message show];
-    }
-    
-    
-    
-    else if (status == ReachableViaWWAN) {
-        UIAlertView *alerview = [[UIAlertView alloc] initWithTitle:@"WARNING!"
-                                                           message:@"You connected via 3G. Do you want to update anyway?"
-                                                          delegate:self
-                                                 cancelButtonTitle:@"No"
-                                                 otherButtonTitles:@"Yes", nil];
-        [alerview show];}
-    
-    else if (status == ReachableViaWiFi) {
-        
-        
-        [self flushdb];
-        
-        //sectionedListContent = nil;
-        //filteredTableData = nil;
-        
-        [self getWebserviceData];
-        
-        
-    }
    
 }
 

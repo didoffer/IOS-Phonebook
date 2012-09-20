@@ -83,10 +83,6 @@
 
 @property (strong, nonatomic) DbDataController *WebService;
 
-- (IBAction)bt_update:(id)sender;
-
-
-
 @property (strong, nonatomic) VersionController* ver;
 
 @property (nonatomic, strong) id <DataControllerDelegate> dcDelegate;

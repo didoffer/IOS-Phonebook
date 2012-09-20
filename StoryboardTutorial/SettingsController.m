@@ -19,7 +19,7 @@
 @synthesize vDelegate,dcDelegate;
 
 NSString *updates;
-
+static NSString* btPress = nil;
 //If newere version exists change button title to "update", if not "no updates"
 -(void)versionCheck{
     updates = [VersionController update];
@@ -48,6 +48,18 @@ NSString *updates;
 	// Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    
+    
+    [super viewWillAppear:animated];
+        
+     
+    
+    //[self.tableView reloadData];
+}
+
+
 - (void)viewDidUnload
 {
      [super viewDidUnload];
@@ -74,7 +86,7 @@ NSString *updates;
     else if([title isEqualToString:@"Yes"])
     {
          [self.dcDelegate flush_contacts_db];
-        
+        btPress =@"btpressed";
        //Redirect to viewcontroller view
         ViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
         
@@ -118,6 +130,7 @@ NSString *updates;
         
               
              [self.dcDelegate flush_contacts_db];
+        btPress =@"btpressed";
             
         ViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
         
@@ -125,6 +138,11 @@ NSString *updates;
               
        }
 }
+
++(NSString*)btPressed{
+    return btPress;
+}
+
 
 // Update App button
 - (IBAction)bt_upApp:(id)sender {
@@ -146,6 +164,7 @@ NSString *updates;
         [alert show];
         
     }
+    
 }
 
 
