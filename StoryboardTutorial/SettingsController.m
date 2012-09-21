@@ -147,14 +147,14 @@ static NSString* btPress = nil;
 // Update App button
 - (IBAction)bt_upApp:(id)sender {
     if (updates ==@"YES") {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update" 
-                                                        message:@"App updated" 
-                                                       delegate:nil 
-                                              cancelButtonTitle:@"OK" 
-                                              otherButtonTitles: nil];
-        [alert show];
         
-    }
+        NSURL *url = [NSURL URLWithString:@"http://midvm1.terma.com/kbni2/phonebook/main.html"];
+        
+        if (![[UIApplication sharedApplication] openURL:url])
+            
+            NSLog(@"%@%@",@"Failed to open url:",[url description]);
+        
+            }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No updates" 
                                                         message:@"No new updates is available" 

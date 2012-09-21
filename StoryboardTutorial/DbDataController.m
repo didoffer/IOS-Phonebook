@@ -167,7 +167,7 @@
         NSString *sql = @"DELETE FROM contacts";
 
         if (sqlite3_prepare_v2(dbh, [sql UTF8String], -1, &stmt_delete, NULL) != SQLITE_OK) {
-            NSLog(@"Error:prepare:%@", sqlite3_errmsg(dbh));
+            NSLog(@"Error:prepare:%s", sqlite3_errmsg(dbh));
             return;
         }
     }
@@ -177,7 +177,7 @@
     sqlite3_reset(stmt_delete);  
     // Execute (step) delete statement
     if (sqlite3_step(stmt_delete) == SQLITE_ERROR) {
-        NSLog(@"Error:delete:%@", sqlite3_errmsg(dbh));
+        NSLog(@"Error:delete:%s", sqlite3_errmsg(dbh));
         return;
     }
     
@@ -191,7 +191,7 @@
 
         NSString *sql = [NSString stringWithFormat: @"INSERT INTO contacts (EXTERNAL_DISPLAY_NAME, FNAME, LNAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION, IMAGE_URL, IMAGE_WEB_URL) VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\")", EXTERNAL_DISPLAY_NAME, FNAME, LNAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION, IMAGE_URL, IMAGE_WEB_URL];
         if (sqlite3_prepare_v2(dbh, [sql UTF8String], -1, &stmt_insert, NULL) != SQLITE_OK) {
-            NSLog(@"Error:prepare:%@", sqlite3_errmsg(dbh));
+            NSLog(@"Error:prepare:%s", sqlite3_errmsg(dbh));
             return;
         }
 

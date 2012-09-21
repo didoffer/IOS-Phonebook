@@ -115,10 +115,8 @@ NSString *upBtPressed;
         
         [self.tableView reloadData];
         
-        
     }
     
-     
 }
 
 

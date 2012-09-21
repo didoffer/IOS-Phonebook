@@ -11,6 +11,7 @@
 		EC4646BD15A5A0BF00E0258D /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4646BC15A5A0BF00E0258D /* AddressBookUI.framework */; };
 		EC54D0EA1606FF5600B6FCFC /* icon_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = EC54D0E91606FF5600B6FCFC /* icon_settings.png */; };
 		EC54D0ED1606FFB500B6FCFC /* icon_settings copy.png in Resources */ = {isa = PBXBuildFile; fileRef = EC54D0EC1606FFB500B6FCFC /* icon_settings copy.png */; };
+		EC65D185160B4AFB00272E06 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC65D184160B4AFB00272E06 /* Default-568h@2x.png */; };
 		EC7F020515A455CE00F55735 /* DbDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7F020415A455CE00F55735 /* DbDataController.m */; };
 		EC7F020915A4568500F55735 /* Contacts.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7F020815A4568500F55735 /* Contacts.m */; };
 		EC7F020C15A4570A00F55735 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7F020B15A4570A00F55735 /* MessageUI.framework */; };
@@ -43,6 +44,7 @@
 		EC4646BC15A5A0BF00E0258D /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		EC54D0E91606FF5600B6FCFC /* icon_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_settings.png; sourceTree = "<group>"; };
 		EC54D0EC1606FFB500B6FCFC /* icon_settings copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_settings copy.png"; sourceTree = "<group>"; };
+		EC65D184160B4AFB00272E06 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		EC7F020315A455CE00F55735 /* DbDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DbDataController.h; sourceTree = "<group>"; };
 		EC7F020415A455CE00F55735 /* DbDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DbDataController.m; sourceTree = "<group>"; };
 		EC7F020715A4565B00F55735 /* Contacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contacts.h; sourceTree = "<group>"; };
@@ -70,14 +72,14 @@
 		ECC966EF15EB987900CF1FCE /* ReachabilityAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityAppDelegate.h; sourceTree = "<group>"; };
 		ECC966F015EB987900CF1FCE /* ReachabilityAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReachabilityAppDelegate.m; sourceTree = "<group>"; };
 		ECE7189F15F5E9D3008F6874 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
-		FC1FF1B7144FD76E008429F9 /* StoryboardTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryboardTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC1FF1B7144FD76E008429F9 /* Phonebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phonebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1FF1BB144FD76E008429F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FC1FF1BD144FD76E008429F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FC1FF1BF144FD76E008429F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		FC1FF1C3144FD76E008429F9 /* StoryboardTutorial-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StoryboardTutorial-Info.plist"; sourceTree = "<group>"; };
+		FC1FF1C3144FD76E008429F9 /* Phonebook-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Phonebook-Info.plist"; sourceTree = "<group>"; };
 		FC1FF1C5144FD76E008429F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC1FF1C7144FD76E008429F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FC1FF1C9144FD76E008429F9 /* StoryboardTutorial-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StoryboardTutorial-Prefix.pch"; sourceTree = "<group>"; };
+		FC1FF1C9144FD76E008429F9 /* Phonebook-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Phonebook-Prefix.pch"; sourceTree = "<group>"; };
 		FC1FF1CA144FD76E008429F9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FC1FF1CB144FD76E008429F9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FC1FF1CE144FD76E008429F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		EC80090C15ECBD9E001C0CA0 /* Pics */ = {
 			isa = PBXGroup;
 			children = (
+				EC65D184160B4AFB00272E06 /* Default-568h@2x.png */,
 				EC85A4AE15FF085600C37EF5 /* 19-gear.png */,
 				EC54D0E91606FF5600B6FCFC /* icon_settings.png */,
 				EC54D0EC1606FFB500B6FCFC /* icon_settings copy.png */,
@@ -187,7 +190,7 @@
 		FC1FF1B8144FD76E008429F9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FC1FF1B7144FD76E008429F9 /* StoryboardTutorial.app */,
+				FC1FF1B7144FD76E008429F9 /* Phonebook.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,11 +237,11 @@
 			children = (
 				EC80090C15ECBD9E001C0CA0 /* Pics */,
 				EC7F020D15A4571600F55735 /* libsqlite3.0.dylib */,
-				FC1FF1C3144FD76E008429F9 /* StoryboardTutorial-Info.plist */,
+				FC1FF1C3144FD76E008429F9 /* Phonebook-Info.plist */,
 				EC8B376115FE03F300B4FB8D /* Contact.rdb */,
 				FC1FF1C4144FD76E008429F9 /* InfoPlist.strings */,
 				FC1FF1C7144FD76E008429F9 /* main.m */,
-				FC1FF1C9144FD76E008429F9 /* StoryboardTutorial-Prefix.pch */,
+				FC1FF1C9144FD76E008429F9 /* Phonebook-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -246,9 +249,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FC1FF1B6144FD76E008429F9 /* StoryboardTutorial */ = {
+		FC1FF1B6144FD76E008429F9 /* Phonebook */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FC1FF1EA144FD76F008429F9 /* Build configuration list for PBXNativeTarget "StoryboardTutorial" */;
+			buildConfigurationList = FC1FF1EA144FD76F008429F9 /* Build configuration list for PBXNativeTarget "Phonebook" */;
 			buildPhases = (
 				FC1FF1B3144FD76E008429F9 /* Sources */,
 				FC1FF1B4144FD76E008429F9 /* Frameworks */,
@@ -258,9 +261,9 @@
 			);
 			dependencies = (
 			);
-			name = StoryboardTutorial;
+			name = Phonebook;
 			productName = StoryboardTutorial;
-			productReference = FC1FF1B7144FD76E008429F9 /* StoryboardTutorial.app */;
+			productReference = FC1FF1B7144FD76E008429F9 /* Phonebook.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -271,7 +274,7 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 			};
-			buildConfigurationList = FC1FF1B1144FD76E008429F9 /* Build configuration list for PBXProject "StoryboardTutorial" */;
+			buildConfigurationList = FC1FF1B1144FD76E008429F9 /* Build configuration list for PBXProject "Phonebook" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -284,7 +287,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FC1FF1B6144FD76E008429F9 /* StoryboardTutorial */,
+				FC1FF1B6144FD76E008429F9 /* Phonebook */,
 			);
 		};
 /* End PBXProject section */
@@ -305,6 +308,7 @@
 				EC84BB5F1606F7B1008D9142 /* Contact.png in Resources */,
 				EC54D0EA1606FF5600B6FCFC /* icon_settings.png in Resources */,
 				EC54D0ED1606FFB500B6FCFC /* icon_settings copy.png in Resources */,
+				EC65D185160B4AFB00272E06 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,9 +404,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "StoryboardTutorial/StoryboardTutorial-Prefix.pch";
-				INFOPLIST_FILE = "StoryboardTutorial/StoryboardTutorial-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "StoryboardTutorial/Phonebook-Prefix.pch";
+				INFOPLIST_FILE = "StoryboardTutorial/Phonebook-Info.plist";
+				PRODUCT_NAME = Phonebook;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -411,9 +415,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "StoryboardTutorial/StoryboardTutorial-Prefix.pch";
-				INFOPLIST_FILE = "StoryboardTutorial/StoryboardTutorial-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "StoryboardTutorial/Phonebook-Prefix.pch";
+				INFOPLIST_FILE = "StoryboardTutorial/Phonebook-Info.plist";
+				PRODUCT_NAME = Phonebook;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -421,7 +425,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FC1FF1B1144FD76E008429F9 /* Build configuration list for PBXProject "StoryboardTutorial" */ = {
+		FC1FF1B1144FD76E008429F9 /* Build configuration list for PBXProject "Phonebook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FC1FF1E8144FD76F008429F9 /* Debug */,
@@ -430,7 +434,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FC1FF1EA144FD76F008429F9 /* Build configuration list for PBXNativeTarget "StoryboardTutorial" */ = {
+		FC1FF1EA144FD76F008429F9 /* Build configuration list for PBXNativeTarget "Phonebook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FC1FF1EB144FD76F008429F9 /* Debug */,
