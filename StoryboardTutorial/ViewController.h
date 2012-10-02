@@ -33,7 +33,6 @@
     NSXMLParser *xmlParser;
     NSString *currentElement;
     NSInteger depth;
-    NSInteger *test;
 
        
     NSMutableString *FNAME;
@@ -74,7 +73,7 @@
 
 
 @property(strong)NSMutableArray *contactList;// The master content.
-@property (nonatomic, readonly) NSArray *sectionedListContent;
+@property (nonatomic, readonly) NSArray *sectionedListContent;// The content filtered into alphabetical sections.
 @property(strong, retain)NSMutableArray *contactNamesArray;
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -82,14 +81,13 @@
 @property (nonatomic, assign) bool isFiltered;
 
 @property (strong, nonatomic) DbDataController *WebService;
-
 @property (strong, nonatomic) VersionController* ver;
 
 @property (nonatomic, strong) id <DataControllerDelegate> dcDelegate;
 @property (nonatomic, strong) id <VersionControllerDelegate> vDelegate;
 
+//public methodes
 - (void)getContactsFromDB;
-
 -(void)getData:(UIViewController *)controller;
 
 

@@ -136,6 +136,8 @@ NSString *dump;
    
     NSInteger dbVersion = [version intValue];
     NSLog(@" here is the db version: %d", dbVersion);
+    
+    //Check if db version number of the app has been updated. If so it returns value YEs
     if (hardcodedVersion < dbVersion) {
         newUpdate =@"YES";
     }

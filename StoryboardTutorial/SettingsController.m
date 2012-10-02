@@ -20,6 +20,7 @@
 
 NSString *updates;
 static NSString* btPress = nil;
+
 //If newere version exists change button title to "update", if not "no updates"
 -(void)versionCheck{
     updates = [VersionController update];
@@ -51,18 +52,13 @@ static NSString* btPress = nil;
 - (void)viewWillAppear:(BOOL)animated
 {
     
-    
     [super viewWillAppear:animated];
-        
-     
-    
-    //[self.tableView reloadData];
 }
 
 
 - (void)viewDidUnload
 {
-     [super viewDidUnload];
+    [super viewDidUnload];
     [self setBt_upApp:nil];
     [self setBt_upData:nil];
    
@@ -128,8 +124,8 @@ static NSString* btPress = nil;
     
     else if (status == ReachableViaWiFi) {
         
-              
-             [self.dcDelegate flush_contacts_db];
+        // if network is reachable flush db and redirects to ViewController view for data update
+        [self.dcDelegate flush_contacts_db];
         btPress =@"btpressed";
             
         ViewController *view = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
@@ -138,14 +134,15 @@ static NSString* btPress = nil;
               
        }
 }
-
+//string that returns the value of btPress so the value can be used in another class
 +(NSString*)btPressed{
     return btPress;
 }
 
 
-// Update App button
+// Update App button action
 - (IBAction)bt_upApp:(id)sender {
+    //Check if newere version exist(ref.VersionController.m). If so open webpage with download link
     if (updates ==@"YES") {
         
         NSURL *url = [NSURL URLWithString:@"http://midvm1.terma.com/kbni2/phonebook/main.html"];

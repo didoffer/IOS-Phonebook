@@ -240,8 +240,8 @@
                                 <color key="textColor" red="0.0" green="0.25098040699958801" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <webView contentMode="scaleToFill" id="IlV-Zs-XsX">
-                                <rect key="frame" x="8" y="6" width="125" height="125"/>
+                            <webView userInteractionEnabled="NO" contentMode="scaleToFill" id="IlV-Zs-XsX">
+                                <rect key="frame" x="4" y="6" width="130" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>

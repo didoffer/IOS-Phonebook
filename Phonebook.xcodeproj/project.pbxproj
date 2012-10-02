@@ -148,6 +148,16 @@
 			name = Pics;
 			sourceTree = "<group>";
 		};
+		EC80C4CB161ABB520089D3C6 /* Main ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EC84BED21600557200EC25FC /* ViewControllerDelegate.h */,
+				FC1FF1D1144FD76E008429F9 /* ViewController.m */,
+				FC1FF1D0144FD76E008429F9 /* ViewController.h */,
+			);
+			name = "Main ViewController";
+			sourceTree = "<group>";
+		};
 		EC84BB5D1606F62D008D9142 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +175,15 @@
 				EC8B375C15FDB3CD00B4FB8D /* VersionController.h */,
 			);
 			name = "Version Control";
+			sourceTree = "<group>";
+		};
+		EC86D7571619AF830067403F /* Detail View */ = {
+			isa = PBXGroup;
+			children = (
+				FC1FF1F1144FE1B6008429F9 /* DetailViewController.m */,
+				FC1FF1F0144FE1B6008429F9 /* DetailViewController.h */,
+			);
+			name = "Detail View";
 			sourceTree = "<group>";
 		};
 		ECC966EB15EB986500CF1FCE /* Reachability */ = {
@@ -221,11 +240,8 @@
 				ECC966EB15EB986500CF1FCE /* Reachability */,
 				EC7600AF15AEC4F20011E681 /* DB */,
 				EC7600AD15AEC4960011E681 /* MBProgressHUD */,
-				FC1FF1F0144FE1B6008429F9 /* DetailViewController.h */,
-				FC1FF1F1144FE1B6008429F9 /* DetailViewController.m */,
-				FC1FF1D0144FD76E008429F9 /* ViewController.h */,
-				FC1FF1D1144FD76E008429F9 /* ViewController.m */,
-				EC84BED21600557200EC25FC /* ViewControllerDelegate.h */,
+				EC86D7571619AF830067403F /* Detail View */,
+				EC80C4CB161ABB520089D3C6 /* Main ViewController */,
 				EC84BB5D1606F62D008D9142 /* Settings */,
 				FC1FF1C2144FD76E008429F9 /* Supporting Files */,
 			);

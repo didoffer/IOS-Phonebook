@@ -49,6 +49,7 @@ NSData* imageData;
     lb_name.text = emp.EXTERNAL_DISPLAY_NAME;
     lb_BUSINESSAREA_NAME.text = emp.BUSINESSAREA_NAME;
     lb_LOCATION.text = emp.LOCATION;
+    
     [self checkPhoneNumbers];
     [self progressSpinner1];
     [self webImage];
@@ -56,15 +57,17 @@ NSData* imageData;
   
 }
 -(void)webImage {
+    //emp.IMAGE_WEB_URL
     NSString *fullURL = emp.IMAGE_WEB_URL;
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [webView loadRequest:requestObj];
 }
 
+//if the imageview cant get any imagedata(which means your are not connected to vpn) it displays a image "VPN is required"
 - (void)loadImage {
     
-    NSString *path =[NSString stringWithFormat:emp.IMAGE_URL]; 
+    NSString *path =emp.IMAGE_URL; 
     
     NSLog(@"se%@", path);
     imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:path]];
@@ -82,7 +85,7 @@ NSData* imageData;
     }
     
 }
-
+//display the image
 - (void)displayImage:(UIImage *)image {
     [imageView setImage:image];
     
@@ -90,16 +93,16 @@ NSData* imageData;
 
 - (void)viewDidUnload
 {
-    
-    lb_name = nil;
-    lb_BUSINESSAREA_NAME = nil;
-    lb_LOCATION = nil;
-    [self setBt_mobil:nil];
-    [self setBt_phone:nil];
-    [self setBt_mobil:nil];
     lb_BUSINESSAREA_NAME = nil;
     lb_LOCATION = nil;
     imageView = nil;
+    lb_name = nil;
+    lb_BUSINESSAREA_NAME = nil;
+    lb_LOCATION = nil;
+    
+    [self setBt_mobil:nil];
+    [self setBt_phone:nil];
+    [self setBt_mobil:nil];
     [self setWebView:nil];
     [self setMyimageView:nil];
     [super viewDidUnload];
@@ -107,6 +110,7 @@ NSData* imageData;
     // e.g. self.myOutlet = nil;
 }
 
+//show progress spinner while loading image
 -(void) progressSpinner1{
     
     // The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
@@ -115,7 +119,7 @@ NSData* imageData;
 	[self.navigationController.view addSubview:HUD];
     
 	// Regiser for HUD callbacks so we can remove it from the window at the right time
-	HUD.delegate = self;
+	HUD.delegate = (id)self;
     
     HUD.labelText = @"Loading Contact";
     
@@ -124,6 +128,7 @@ NSData* imageData;
     
 }
 
+//check if contact has phone number. if so display it on a button for each phone and mobile
 -(void) checkPhoneNumbers
 {
     if (emp.PHONE.length < 1 ) {
@@ -156,6 +161,7 @@ NSData* imageData;
         NSArray *toRecipients = [NSArray arrayWithObjects:emp.EMAIL, nil];
         [mailer setToRecipients:toRecipients];
         
+        //-- add picture like logo etc. to the mail text--
         //UIImage *myImage = [UIImage imageNamed:@"mercantec.jpg"];
         //NSData *imageData = UIImagePNGRepresentation(myImage);
         //[mailer addAttachmentData:imageData mimeType:@"image/png" fileName:@"mercantec"];	

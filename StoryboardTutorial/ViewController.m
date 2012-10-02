@@ -91,7 +91,7 @@ NSString *upBtPressed;
 
     
 }
-//Load data from database. If non exists check for network connectivity, WIFI and WAN. IF network continue getting data from getWebserviceData
+//Load data from database. If non exists then start getting data from getWebserviceData
 - (void)getData:(UIViewController *)controller;
 {    
     [self getContactsFromDB];
@@ -329,7 +329,7 @@ NSString *upBtPressed;
     contactNamesArrayIMAGE_URL = [[NSMutableArray alloc] init];
     contactNamesArrayIMAGE_WEB_URL =[[NSMutableArray alloc] init];
     
-    //NSMutableArray *contactNamesArray =  [[NSMutableArray alloc] init];
+    
     
     //Loop through contactlist after contacts and add info to the arrays
     for (Contacts *contact in contactList)
@@ -376,6 +376,7 @@ NSString *upBtPressed;
     }
     sectionedListContent = sections;
     
+    //Dismiss progress spinner
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [MBProgressHUD hideHUDForView:window animated:YES];
     
@@ -412,14 +413,12 @@ NSString *upBtPressed;
     searchBar.delegate = (id)self;
     //initialize dcDelegate dbdataController. REMEMBER TO PLACE FUNCTIONS AFTER THIS OR ELSE THERE ISN'T ANY DB CONNECTION
     self.dcDelegate = [[DbDataController alloc] init];
-        //Get connect to webservice and get data
-    //[self getData:self];
+    //Get contacts from database
     [self getContactsFromDB];
-     upBtPressed = [SettingsController btPressed];
+    //initialize
+    upBtPressed = [SettingsController btPressed];
+    //initialize
     self.vDelegate =[[VersionController alloc]init];
-    
-    //[self checkConnections];
-    
 }
 
 
@@ -533,8 +532,7 @@ NSString *upBtPressed;
             }	
         }
     }
-    //refresh of the tableview
-    //[self.tableView reloadData];
+    
     [self.tableView performSelectorOnMainThread:@selector(reloadData)
                                      withObject:nil
                                   waitUntilDone:NO];
@@ -633,7 +631,7 @@ NSString *upBtPressed;
 
 - (void)viewDidUnload
 {
-     [super viewDidUnload];
+    [super viewDidUnload];
     self.filteredTableData = nil;
     sectionedListContent = nil;
     [self setSearchBar:nil];
@@ -656,16 +654,13 @@ NSString *upBtPressed;
   
     [super viewDidAppear:animated];
    
+    //ref. to btpressed see SettingsController.m
     if (upBtPressed ==@"btpressed") {
         [self getData:self];
         [self.tableView reloadData];
         
     }
-    else {
         
-    }
-    
-   
 }
 
 - (void)viewWillDisappear:(BOOL)animated
