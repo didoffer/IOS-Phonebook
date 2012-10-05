@@ -2,7 +2,7 @@
 //  ViewController.h
 //  StoryboardTutorial
 //
-//  Created by Kurry Tran on 10/20/11.
+//  Created by Kristoffer Nielsen on 06/03/12.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -49,7 +49,7 @@
     NSMutableString *IMAGE_WEB_URL;
     NSMutableString *EXTERNAL_DISPLAY_NAME;
     
-    NSMutableArray *databaseData;
+  
     NSMutableArray *contactList;
     NSMutableArray *contactNamesArray;
     NSMutableArray *contactNamesArrayEXTERNAL_DISPLAY_NAME;

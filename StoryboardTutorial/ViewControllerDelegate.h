@@ -2,7 +2,7 @@
 //  ViewControllerDelegate.h
 //  StoryboardTutorial
 //
-//  Created by MacTerma on 9/12/12.
+//  Created by Kristoffer Nielsen on 06/03/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 

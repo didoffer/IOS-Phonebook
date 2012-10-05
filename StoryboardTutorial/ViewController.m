@@ -2,7 +2,7 @@
 //  ViewController.m
 //  StoryboardTutorial
 //
-//  Created by Kurry Tran on 10/20/11.
+//  Created by Kristoffer Nielsen on 06/03/12.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -176,6 +176,14 @@ NSString *upBtPressed;
 // xml parse error
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
+    
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                      message:@"Error downloading content"
+                                                     delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles: nil];
+    [message show];
+
     NSLog(@"Error: %@", [parseError localizedDescription]);
 }
 
@@ -658,6 +666,7 @@ NSString *upBtPressed;
     if (upBtPressed ==@"btpressed") {
         [self getData:self];
         [self.tableView reloadData];
+        [self.vDelegate saveDbDataVersion];
         
     }
         

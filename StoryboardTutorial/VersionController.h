@@ -2,7 +2,7 @@
 //  VersionController.h
 //  StoryboardTutorial
 //
-//  Created by MacTerma on 9/10/12.
+//  Created by Kristoffer Nielsen on 9/10/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -19,14 +19,16 @@
 
     //NSMutableString *version;
     //NSMutableString *name;
-    NSMutableArray *appVerison;
+    NSMutableString *appVerison;
+    NSMutableString *dataVersion;
     //NSMutableString *update;
     
 
 }
-@property(strong, retain)NSMutableArray *appVerison;
+@property(nonatomic, copy)NSMutableString *appVerison;
+@property(nonatomic, copy)NSMutableString *dataVersion;
 @property (nonatomic, copy) NSMutableString *name;
-@property (nonatomic, copy) NSMutableString *version;
 //@property (nonatomic, retain) NSMutableString *update;
 +(NSString*)update;
++(NSString*)dataupdate;
 @end

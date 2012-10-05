@@ -2,7 +2,7 @@
 //  DbDataController.m
 //  StoryboardTutorial
 //
-//  Created by MacTerma on 7/4/12.
+//  Created by Kristoffer Nielsen on 7/4/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 

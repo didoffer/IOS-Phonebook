@@ -2,7 +2,7 @@
 //  VersionController.m
 //  StoryboardTutorial
 //
-//  Created by MacTerma on 9/10/12.
+//  Created by Kristoffer Nielsen on 9/10/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -13,22 +13,42 @@
 @end
 
 @implementation VersionController
-@synthesize appVerison,name,version;
+@synthesize appVerison,name,dataVersion;
 static NSString* newUpdate = nil;
+static NSString* newdataUpdate = nil;
 NSURLConnection *theConnection;
 NSURLConnection *myConnection;
 NSMutableData *receivedData;
 NSString *nextContact;
 NSString* xml;
-NSString *dump; 
-                    /*--------Version update start-----------*/
-/*--------Change this value when a new version of the app i released-----------*/
- NSInteger hardcodedVersion = 1;
-                    /*--------Version update finish-----------*/
+NSString *dump;
+NSArray *array;
+NSInteger Dataversion;
+NSInteger dbAppVersionINT;
+NSInteger dbDataVersionINT;
 
-//Request data from url connection
-- (void)getWebserviceVersion{
+
+-(void) saveDbDataVersion{
+    Dataversion =dbDataVersionINT;
+    NSLog(@"tatatatat %d", Dataversion);
+    NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+    [data setInteger:Dataversion forKey:@"DataVersion"];
+    NSLog(@"saved %d",Dataversion);
+    [data synchronize];
+    NSLog(@"data saved");
+}
+
+-(void) get{
+    NSUserDefaults *data =[NSUserDefaults standardUserDefaults];
+    Dataversion = [data integerForKey:@"DataVersion"];
+    NSString *dataString =[NSString stringWithFormat:@"%i", Dataversion];
+    NSLog(@"tralalalal %@", dataString);
     
+}
+
+- (void)getWebserviceVersion{
+        
+    [self get];
     receivedData = [[NSMutableData alloc] init];
     
     NSURL *myURL = [NSURL URLWithString:@"http://midvm1.terma.com/kbni2/TermaService.svc/version/phonebook"];
@@ -42,6 +62,7 @@ NSString *dump;
         receivedData = [NSMutableData data];}
     else
     {}
+
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -102,13 +123,19 @@ NSString *dump;
         [self showCurrentDepth];
         
     }
+    else if ([currentElement isEqualToString:@"APP_VERSION"]) {
+        appVerison = [[NSMutableString alloc]init];
+    }
+    
+    else if ([currentElement isEqualToString:@"DATA_VERSION"]) {
+        dataVersion = [[NSMutableString alloc]init];
+    }
+
     else if ([currentElement isEqualToString:@"NAME"]) {
         name = [[NSMutableString alloc]init];
     } 
     
-    else if ([currentElement isEqualToString:@"VERSION"]) {
-        version = [[NSMutableString alloc]init];
-    }    
+    
 
 }
 // Ends a employee element and insert it into the database
@@ -125,20 +152,42 @@ NSString *dump;
 
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    
+    if ([currentElement isEqualToString:@"APP_VERSION"])
+        [appVerison appendString:string];
+    if ([currentElement isEqualToString:@"DATA_VERSION"])
+        [dataVersion appendString:string];
     if ([currentElement isEqualToString:@"NAME"]) 
         [name appendString:string];
-    if ([currentElement isEqualToString:@"VERSION"]) 
-        [version appendString:string];
-       
-    //NSLog(@" here is the contact: %@", version);
-    //NSLog(@" here is the contact: %@", name);
    
-    NSInteger dbVersion = [version intValue];
-    NSLog(@" here is the db version: %d", dbVersion);
     
-    //Check if db version number of the app has been updated. If so it returns value YEs
-    if (hardcodedVersion < dbVersion) {
+    NSLog(@" here is the appversion: %@", appVerison);
+    NSLog(@" here is the dataversion: %@", dataVersion);
+   
+    dbAppVersionINT = [appVerison intValue];
+    dbDataVersionINT = [dataVersion intValue];
+   // NSLog(@" here is the db version: %d", dbVersion);
+    if (dbDataVersionINT>Dataversion) {
+        NSLog(@"mama %d",dbDataVersionINT);
+         NSLog(@"didid %d",Dataversion);
+        newdataUpdate =@"YES";
+       // [self dataFilePath];
+        //[self writePlist];
+        //[self readPlist];
+        
+        //[self saveDbDataVersion];
+        
+        
+    }
+    else {
+        newdataUpdate =@"NO";
+    }
+
+    //Check if db version number of the app has been updated. If so it returns value YES
+    NSString * version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+    
+    NSInteger versionNumber = [version integerValue];
+    
+    if (versionNumber < dbAppVersionINT) {
         newUpdate =@"YES";
     }
     else {
@@ -147,6 +196,9 @@ NSString *dump;
 }
 +(NSString*)update{
     return newUpdate;
+}
++(NSString*)dataupdate{
+    return newdataUpdate;
 }
 
 -(void)showCurrentDepth{

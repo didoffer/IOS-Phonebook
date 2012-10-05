@@ -2,7 +2,7 @@
 //  Contacts.h
 //  indextable test with database
 //
-//  Created by MacTerma on 6/22/12.
+//  Created by Kristoffer Nielsen on 6/22/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 

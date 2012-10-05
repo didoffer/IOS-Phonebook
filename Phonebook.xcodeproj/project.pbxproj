@@ -22,6 +22,7 @@
 		EC84BB5F1606F7B1008D9142 /* Contact.png in Resources */ = {isa = PBXBuildFile; fileRef = EC84BB5E1606F7B1008D9142 /* Contact.png */; };
 		EC85A4AF15FF085600C37EF5 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = EC85A4AE15FF085600C37EF5 /* 19-gear.png */; };
 		EC85A4B415FF0A0600C37EF5 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC85A4B315FF0A0600C37EF5 /* SettingsController.m */; };
+		EC897902161D896500B8A1F1 /* plist.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC897901161D896500B8A1F1 /* plist.plist */; };
 		EC8B375E15FDB3CD00B4FB8D /* VersionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8B375D15FDB3CD00B4FB8D /* VersionController.m */; };
 		EC8B376215FE03FE00B4FB8D /* Contact.rdb in Resources */ = {isa = PBXBuildFile; fileRef = EC8B376115FE03F300B4FB8D /* Contact.rdb */; };
 		ECC966F115EBA54000CF1FCE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC966EE15EB987900CF1FCE /* Reachability.m */; };
@@ -62,6 +63,7 @@
 		EC85A4AE15FF085600C37EF5 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
 		EC85A4B215FF0A0600C37EF5 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		EC85A4B315FF0A0600C37EF5 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
+		EC897901161D896500B8A1F1 /* plist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = plist.plist; sourceTree = "<group>"; };
 		EC8B375C15FDB3CD00B4FB8D /* VersionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionController.h; sourceTree = "<group>"; };
 		EC8B375D15FDB3CD00B4FB8D /* VersionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionController.m; sourceTree = "<group>"; };
 		EC8B376015FDBF7F00B4FB8D /* VersionControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionControllerDelegate.h; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				EC80090C15ECBD9E001C0CA0 /* Pics */,
 				EC7F020D15A4571600F55735 /* libsqlite3.0.dylib */,
 				FC1FF1C3144FD76E008429F9 /* Phonebook-Info.plist */,
+				EC897901161D896500B8A1F1 /* plist.plist */,
 				EC8B376115FE03F300B4FB8D /* Contact.rdb */,
 				FC1FF1C4144FD76E008429F9 /* InfoPlist.strings */,
 				FC1FF1C7144FD76E008429F9 /* main.m */,
@@ -325,6 +328,7 @@
 				EC54D0EA1606FF5600B6FCFC /* icon_settings.png in Resources */,
 				EC54D0ED1606FFB500B6FCFC /* icon_settings copy.png in Resources */,
 				EC65D185160B4AFB00272E06 /* Default-568h@2x.png in Resources */,
+				EC897902161D896500B8A1F1 /* plist.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +396,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -402,7 +407,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -411,6 +416,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

@@ -2,7 +2,7 @@
 //  DetailViewController.m
 //  StoryboardTutorial
 //
-//  Created by Kurry Tran on 10/20/11.
+//  Created by Kristoffer Nielsen on 06/03/12.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -57,7 +57,7 @@ NSData* imageData;
   
 }
 -(void)webImage {
-    //emp.IMAGE_WEB_URL
+    
     NSString *fullURL = emp.IMAGE_WEB_URL;
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];

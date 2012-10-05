@@ -2,7 +2,7 @@
 //  VersionControllerDelegate.h
 //  StoryboardTutorial
 //
-//  Created by MacTerma on 9/10/12.
+//  Created by Kristoffer Nielsen on 9/10/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,7 +10,8 @@
 
 @protocol VersionControllerDelegate <NSObject>
 
--(void)getWebserviceVersion; 
+-(void)getWebserviceVersion;
+-(void)saveDbDataVersion;
 
 @end
 
