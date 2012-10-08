@@ -51,7 +51,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="69w-Mb-GIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="583" y="97"/>
+            <point key="canvasLocation" x="553" y="102"/>
         </scene>
         <!--Settings Controller-->
         <scene sceneID="hPz-Eb-MFs">
@@ -62,21 +62,21 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="App Version" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="MsU-0m-V0F">
-                                <rect key="frame" x="125" y="11" width="71" height="21"/>
+                                <rect key="frame" x="125" y="4" width="71" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Phonebook data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="dti-2S-92i">
-                                <rect key="frame" x="113" y="79" width="95" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Last phonebook update:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="dti-2S-92i">
+                                <rect key="frame" x="90" y="111" width="140" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4yK-ad-8HC">
-                                <rect key="frame" x="46" y="100" width="228" height="44"/>
+                                <rect key="frame" x="46" y="159" width="228" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                 <state key="normal" title="Sync.">
@@ -91,10 +91,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JhK-lL-JcP">
-                                <rect key="frame" x="46" y="40" width="228" height="29"/>
+                                <rect key="frame" x="46" y="44" width="228" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                <state key="normal" title="upApp">
+                                <state key="normal" title="Update to version">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -105,6 +105,34 @@
                                     <action selector="bt_upApp:" destination="XfV-ms-wKj" eventType="touchUpInside" id="h89-yd-xeH"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Qr8-95-nRt">
+                                <rect key="frame" x="139" y="28" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S1a-DS-EN0">
+                                <rect key="frame" x="119" y="22" width="83" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oZg-y3-URr">
+                                <rect key="frame" x="219" y="49" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EGl-3d-WTy">
+                                <rect key="frame" x="85" y="131" width="151" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -112,6 +140,9 @@
                     <connections>
                         <outlet property="bt_upApp" destination="JhK-lL-JcP" id="sQo-xf-CZL"/>
                         <outlet property="bt_upData" destination="4yK-ad-8HC" id="9zi-3q-pOq"/>
+                        <outlet property="lb_appVersion" destination="S1a-DS-EN0" id="kiI-0j-vfb"/>
+                        <outlet property="lb_lastUpdate" destination="EGl-3d-WTy" id="vK6-ES-JKN"/>
+                        <outlet property="lb_newestAppVersion" destination="oZg-y3-URr" id="z0f-yQ-Tlb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qKs-mD-XZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -287,6 +318,44 @@
         <image name="Contact.png" width="122" height="120"/>
         <image name="icon_settings copy.png" width="20" height="20"/>
     </resources>
+    <classes>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bt_addcontact:"/>
+                <relationship kind="action" name="bt_mobil:"/>
+                <relationship kind="action" name="bt_phone:"/>
+                <relationship kind="action" name="bt_sendmail:"/>
+                <relationship kind="action" name="bt_sendmsg:"/>
+                <relationship kind="outlet" name="bt_mobil" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bt_phone" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lb_BUSINESSAREA_NAME" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lb_LOCATION" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lb_name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="myimageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="SettingsController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsController.h"/>
+            <relationships>
+                <relationship kind="action" name="bt_upApp:"/>
+                <relationship kind="action" name="bt_upData:"/>
+                <relationship kind="outlet" name="bt_upApp" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bt_upData" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="lb_appVersion" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lb_lastUpdate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lb_newestAppVersion" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

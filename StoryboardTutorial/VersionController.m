@@ -16,6 +16,8 @@
 @synthesize appVerison,name,dataVersion;
 static NSString* newUpdate = nil;
 static NSString* newdataUpdate = nil;
+static NSString* currentversion = nil;
+static NSString* newestVersion = nil;
 NSURLConnection *theConnection;
 NSURLConnection *myConnection;
 NSMutableData *receivedData;
@@ -38,7 +40,7 @@ NSInteger dbDataVersionINT;
     NSLog(@"data saved");
 }
 
--(void) get{
+-(void) getDbDataVersion{
     NSUserDefaults *data =[NSUserDefaults standardUserDefaults];
     Dataversion = [data integerForKey:@"DataVersion"];
     NSString *dataString =[NSString stringWithFormat:@"%i", Dataversion];
@@ -48,7 +50,7 @@ NSInteger dbDataVersionINT;
 
 - (void)getWebserviceVersion{
         
-    [self get];
+    [self getDbDataVersion];
     receivedData = [[NSMutableData alloc] init];
     
     NSURL *myURL = [NSURL URLWithString:@"http://midvm1.terma.com/kbni2/TermaService.svc/version/phonebook"];
@@ -163,20 +165,16 @@ NSInteger dbDataVersionINT;
     NSLog(@" here is the appversion: %@", appVerison);
     NSLog(@" here is the dataversion: %@", dataVersion);
    
+    //
     dbAppVersionINT = [appVerison intValue];
     dbDataVersionINT = [dataVersion intValue];
    // NSLog(@" here is the db version: %d", dbVersion);
+    
     if (dbDataVersionINT>Dataversion) {
         NSLog(@"mama %d",dbDataVersionINT);
          NSLog(@"didid %d",Dataversion);
         newdataUpdate =@"YES";
-       // [self dataFilePath];
-        //[self writePlist];
-        //[self readPlist];
-        
-        //[self saveDbDataVersion];
-        
-        
+               
     }
     else {
         newdataUpdate =@"NO";
@@ -189,10 +187,18 @@ NSInteger dbDataVersionINT;
     
     if (versionNumber < dbAppVersionINT) {
         newUpdate =@"YES";
+        currentversion = version;
+        newestVersion = appVerison;
     }
     else {
         newUpdate =@"NO";
     }
+}
++(NSString*)ShowNewestVersion{
+    return newestVersion;
+}
++(NSString*)showVersion{
+    return currentversion;
 }
 +(NSString*)update{
     return newUpdate;

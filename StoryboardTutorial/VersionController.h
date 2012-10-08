@@ -31,4 +31,6 @@
 //@property (nonatomic, retain) NSMutableString *update;
 +(NSString*)update;
 +(NSString*)dataupdate;
++(NSString*)showVersion;
++(NSString*)ShowNewestVersion;
 @end

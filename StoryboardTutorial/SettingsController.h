@@ -21,6 +21,11 @@
 - (IBAction)bt_upData:(id)sender;
 - (IBAction)bt_upApp:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *lb_appVersion;
+@property (weak, nonatomic) IBOutlet UILabel *lb_newestAppVersion;
+@property (weak, nonatomic) IBOutlet UILabel *lb_lastUpdate;
+
+
 @property (weak, nonatomic) IBOutlet UIButton *bt_upApp;
 @property (weak, nonatomic) IBOutlet UIButton *bt_upData;
 @property (nonatomic, strong) id <VersionControllerDelegate> vDelegate;

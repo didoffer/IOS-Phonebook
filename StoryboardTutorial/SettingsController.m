@@ -16,39 +16,83 @@
 @implementation SettingsController
 @synthesize bt_upApp;
 @synthesize bt_upData,viewDelegate;
-@synthesize vDelegate,dcDelegate;
+@synthesize vDelegate,dcDelegate,lb_appVersion;
 
 NSString *updates;
 NSString *dataUpdates;
+NSString *version;
+NSString *newestVersion;
+NSString *dateString;
 static NSString* btPress = nil;
 
 
 -(void)dataCheck{
+    
     dataUpdates =[VersionController dataupdate];
+    
     NSLog(@"Er der nye data? %@", dataUpdates);
     if (dataUpdates ==@"YES") {
-        [bt_upData setTitle:@"New data" forState:UIControlStateNormal];
+        [bt_upData setTitle:@"Update phonebook" forState:UIControlStateNormal];
     }
     else {
-        [bt_upData setTitle:@"No data update available" forState:UIControlStateNormal];
+        [bt_upData setTitle:@"Your phonebook is up to date" forState:UIControlStateNormal];
     }
 
 }
 
 //If newere version exists change button title to "update", if not "no updates"
 -(void)versionCheck{
+    version =[VersionController showVersion];
     updates = [VersionController update];
+    newestVersion =[VersionController ShowNewestVersion];
     
     NSLog(@"SKAL JEG OPDATERE %@",updates);
     if (updates ==@"YES") {
-        [bt_upApp setTitle:@"New Update" forState:UIControlStateNormal];
+        [bt_upApp setTitle:@"Update to version" forState:UIControlStateNormal];
+        _lb_newestAppVersion.text = newestVersion;
+        
     }
     else {
-        [bt_upApp setTitle:@"No update available" forState:UIControlStateNormal];
+        [bt_upApp setTitle:@"Your software is up to date" forState:UIControlStateNormal];
     }
 
 
 }
+
+-(void)getSystemDate{
+    
+    // get the current date
+    NSDate *date = [NSDate date];
+    
+    // format it
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"MM-dd-yyyy HH:mm"];
+    
+    // convert it to a string
+    dateString = [dateFormat stringFromDate:date];
+    
+    }
+-(void)showDate{
+    [self getDate];
+    _lb_lastUpdate.text = dateString;
+}
+
+-(void) saveDate{
+    NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+    [data setValue:dateString forKey:@"Date"];
+    NSLog(@"saved %@",dateString);
+    [data synchronize];
+    NSLog(@"data saved");
+}
+
+-(void) getDate{
+    NSUserDefaults *data =[NSUserDefaults standardUserDefaults];
+    dateString = [data stringForKey:@"Date"];
+    NSString *dataString =[NSString stringWithFormat:@"%@", dateString];
+    NSLog(@"tralalalal %@", dataString);
+    
+}
+
 
 - (void)viewDidLoad
 {
@@ -57,7 +101,12 @@ static NSString* btPress = nil;
     self.viewDelegate =[[ViewController alloc]init];
     [self versionCheck];
     [self dataCheck];
+    [self showDate];
     self.title = @"Settings";
+    
+    //Get app version and write it to label
+    NSString * version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+    lb_appVersion.text = version;
     
     
   
@@ -73,6 +122,10 @@ static NSString* btPress = nil;
 
 - (void)viewDidUnload
 {
+    [self setLb_appVersion:nil];
+    
+    [self setLb_newestAppVersion:nil];
+    [self setLb_lastUpdate:nil];
     [super viewDidUnload];
     [self setBt_upApp:nil];
     [self setBt_upData:nil];
@@ -153,10 +206,10 @@ static NSString* btPress = nil;
         if (netStatus==ReachableViaWiFi) {
             NSLog(@"kan nå midvm1 med wifi");
             [self updatefunc];
-            //[self.vDelegate saveDbDataVersion];
-        //} else if(netStatus==ReachableViaWWAN) {
-         //   NSLog(@"kan nå midvm1 med wan");
-        } else {
+            [self getSystemDate];
+            [self saveDate];
+            }
+        else {
             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Nerwork error!"
                                                               message:@"No VPN connection"
                                                              delegate:self
