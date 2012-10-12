@@ -30,24 +30,26 @@ NSInteger dbAppVersionINT;
 NSInteger dbDataVersionINT;
 
 
+//Save the current dataversion of the data into NSUserdefault. It is now stored and can be loaded again
 -(void) saveDbDataVersion{
     Dataversion =dbDataVersionINT;
-    NSLog(@"tatatatat %d", Dataversion);
+    //NSLog(@"tatatatat %d", Dataversion);
     NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
     [data setInteger:Dataversion forKey:@"DataVersion"];
-    NSLog(@"saved %d",Dataversion);
+    NSLog(@"saved data version: %d",Dataversion);
     [data synchronize];
-    NSLog(@"data saved");
+    NSLog(@"data version saved");
 }
 
+// Get the current dataversion of the data from NSUserdefault.
 -(void) getDbDataVersion{
     NSUserDefaults *data =[NSUserDefaults standardUserDefaults];
     Dataversion = [data integerForKey:@"DataVersion"];
     NSString *dataString =[NSString stringWithFormat:@"%i", Dataversion];
-    NSLog(@"tralalalal %@", dataString);
+    NSLog(@"Har hentet data version fra NSUserDefault: %@", dataString);
     
 }
-
+//methode to start connection to the webservice for recieving app version and data version
 - (void)getWebserviceVersion{
         
     [self getDbDataVersion];
@@ -166,20 +168,24 @@ NSInteger dbDataVersionINT;
     NSLog(@" here is the dataversion: %@", dataVersion);
    
     //
+    }
+
+-(void)parserDidEndDocument:(NSXMLParser *)parser
+{
     dbAppVersionINT = [appVerison intValue];
     dbDataVersionINT = [dataVersion intValue];
-   // NSLog(@" here is the db version: %d", dbVersion);
+    // NSLog(@" here is the db version: %d", dbVersion);
     
     if (dbDataVersionINT>Dataversion) {
-        NSLog(@"mama %d",dbDataVersionINT);
-         NSLog(@"didid %d",Dataversion);
+        NSLog(@"Data version fra db %d",dbDataVersionINT);
+        NSLog(@"Data version fra NSUserDefault %d",Dataversion);
         newdataUpdate =@"YES";
-               
+                
     }
     else {
         newdataUpdate =@"NO";
     }
-
+    
     //Check if db version number of the app has been updated. If so it returns value YES
     NSString * version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
     
@@ -193,7 +199,10 @@ NSInteger dbDataVersionINT;
     else {
         newUpdate =@"NO";
     }
+
+    
 }
+//methodes which returns a value which is used in settingsController.m
 +(NSString*)ShowNewestVersion{
     return newestVersion;
 }

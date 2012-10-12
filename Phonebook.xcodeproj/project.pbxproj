@@ -63,6 +63,7 @@
 		EC85A4AE15FF085600C37EF5 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
 		EC85A4B215FF0A0600C37EF5 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		EC85A4B315FF0A0600C37EF5 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
+		EC88370B162439BB001EA485 /* SettingsControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsControllerDelegate.h; sourceTree = "<group>"; };
 		EC897901161D896500B8A1F1 /* plist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = plist.plist; sourceTree = "<group>"; };
 		EC8B375C15FDB3CD00B4FB8D /* VersionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionController.h; sourceTree = "<group>"; };
 		EC8B375D15FDB3CD00B4FB8D /* VersionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionController.m; sourceTree = "<group>"; };
@@ -165,6 +166,7 @@
 			children = (
 				EC85A4B315FF0A0600C37EF5 /* SettingsController.m */,
 				EC85A4B215FF0A0600C37EF5 /* SettingsController.h */,
+				EC88370B162439BB001EA485 /* SettingsControllerDelegate.h */,
 			);
 			name = Settings;
 			sourceTree = "<group>";

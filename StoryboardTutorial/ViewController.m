@@ -12,6 +12,8 @@
 #import "Contacts.h"
 #import "Reachability.h"
 #import "VersionController.h"
+#import "SettingsController.h"
+
 
 
 
@@ -54,7 +56,7 @@
 @implementation ViewController
 
 
-@synthesize dcDelegate,contactList,contactNamesArray,filteredTableData,isFiltered,searchBar, sectionedListContent, WebService,vDelegate,ver;
+@synthesize dcDelegate,contactList,contactNamesArray,filteredTableData,isFiltered,searchBar, sectionedListContent, WebService,ver,vDelegate,setDelegate;
 
 NSURLConnection *theConnection;
 NSURLConnection *myConnection;
@@ -159,10 +161,12 @@ NSString *upBtPressed;
         [xmlParser setShouldReportNamespacePrefixes:NO];
         [xmlParser setShouldResolveExternalEntities:NO];
         [xmlParser parse];
+        [self.vDelegate getWebserviceVersion];
         //NSLog(@" here is the data: %@", xml);
     }
     
     [self getContactsFromDB];
+   
    
 }
 
@@ -389,6 +393,7 @@ NSString *upBtPressed;
     [MBProgressHUD hideHUDForView:window animated:YES];
     
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+   
         
     }
 
@@ -427,6 +432,9 @@ NSString *upBtPressed;
     upBtPressed = [SettingsController btPressed];
     //initialize
     self.vDelegate =[[VersionController alloc]init];
+    
+    
+    
 }
 
 
@@ -653,7 +661,16 @@ NSString *upBtPressed;
     
     
         [super viewWillAppear:animated];
-    [self.vDelegate getWebserviceVersion];
+    if (upBtPressed ==@"btpressed") {
+        
+    }
+    else{
+        [self.vDelegate getWebserviceVersion];
+    }
+    
+    
+
+    
     //[self.tableView reloadData];
 }
 
@@ -667,6 +684,8 @@ NSString *upBtPressed;
         [self getData:self];
         [self.tableView reloadData];
         [self.vDelegate saveDbDataVersion];
+        //[self.vDelegate getWebserviceVersion];
+        //[self.vDelegate getDbDataVersion];
         
     }
         

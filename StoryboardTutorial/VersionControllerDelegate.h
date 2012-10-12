@@ -12,6 +12,7 @@
 
 -(void)getWebserviceVersion;
 -(void)saveDbDataVersion;
+-(void) getDbDataVersion;
 
 @end
 

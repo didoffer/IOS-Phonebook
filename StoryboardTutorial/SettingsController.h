@@ -10,11 +10,12 @@
 #import "ViewController.h"
 #import "VersionControllerDelegate.h"
 #import "MBProgressHUD.h"
+#import "SettingsControllerDelegate.h"
 
 
 
 @interface SettingsController : UIViewController<MBProgressHUDDelegate>{
-    
+   
  MBProgressHUD *HUUD;
     SettingsController *settingsController;
 }
@@ -43,4 +44,5 @@
 @property (nonatomic, strong) id <ViewControllerDelegate> viewDelegate;
 @property (nonatomic, strong) id <DataControllerDelegate> dcDelegate;
 +(NSString*)btPressed;
+-(void)dataCheck;
 @end

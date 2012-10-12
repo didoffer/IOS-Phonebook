@@ -16,6 +16,8 @@
 #import "VersionController.h"
 #import "ViewControllerDelegate.h"
 #import "SettingsController.h"
+#import "SettingsControllerDelegate.h"
+
 
 @class Reachability;
 
@@ -85,6 +87,8 @@
 
 @property (nonatomic, strong) id <DataControllerDelegate> dcDelegate;
 @property (nonatomic, strong) id <VersionControllerDelegate> vDelegate;
+@property (nonatomic, strong) id <SettingsControllerDelegate> setDelegate;
+
 
 //public methodes
 - (void)getContactsFromDB;

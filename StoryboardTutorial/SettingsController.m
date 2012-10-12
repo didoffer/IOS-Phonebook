@@ -25,7 +25,7 @@ NSString *newestVersion;
 NSString *dateString;
 static NSString* btPress = nil;
 
-
+//recieves from a methode in versionController a respons if newere data exsist. If so change the button text so the user know new data is available
 -(void)dataCheck{
     
     dataUpdates =[VersionController dataupdate];
@@ -40,13 +40,13 @@ static NSString* btPress = nil;
 
 }
 
-//If newere version exists change button title to "update", if not "no updates"
+//If newere app version exists change button title to "update to version", if not "Your software is up to date"
 -(void)versionCheck{
     version =[VersionController showVersion];
     updates = [VersionController update];
     newestVersion =[VersionController ShowNewestVersion];
     
-    NSLog(@"SKAL JEG OPDATERE %@",updates);
+    NSLog(@"SKAL JEG OPDATERE App'en %@",updates);
     if (updates ==@"YES") {
         [bt_upApp setTitle:@"Update to version" forState:UIControlStateNormal];
         _lb_newestAppVersion.text = newestVersion;
@@ -58,7 +58,7 @@ static NSString* btPress = nil;
 
 
 }
-
+//Get the date and time
 -(void)getSystemDate{
     
     // get the current date
@@ -72,24 +72,25 @@ static NSString* btPress = nil;
     dateString = [dateFormat stringFromDate:date];
     
     }
+//load the date and time from NSUserDefault and display it on a label 
 -(void)showDate{
     [self getDate];
     _lb_lastUpdate.text = dateString;
 }
-
+//Save the date and time into NSUserDefault 
 -(void) saveDate{
     NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
     [data setValue:dateString forKey:@"Date"];
-    NSLog(@"saved %@",dateString);
+    NSLog(@"saved date: %@",dateString);
     [data synchronize];
-    NSLog(@"data saved");
+    NSLog(@"date saved");
 }
-
+//load data and time from NSUserDefault
 -(void) getDate{
     NSUserDefaults *data =[NSUserDefaults standardUserDefaults];
     dateString = [data stringForKey:@"Date"];
     NSString *dataString =[NSString stringWithFormat:@"%@", dateString];
-    NSLog(@"tralalalal %@", dataString);
+    NSLog(@"Har hentet dato værdien fra NSUserDefault %@", dataString);
     
 }
 
@@ -100,7 +101,7 @@ static NSString* btPress = nil;
     self.dcDelegate = [[DbDataController alloc] init];
     self.viewDelegate =[[ViewController alloc]init];
     [self versionCheck];
-    [self dataCheck];
+    //[self dataCheck];
     [self showDate];
     self.title = @"Settings";
     
@@ -117,13 +118,15 @@ static NSString* btPress = nil;
 {
     
     [super viewWillAppear:animated];
+    [self dataCheck];
+    self.vDelegate =[[VersionController alloc]init];
+    [self.vDelegate getDbDataVersion];
 }
 
 
 - (void)viewDidUnload
 {
     [self setLb_appVersion:nil];
-    
     [self setLb_newestAppVersion:nil];
     [self setLb_lastUpdate:nil];
     [super viewDidUnload];
@@ -150,8 +153,9 @@ static NSString* btPress = nil;
     else if([title isEqualToString:@"Yes"])
     {
         Reachability *netReach = [Reachability reachabilityWithHostname:@"saturn.terma.com"];
-        //return [netReach currentReachabilityStatus];
         NetworkStatus netStatus = [netReach currentReachabilityStatus];
+        
+        //if the app can reach saturn which means you are connected to vpn do the following:
         if (netStatus==ReachableViaWWAN) {
             [self updatefunc];
         }
@@ -201,10 +205,11 @@ static NSString* btPress = nil;
     else if (status == ReachableViaWiFi) {
         
         Reachability *netReach = [Reachability reachabilityWithHostname:@"saturn.terma.com"];
-        //return [netReach currentReachabilityStatus];
         NetworkStatus netStatus = [netReach currentReachabilityStatus];
+        
+        //if the app can reach saturn which means you are connected to vpn do the following:
         if (netStatus==ReachableViaWiFi) {
-            NSLog(@"kan nå midvm1 med wifi");
+            NSLog(@"kan nå saturn med wifi");
             [self updatefunc];
             [self getSystemDate];
             [self saveDate];
