@@ -109,10 +109,11 @@
     if (!stmt_query)  
     {
         // Prepare SQL select statement
-        NSString *sql = @"SELECT EXTERNAL_DISPLAY_NAME, FNAME, LNAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION, IMAGE_URL, IMAGE_WEB_URL FROM contacts";
+        NSString *sql = @"SELECT EXTERNAL_DISPLAY_NAME, FNAME, LNAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION, IMAGE_URL, IMAGE_WEB_URL, TITLE, COMPANY_NAME FROM contacts";
         if (sqlite3_prepare_v2(dbh, [sql UTF8String], -1, &stmt_query, nil) != SQLITE_OK)
         {
             NSLog(@"Error preparing SQL query");
+            NSLog(@"Error:%s", sqlite3_errmsg(dbh));
              
             return data;
             
@@ -142,6 +143,8 @@
         contacts.LOCATION = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 10)];
         contacts.IMAGE_URL = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 11)];
         contacts.IMAGE_WEB_URL =[[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 12)];
+        contacts.TITLE =[[NSString alloc]initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 13)];
+        contacts.COMPANY_NAME =[[NSString alloc]initWithUTF8String:(char *)sqlite3_column_text(stmt_query, 14)];
         
         
         // Append Contact object to data array
@@ -186,10 +189,10 @@
     
 }
 
-- (void)insert_into_contacts_db:(NSString *)EXTERNAL_DISPLAY_NAME:(NSString *)FNAME:(NSString *)LNAME:(NSString *)INIT:(NSString *)EMP_NO:(NSString *)EMAIL: (NSString *)BUSINESSAREA_NAME: (NSString *)PHONE: (NSString *)MOBIL: (NSString *)SUPERIOR: (NSString *)LOCATION: (NSString *)IMAGE_URL: (NSString *)IMAGE_WEB_URL
+- (void)insert_into_contacts_db:(NSString *)EXTERNAL_DISPLAY_NAME:(NSString *)FNAME:(NSString *)LNAME:(NSString *)INIT:(NSString *)EMP_NO:(NSString *)EMAIL: (NSString *)BUSINESSAREA_NAME: (NSString *)PHONE: (NSString *)MOBIL: (NSString *)SUPERIOR: (NSString *)LOCATION: (NSString *)IMAGE_URL: (NSString *)IMAGE_WEB_URL: (NSString *)TITLE: (NSString *)COMPANY_NAME
 {
 
-        NSString *sql = [NSString stringWithFormat: @"INSERT INTO contacts (EXTERNAL_DISPLAY_NAME, FNAME, LNAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION, IMAGE_URL, IMAGE_WEB_URL) VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\")", EXTERNAL_DISPLAY_NAME, FNAME, LNAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION, IMAGE_URL, IMAGE_WEB_URL];
+        NSString *sql = [NSString stringWithFormat: @"INSERT INTO contacts (EXTERNAL_DISPLAY_NAME, FNAME, LNAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION, IMAGE_URL, IMAGE_WEB_URL, TITLE, COMPANY_NAME) VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\",\"%@\",\"%@\")", EXTERNAL_DISPLAY_NAME, FNAME, LNAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION, IMAGE_URL, IMAGE_WEB_URL, TITLE, COMPANY_NAME];
         if (sqlite3_prepare_v2(dbh, [sql UTF8String], -1, &stmt_insert, NULL) != SQLITE_OK) {
             NSLog(@"Error:prepare:%s", sqlite3_errmsg(dbh));
             return;

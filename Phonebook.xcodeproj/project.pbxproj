@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC0E7C9B162C041600222E53 /* Contact.rdb in Resources */ = {isa = PBXBuildFile; fileRef = EC0E7C9A162C034B00222E53 /* Contact.rdb */; };
 		EC4646BB15A5A0A000E0258D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4646BA15A5A0A000E0258D /* AddressBook.framework */; };
 		EC4646BD15A5A0BF00E0258D /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4646BC15A5A0BF00E0258D /* AddressBookUI.framework */; };
 		EC54D0EA1606FF5600B6FCFC /* icon_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = EC54D0E91606FF5600B6FCFC /* icon_settings.png */; };
@@ -24,7 +25,6 @@
 		EC85A4B415FF0A0600C37EF5 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC85A4B315FF0A0600C37EF5 /* SettingsController.m */; };
 		EC897902161D896500B8A1F1 /* plist.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC897901161D896500B8A1F1 /* plist.plist */; };
 		EC8B375E15FDB3CD00B4FB8D /* VersionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8B375D15FDB3CD00B4FB8D /* VersionController.m */; };
-		EC8B376215FE03FE00B4FB8D /* Contact.rdb in Resources */ = {isa = PBXBuildFile; fileRef = EC8B376115FE03F300B4FB8D /* Contact.rdb */; };
 		ECC966F115EBA54000CF1FCE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC966EE15EB987900CF1FCE /* Reachability.m */; };
 		ECE718A015F5E9D3008F6874 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECE7189F15F5E9D3008F6874 /* Default@2x.png */; };
 		FC1FF1BC144FD76E008429F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BB144FD76E008429F9 /* UIKit.framework */; };
@@ -41,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC0E7C9A162C034B00222E53 /* Contact.rdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = Contact.rdb; sourceTree = "<group>"; };
 		EC4646BA15A5A0A000E0258D /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		EC4646BC15A5A0BF00E0258D /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		EC54D0E91606FF5600B6FCFC /* icon_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_settings.png; sourceTree = "<group>"; };
@@ -68,7 +69,6 @@
 		EC8B375C15FDB3CD00B4FB8D /* VersionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionController.h; sourceTree = "<group>"; };
 		EC8B375D15FDB3CD00B4FB8D /* VersionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionController.m; sourceTree = "<group>"; };
 		EC8B376015FDBF7F00B4FB8D /* VersionControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionControllerDelegate.h; sourceTree = "<group>"; };
-		EC8B376115FE03F300B4FB8D /* Contact.rdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = Contact.rdb; sourceTree = "<group>"; };
 		ECBD380B15C125E10095B789 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		ECC966ED15EB987900CF1FCE /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		ECC966EE15EB987900CF1FCE /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -258,8 +258,8 @@
 				EC80090C15ECBD9E001C0CA0 /* Pics */,
 				EC7F020D15A4571600F55735 /* libsqlite3.0.dylib */,
 				FC1FF1C3144FD76E008429F9 /* Phonebook-Info.plist */,
+				EC0E7C9A162C034B00222E53 /* Contact.rdb */,
 				EC897901161D896500B8A1F1 /* plist.plist */,
-				EC8B376115FE03F300B4FB8D /* Contact.rdb */,
 				FC1FF1C4144FD76E008429F9 /* InfoPlist.strings */,
 				FC1FF1C7144FD76E008429F9 /* main.m */,
 				FC1FF1C9144FD76E008429F9 /* Phonebook-Prefix.pch */,
@@ -318,7 +318,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC8B376215FE03FE00B4FB8D /* Contact.rdb in Resources */,
+				EC0E7C9B162C041600222E53 /* Contact.rdb in Resources */,
 				FC1FF1C6144FD76E008429F9 /* InfoPlist.strings in Resources */,
 				FC1FF1CF144FD76E008429F9 /* MainStoryboard.storyboard in Resources */,
 				FC1FF1F5144FE696008429F9 /* LightGrey.png in Resources */,

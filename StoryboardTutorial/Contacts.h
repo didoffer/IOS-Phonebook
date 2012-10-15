@@ -15,9 +15,11 @@
     NSString *FNAME;
     NSString *LNAME;
     NSString *INIT ;
+    NSString *TITLE;
     NSString *EMP_NO;
     NSString *EMAIL;
     NSString *BUSINESSAREA_NAME;
+    NSString *COMPANY_NAME;
     NSString *PHONE ;
     NSString *MOBIL ;
     NSString *SUPERIOR ;
@@ -30,9 +32,11 @@
 @property (nonatomic, copy) NSString *FNAME;
 @property (nonatomic, copy) NSString *LNAME;
 @property (nonatomic, copy) NSString *INIT;
+@property (nonatomic, copy) NSString *TITLE;
 @property (nonatomic, copy) NSString *EMP_NO;
 @property (nonatomic, copy) NSString *EMAIL;
 @property (nonatomic, copy) NSString *BUSINESSAREA_NAME;
+@property (nonatomic, copy) NSString *COMPANY_NAME;
 @property (nonatomic, copy) NSString *PHONE;
 @property (nonatomic, copy) NSString *MOBIL;
 @property (nonatomic, copy) NSString *SUPERIOR;

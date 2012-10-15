@@ -170,6 +170,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bussiness Area" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="HJb-1g-MWC">
+                                <rect key="frame" x="137" y="82" width="163" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="r9P-m2-k1T">
                                 <rect key="frame" x="137" y="44" width="163" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -177,7 +184,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Location" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="y4x-gB-DGR">
-                                <rect key="frame" x="137" y="82" width="163" height="24"/>
+                                <rect key="frame" x="137" y="107" width="93" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -279,6 +286,7 @@
                         <outlet property="imageView" destination="wAQ-sE-RCf" id="8kT-YL-B3P"/>
                         <outlet property="lb_BUSINESSAREA_NAME" destination="HJb-1g-MWC" id="J6g-Pk-CxI"/>
                         <outlet property="lb_LOCATION" destination="y4x-gB-DGR" id="GDn-8t-Nz5"/>
+                        <outlet property="lb_TITLE" destination="r9P-m2-k1T" id="Yds-Hm-vYz"/>
                         <outlet property="lb_name" destination="lYI-yV-BYs" id="YTK-v8-mPC"/>
                         <outlet property="webView" destination="IlV-Zs-XsX" id="vJw-6U-MQd"/>
                     </connections>
@@ -325,6 +333,7 @@
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="lb_BUSINESSAREA_NAME" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="lb_LOCATION" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lb_TITLE" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="lb_name" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="myimageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>

@@ -216,11 +216,19 @@ NSString *upBtPressed;
     else if ([currentElement isEqualToString:@"INIT"]) {
         INIT = [[NSMutableString alloc]init];
     }
+    
+    else if ([currentElement isEqualToString:@"TITLE"]) {
+        TITLE = [[NSMutableString alloc]init];
+    }
     else if ([currentElement isEqualToString:@"EMAIL"]) {
         EMAIL = [[NSMutableString alloc]init];
     }
     else if ([currentElement isEqualToString:@"BUSINESSAREA_NAME"]) {
         BUSINESSAREA_NAME = [[NSMutableString alloc]init];
+    }
+    
+    else if ([currentElement isEqualToString:@"COMPANY_NAME"]){
+        COMPANY_NAME = [[NSMutableString alloc]init];
     }
     else if ([currentElement isEqualToString:@"PHONE"]) {
         PHONE = [[NSMutableString alloc]init];
@@ -254,7 +262,7 @@ NSString *upBtPressed;
         [self showCurrentDepth];
         //NSLog(@"test  %@ %@ %@ %@", EXTERNAL_DISPLAY_NAME, INIT, PHONE, MOBIL);
         //Database insert function
-        [self.dcDelegate insert_into_contacts_db:EXTERNAL_DISPLAY_NAME:FNAME:LNAME:INIT:EMP_NO:EMAIL:BUSINESSAREA_NAME:PHONE:MOBIL:SUPERIOR:LOCATION:IMAGE_URL:IMAGE_WEB_URL];
+        [self.dcDelegate insert_into_contacts_db:EXTERNAL_DISPLAY_NAME:FNAME:LNAME:INIT:EMP_NO:EMAIL:BUSINESSAREA_NAME:PHONE:MOBIL:SUPERIOR:LOCATION:IMAGE_URL:IMAGE_WEB_URL:TITLE:COMPANY_NAME];
         
     }
     
@@ -271,11 +279,15 @@ NSString *upBtPressed;
         [LNAME appendString:string];
     if ([currentElement isEqualToString:@"INIT"]) 
         [INIT appendString:string];
+    if ([currentElement isEqualToString:@"TITLE"])
+        [TITLE appendString:string];
     if ([currentElement isEqualToString:@"EMAIL"]) 
         [EMAIL appendString:string];
     if ([currentElement isEqualToString:@"BUSINESSAREA_NAME"]) 
         [BUSINESSAREA_NAME appendString:string];
-    if ([currentElement isEqualToString:@"PHONE"]) 
+    if ([currentElement isEqualToString:@"COMPANY_NAME"])
+        [COMPANY_NAME appendString:string];
+    if ([currentElement isEqualToString:@"PHONE"])
         [PHONE appendString:string];
     if ([currentElement isEqualToString:@"MOBIL"]) 
         [MOBIL appendString:string];
@@ -290,8 +302,8 @@ NSString *upBtPressed;
     if ([currentElement isEqualToString:@"EXTERNAL_DISPLAY_NAME"]) 
         [EXTERNAL_DISPLAY_NAME appendString:string];
     
-    //NSLog(@" here is the web: %@", IMAGE_WEB_URL);
-    //NSLog(@" here is the contact: %@", LOCATION);
+    //NSLog(@" here is the TITLE: %@", TITLE);
+    //NSLog(@" here is the COMPANY: %@", COMPANY_NAME);
     
     
 }
@@ -331,9 +343,11 @@ NSString *upBtPressed;
     contactNamesArrayFNAME = [[NSMutableArray alloc] init];
     contactNamesArrayLNAME = [[NSMutableArray alloc] init];
     contactNamesArrayINIT = [[NSMutableArray alloc] init];
+    contactNamesArrayTITLE = [[NSMutableArray alloc]init];
     contactNamesArrayEMP_NO = [[NSMutableArray alloc] init]; 
     contactNamesArrayEMAIL = [[NSMutableArray alloc] init];
     contactNamesArrayBUSINESSAREA_NAME = [[NSMutableArray alloc] init];
+    contactNamesArrayCOMPANY_NAME = [[NSMutableArray alloc]init];
     contactNamesArrayPHONE = [[NSMutableArray alloc] init];
     contactNamesArrayMOBIL = [[NSMutableArray alloc] init];
     contactNamesArraySUPERIOR = [[NSMutableArray alloc] init];
@@ -358,9 +372,11 @@ NSString *upBtPressed;
         [contactNamesArrayFNAME addObject:contact.FNAME];
         [contactNamesArrayLNAME addObject:contact.LNAME];
         [contactNamesArrayINIT addObject:contact.INIT];
+        [contactNamesArrayTITLE addObject:contact.TITLE];
         [contactNamesArrayEMP_NO addObject:contact.EMP_NO];
         [contactNamesArrayEMAIL addObject:contact.EMAIL];
         [contactNamesArrayBUSINESSAREA_NAME addObject:contact.BUSINESSAREA_NAME];
+        [contactNamesArrayCOMPANY_NAME addObject:contact.COMPANY_NAME];
         [contactNamesArrayPHONE addObject:contact.PHONE];
         [contactNamesArrayMOBIL addObject:contact.MOBIL];
         [contactNamesArraySUPERIOR addObject:contact.SUPERIOR];

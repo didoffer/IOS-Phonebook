@@ -40,9 +40,11 @@
     NSMutableString *FNAME;
     NSMutableString *LNAME;
     NSMutableString *INIT;
+    NSMutableString *TITLE;
     NSMutableString *EMP_NO;
     NSMutableString *EMAIL;
     NSMutableString *BUSINESSAREA_NAME;
+    NSMutableString *COMPANY_NAME;
     NSMutableString *PHONE;
     NSMutableString *MOBIL;
     NSMutableString *SUPERIOR;
@@ -57,11 +59,13 @@
     NSMutableArray *contactNamesArrayEXTERNAL_DISPLAY_NAME;
     NSMutableArray *contactNamesArrayFNAME;
     NSMutableArray *contactNamesArrayLNAME;
+    NSMutableArray *contactNamesArrayTITLE;
     NSMutableArray *contactNamesArrayEMAIL;
     NSMutableArray *contactNamesArrayPHONE;
     NSMutableArray *contactNamesArrayINIT;
     NSMutableArray *contactNamesArrayEMP_NO;
     NSMutableArray *contactNamesArrayBUSINESSAREA_NAME;
+    NSMutableArray *contactNamesArrayCOMPANY_NAME;
     NSMutableArray *contactNamesArrayMOBIL;
     NSMutableArray *contactNamesArraySUPERIOR;
     NSMutableArray *contactNamesArrayLOCATION;

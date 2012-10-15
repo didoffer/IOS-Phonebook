@@ -20,6 +20,7 @@
     
     IBOutlet UILabel *lb_BUSINESSAREA_NAME;
     
+    IBOutlet UILabel *lb_TITLE;
     IBOutlet UILabel *lb_LOCATION;
     
     IBOutlet UIImageView *imageView;

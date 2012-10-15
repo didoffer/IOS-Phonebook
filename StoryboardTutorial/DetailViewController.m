@@ -45,10 +45,14 @@ NSData* imageData;
 {
     [super viewDidLoad];
     
-    //What data to show in the labels
-    lb_name.text = emp.EXTERNAL_DISPLAY_NAME;
+    //Display data in the labels
+    //crates a string with the initials surrounded in parentheses
+    NSString *DISPLAY_INIT = [NSString stringWithFormat:@" (%@)", emp.INIT];
+    //adds the DISPLAY_INIT to the EXTERNAL_DISPLAY_NAME 
+    lb_name.text = [emp.EXTERNAL_DISPLAY_NAME stringByAppendingString:DISPLAY_INIT];
     lb_BUSINESSAREA_NAME.text = emp.BUSINESSAREA_NAME;
     lb_LOCATION.text = emp.LOCATION;
+    lb_TITLE.text =emp.TITLE;
     
     [self checkPhoneNumbers];
     [self progressSpinner1];
@@ -105,6 +109,7 @@ NSData* imageData;
     [self setBt_mobil:nil];
     [self setWebView:nil];
     [self setMyimageView:nil];
+    lb_TITLE = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -223,9 +228,9 @@ NSData* imageData;
     // Setting basic properties  
     ABRecordSetValue(person, kABPersonFirstNameProperty, (__bridge_retained CFStringRef)emp.FNAME, nil);  
     ABRecordSetValue(person, kABPersonLastNameProperty,(__bridge_retained CFStringRef) emp.LNAME, nil);  
-    ABRecordSetValue(person, kABPersonJobTitleProperty,(__bridge_retained CFStringRef) @"", nil);  
-    ABRecordSetValue(person, kABPersonDepartmentProperty,(__bridge_retained CFStringRef) @"", nil);  
-    ABRecordSetValue(person, kABPersonOrganizationProperty, (__bridge_retained CFStringRef)emp.BUSINESSAREA_NAME, nil);  
+    ABRecordSetValue(person, kABPersonJobTitleProperty,(__bridge_retained CFStringRef) emp.TITLE, nil);
+    ABRecordSetValue(person, kABPersonDepartmentProperty,(__bridge_retained CFStringRef) emp.BUSINESSAREA_NAME, nil);
+    ABRecordSetValue(person, kABPersonOrganizationProperty, (__bridge_retained CFStringRef)emp.COMPANY_NAME, nil);
     ABRecordSetValue(person, kABPersonNoteProperty, @"", nil);  
     
     

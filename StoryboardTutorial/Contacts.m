@@ -15,9 +15,11 @@
 @synthesize FNAME;
 @synthesize LNAME;
 @synthesize INIT;
+@synthesize TITLE;
 @synthesize EMP_NO;
 @synthesize EMAIL;
 @synthesize BUSINESSAREA_NAME;
+@synthesize COMPANY_NAME;
 @synthesize PHONE;
 @synthesize MOBIL;
 @synthesize SUPERIOR;

@@ -26,7 +26,7 @@ NSString* xml;
 NSString *dump;
 NSArray *array;
 NSInteger Dataversion;
-NSInteger dbAppVersionINT;
+double dbAppVersionINT;
 NSInteger dbDataVersionINT;
 
 
@@ -172,11 +172,11 @@ NSInteger dbDataVersionINT;
 
 -(void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    dbAppVersionINT = [appVerison intValue];
+    dbAppVersionINT = [appVerison doubleValue];
     dbDataVersionINT = [dataVersion intValue];
     // NSLog(@" here is the db version: %d", dbVersion);
     
-    if (dbDataVersionINT>Dataversion) {
+    if (dbDataVersionINT != Dataversion) {
         NSLog(@"Data version fra db %d",dbDataVersionINT);
         NSLog(@"Data version fra NSUserDefault %d",Dataversion);
         newdataUpdate =@"YES";
@@ -189,9 +189,10 @@ NSInteger dbDataVersionINT;
     //Check if db version number of the app has been updated. If so it returns value YES
     NSString * version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
     
-    NSInteger versionNumber = [version integerValue];
+    double versionNumber = [version doubleValue];
+    //NSInteger versionNumber = [version integerValue];
     
-    if (versionNumber < dbAppVersionINT) {
+    if (versionNumber != dbAppVersionINT) {
         newUpdate =@"YES";
         currentversion = version;
         newestVersion = appVerison;
