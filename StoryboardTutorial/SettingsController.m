@@ -251,7 +251,7 @@ static NSString* btPress = nil;
     //Check if newere version exist(ref.VersionController.m). If so open webpage with download link
     if (updates ==@"YES") {
         
-        NSURL *url = [NSURL URLWithString:@"http://midvm1.terma.com/kbni2/phonebook/old/index.html"];
+        NSURL *url = [NSURL URLWithString:@"http://webserver01.terma.com/appphonebook/appdownload/index.html"];
         
         if (![[UIApplication sharedApplication] openURL:url])
             

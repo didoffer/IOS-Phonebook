@@ -78,7 +78,7 @@ NSString *upBtPressed;
     
         receivedData = [[NSMutableData alloc] init];
         
-        NSURL *myURL = [NSURL URLWithString:@"http://midvm1.terma.com/kbni2/TermaService.svc/employees"];
+        NSURL *myURL = [NSURL URLWithString:@"http://webserver01.terma.com/appPhonebook/TermaService.svc/employees"];
         
         NSURLRequest *myRequest = [NSURLRequest requestWithURL:myURL];
         
