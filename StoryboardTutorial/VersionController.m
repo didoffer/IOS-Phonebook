@@ -55,7 +55,7 @@ NSInteger dbDataVersionINT;
     [self getDbDataVersion];
     receivedData = [[NSMutableData alloc] init];
     
-    NSURL *myURL = [NSURL URLWithString:@"http://webserver01.terma.com/appPhonebook/TermaService.svc/version/phonebook"];
+    NSURL *myURL = [NSURL URLWithString:@"http://intranet2.terma.com/phonebook/TermaService.svc/version/phonebook"];
     
     NSURLRequest *myRequest = [NSURLRequest requestWithURL:myURL];
     
