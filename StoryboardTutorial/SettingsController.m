@@ -66,7 +66,7 @@ static NSString* btPress = nil;
     
     // format it
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"MM-dd-yyyy HH:mm"];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
     
     // convert it to a string
     dateString = [dateFormat stringFromDate:date];
@@ -152,7 +152,7 @@ static NSString* btPress = nil;
     }
     else if([title isEqualToString:@"Yes"])
     {
-        Reachability *netReach = [Reachability reachabilityWithHostname:@"saturn.terma.com"];
+        Reachability *netReach = [Reachability reachabilityWithHostname:@"saturn2.terma.com"];
         NetworkStatus netStatus = [netReach currentReachabilityStatus];
         
         //if the app can reach saturn which means you are connected to vpn do the following:
@@ -204,7 +204,7 @@ static NSString* btPress = nil;
     
     else if (status == ReachableViaWiFi) {
         
-        Reachability *netReach = [Reachability reachabilityWithHostname:@"saturn.terma.com"];
+        Reachability *netReach = [Reachability reachabilityWithHostname:@"saturn2.terma.com"];
         NetworkStatus netStatus = [netReach currentReachabilityStatus];
         
         //if the app can reach saturn which means you are connected to vpn do the following:

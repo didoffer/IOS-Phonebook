@@ -17,7 +17,6 @@
 		EC7F020915A4568500F55735 /* Contacts.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7F020815A4568500F55735 /* Contacts.m */; };
 		EC7F020C15A4570A00F55735 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7F020B15A4570A00F55735 /* MessageUI.framework */; };
 		EC7F020E15A4571600F55735 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7F020D15A4571600F55735 /* libsqlite3.0.dylib */; };
-		EC80090B15ECBD4D001C0CA0 /* T-mark-warmgray.png in Resources */ = {isa = PBXBuildFile; fileRef = EC80090A15ECBD4D001C0CA0 /* T-mark-warmgray.png */; };
 		EC8222EA15AEBDE2006B57BC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8222E915AEBDE2006B57BC /* MBProgressHUD.m */; };
 		EC828FB215B8236D006D1818 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC828FB115B8236D006D1818 /* SystemConfiguration.framework */; };
 		EC84BB5F1606F7B1008D9142 /* Contact.png in Resources */ = {isa = PBXBuildFile; fileRef = EC84BB5E1606F7B1008D9142 /* Contact.png */; };
@@ -25,6 +24,8 @@
 		EC85A4B415FF0A0600C37EF5 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC85A4B315FF0A0600C37EF5 /* SettingsController.m */; };
 		EC897902161D896500B8A1F1 /* plist.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC897901161D896500B8A1F1 /* plist.plist */; };
 		EC8B375E15FDB3CD00B4FB8D /* VersionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8B375D15FDB3CD00B4FB8D /* VersionController.m */; };
+		EC90A95316494C37000B2AC0 /* T-mark-warmgray57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90A95216494C37000B2AC0 /* T-mark-warmgray57x57.png */; };
+		EC90A95716494C6F000B2AC0 /* T-mark-warmgray.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90A95616494C6F000B2AC0 /* T-mark-warmgray.png */; };
 		ECC966F115EBA54000CF1FCE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC966EE15EB987900CF1FCE /* Reachability.m */; };
 		ECE718A015F5E9D3008F6874 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECE7189F15F5E9D3008F6874 /* Default@2x.png */; };
 		FC1FF1BC144FD76E008429F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BB144FD76E008429F9 /* UIKit.framework */; };
@@ -54,7 +55,6 @@
 		EC7F020A15A456BA00F55735 /* DataControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataControllerDelegate.h; sourceTree = "<group>"; };
 		EC7F020B15A4570A00F55735 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		EC7F020D15A4571600F55735 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		EC80090A15ECBD4D001C0CA0 /* T-mark-warmgray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "T-mark-warmgray.png"; path = "../T-mark-warmgray.png"; sourceTree = "<group>"; };
 		EC8222E715AEBDDC006B57BC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EC8222E915AEBDE2006B57BC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EC828FB115B8236D006D1818 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -69,6 +69,8 @@
 		EC8B375C15FDB3CD00B4FB8D /* VersionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionController.h; sourceTree = "<group>"; };
 		EC8B375D15FDB3CD00B4FB8D /* VersionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionController.m; sourceTree = "<group>"; };
 		EC8B376015FDBF7F00B4FB8D /* VersionControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionControllerDelegate.h; sourceTree = "<group>"; };
+		EC90A95216494C37000B2AC0 /* T-mark-warmgray57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T-mark-warmgray57x57.png"; sourceTree = "<group>"; };
+		EC90A95616494C6F000B2AC0 /* T-mark-warmgray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T-mark-warmgray.png"; sourceTree = "<group>"; };
 		ECBD380B15C125E10095B789 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		ECC966ED15EB987900CF1FCE /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		ECC966EE15EB987900CF1FCE /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -140,10 +142,11 @@
 			children = (
 				EC65D184160B4AFB00272E06 /* Default-568h@2x.png */,
 				EC85A4AE15FF085600C37EF5 /* 19-gear.png */,
+				EC90A95216494C37000B2AC0 /* T-mark-warmgray57x57.png */,
+				EC90A95616494C6F000B2AC0 /* T-mark-warmgray.png */,
 				EC54D0E91606FF5600B6FCFC /* icon_settings.png */,
 				EC54D0EC1606FFB500B6FCFC /* icon_settings copy.png */,
 				ECE7189F15F5E9D3008F6874 /* Default@2x.png */,
-				EC80090A15ECBD4D001C0CA0 /* T-mark-warmgray.png */,
 				FC1FF1F4144FE696008429F9 /* LightGrey@2x.png */,
 				EC84BB5E1606F7B1008D9142 /* Contact.png */,
 				FC1FF1F3144FE696008429F9 /* LightGrey.png */,
@@ -323,7 +326,6 @@
 				FC1FF1CF144FD76E008429F9 /* MainStoryboard.storyboard in Resources */,
 				FC1FF1F5144FE696008429F9 /* LightGrey.png in Resources */,
 				FC1FF1F6144FE696008429F9 /* LightGrey@2x.png in Resources */,
-				EC80090B15ECBD4D001C0CA0 /* T-mark-warmgray.png in Resources */,
 				ECE718A015F5E9D3008F6874 /* Default@2x.png in Resources */,
 				EC85A4AF15FF085600C37EF5 /* 19-gear.png in Resources */,
 				EC84BB5F1606F7B1008D9142 /* Contact.png in Resources */,
@@ -331,6 +333,8 @@
 				EC54D0ED1606FFB500B6FCFC /* icon_settings copy.png in Resources */,
 				EC65D185160B4AFB00272E06 /* Default-568h@2x.png in Resources */,
 				EC897902161D896500B8A1F1 /* plist.plist in Resources */,
+				EC90A95316494C37000B2AC0 /* T-mark-warmgray57x57.png in Resources */,
+				EC90A95716494C6F000B2AC0 /* T-mark-warmgray.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
