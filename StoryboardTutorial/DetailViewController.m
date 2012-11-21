@@ -18,6 +18,8 @@
 @synthesize lb_name, lb_LOCATION, lb_BUSINESSAREA_NAME,emp;
 
 NSData* imageData;
+NSString *formatMobile;
+NSString *formatPhone;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,6 +60,8 @@ NSData* imageData;
     [self progressSpinner1];
     [self webImage];
     self.myimageView.hidden = YES;
+    formatMobile= [emp.MOBIL stringByReplacingOccurrencesOfString:@" " withString: @""];
+    formatPhone= [emp.PHONE stringByReplacingOccurrencesOfString:@" " withString: @""];
   
 }
 -(void)webImage {
@@ -304,13 +308,13 @@ NSData* imageData;
     
     if([title isEqualToString:@"Local"])
     {
-        NSLog(@"Calling %@", emp.PHONE);
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", emp.PHONE]]];
+        NSLog(@"Calling %@", formatPhone);
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", formatPhone]]];
     }
     else if([title isEqualToString:@"Mobile"])
     {
-        NSLog(@"Calling %@",emp.MOBIL);
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", emp.MOBIL]]];
+        NSLog(@"Calling %@",formatMobile);
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", formatMobile]]];
     }
     
 }
@@ -341,19 +345,20 @@ NSData* imageData;
         
     }
     else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@", emp.MOBIL]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@", formatMobile]]];
         NSLog(@"Message send to %@", emp.MOBIL);
     }
     
 }
 //button action make phone call to local number
 - (IBAction)bt_phone:(id)sender {
-    NSLog(@"Calling %@", emp.PHONE);
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", emp.PHONE]]];
+    NSLog(@"Calling %@", formatPhone);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", formatPhone]]];
 }
 //button action make phone call to mobile number
 - (IBAction)bt_mobil:(id)sender {
-    NSLog(@"Calling %@",emp.MOBIL);
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", emp.MOBIL]]];
+    //NSString *formatMobile = [emp.MOBIL stringByReplacingOccurrencesOfString:@" " withString: @""];
+    NSLog(@"Calling %@",formatMobile);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", formatMobile]]];
 }
 @end
