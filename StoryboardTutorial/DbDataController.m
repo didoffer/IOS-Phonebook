@@ -189,7 +189,7 @@
     
 }
 
-- (void)insert_into_contacts_db:(NSString *)EXTERNAL_DISPLAY_NAME:(NSString *)FNAME:(NSString *)LNAME:(NSString *)INIT:(NSString *)EMP_NO:(NSString *)EMAIL: (NSString *)BUSINESSAREA_NAME: (NSString *)PHONE: (NSString *)MOBIL: (NSString *)SUPERIOR: (NSString *)LOCATION: (NSString *)IMAGE_URL: (NSString *)IMAGE_WEB_URL: (NSString *)TITLE: (NSString *)COMPANY_NAME
+- (void)insert_into_contacts_db:(NSString *)EXTERNAL_DISPLAY_NAME :(NSString *)FNAME :(NSString *)LNAME :(NSString *)INIT :(NSString *)EMP_NO :(NSString *)EMAIL : (NSString *)BUSINESSAREA_NAME : (NSString *)PHONE : (NSString *)MOBIL : (NSString *)SUPERIOR : (NSString *)LOCATION : (NSString *)IMAGE_URL : (NSString *)IMAGE_WEB_URL : (NSString *)TITLE : (NSString *)COMPANY_NAME
 {
 
         NSString *sql = [NSString stringWithFormat: @"INSERT INTO contacts (EXTERNAL_DISPLAY_NAME, FNAME, LNAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION, IMAGE_URL, IMAGE_WEB_URL, TITLE, COMPANY_NAME) VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\",\"%@\",\"%@\")", EXTERNAL_DISPLAY_NAME, FNAME, LNAME, INIT, EMP_NO, EMAIL, BUSINESSAREA_NAME, PHONE, MOBIL, SUPERIOR, LOCATION, IMAGE_URL, IMAGE_WEB_URL, TITLE, COMPANY_NAME];

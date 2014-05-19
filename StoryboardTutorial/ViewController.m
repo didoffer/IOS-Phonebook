@@ -677,7 +677,7 @@ NSString *upBtPressed;
     
     
         [super viewWillAppear:animated];
-    if (upBtPressed ==@"btpressed") {
+    if ([upBtPressed  isEqual:@"btpressed"]) {
         
     }
     else{
@@ -696,7 +696,7 @@ NSString *upBtPressed;
     [super viewDidAppear:animated];
    
     //ref. to btpressed see SettingsController.m
-    if (upBtPressed ==@"btpressed") {
+    if ([upBtPressed  isEqual:@"btpressed"]) {
         [self getData:self];
         [self.tableView reloadData];
         [self.vDelegate saveDbDataVersion];

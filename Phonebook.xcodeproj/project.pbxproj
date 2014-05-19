@@ -26,6 +26,7 @@
 		EC8B375E15FDB3CD00B4FB8D /* VersionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8B375D15FDB3CD00B4FB8D /* VersionController.m */; };
 		EC90A95316494C37000B2AC0 /* T-mark-warmgray57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90A95216494C37000B2AC0 /* T-mark-warmgray57x57.png */; };
 		EC90A95716494C6F000B2AC0 /* T-mark-warmgray.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90A95616494C6F000B2AC0 /* T-mark-warmgray.png */; };
+		EC9A3421192364F500755B77 /* Contact copy.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9A3420192364F500755B77 /* Contact copy.png */; };
 		ECC966F115EBA54000CF1FCE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC966EE15EB987900CF1FCE /* Reachability.m */; };
 		ECE718A015F5E9D3008F6874 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECE7189F15F5E9D3008F6874 /* Default@2x.png */; };
 		FC1FF1BC144FD76E008429F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1FF1BB144FD76E008429F9 /* UIKit.framework */; };
@@ -71,6 +72,7 @@
 		EC8B376015FDBF7F00B4FB8D /* VersionControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionControllerDelegate.h; sourceTree = "<group>"; };
 		EC90A95216494C37000B2AC0 /* T-mark-warmgray57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T-mark-warmgray57x57.png"; sourceTree = "<group>"; };
 		EC90A95616494C6F000B2AC0 /* T-mark-warmgray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T-mark-warmgray.png"; sourceTree = "<group>"; };
+		EC9A3420192364F500755B77 /* Contact copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Contact copy.png"; sourceTree = "<group>"; };
 		ECBD380B15C125E10095B789 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		ECC966ED15EB987900CF1FCE /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		ECC966EE15EB987900CF1FCE /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		EC80090C15ECBD9E001C0CA0 /* Pics */ = {
 			isa = PBXGroup;
 			children = (
+				EC9A3420192364F500755B77 /* Contact copy.png */,
 				EC65D184160B4AFB00272E06 /* Default-568h@2x.png */,
 				EC85A4AE15FF085600C37EF5 /* 19-gear.png */,
 				EC90A95216494C37000B2AC0 /* T-mark-warmgray57x57.png */,
@@ -296,7 +299,12 @@
 		FC1FF1AE144FD76E008429F9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					FC1FF1B6144FD76E008429F9 = {
+						DevelopmentTeam = NLQFS99VL8;
+					};
+				};
 			};
 			buildConfigurationList = FC1FF1B1144FD76E008429F9 /* Build configuration list for PBXProject "Phonebook" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -324,6 +332,7 @@
 				EC0E7C9B162C041600222E53 /* Contact.rdb in Resources */,
 				FC1FF1C6144FD76E008429F9 /* InfoPlist.strings in Resources */,
 				FC1FF1CF144FD76E008429F9 /* MainStoryboard.storyboard in Resources */,
+				EC9A3421192364F500755B77 /* Contact copy.png in Resources */,
 				FC1FF1F5144FE696008429F9 /* LightGrey.png in Resources */,
 				FC1FF1F6144FE696008429F9 /* LightGrey@2x.png in Resources */,
 				ECE718A015F5E9D3008F6874 /* Default@2x.png in Resources */,
@@ -385,9 +394,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -402,11 +412,15 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
@@ -416,9 +430,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -427,9 +442,12 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -443,6 +461,7 @@
 		FC1FF1EB144FD76F008429F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoryboardTutorial/Phonebook-Prefix.pch";
 				INFOPLIST_FILE = "StoryboardTutorial/Phonebook-Info.plist";
@@ -454,6 +473,7 @@
 		FC1FF1EC144FD76F008429F9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoryboardTutorial/Phonebook-Prefix.pch";
 				INFOPLIST_FILE = "StoryboardTutorial/Phonebook-Info.plist";

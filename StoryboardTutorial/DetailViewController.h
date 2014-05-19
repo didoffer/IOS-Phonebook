@@ -23,7 +23,8 @@
     IBOutlet UILabel *lb_TITLE;
     IBOutlet UILabel *lb_LOCATION;
     
-    IBOutlet UIImageView *imageView;
+ 
+    
     
     
     
@@ -35,6 +36,7 @@
 - (IBAction)bt_sendmsg:(id)sender;
 - (IBAction)bt_phone:(id)sender;
 - (IBAction)bt_mobil:(id)sender;
+
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *myimageView;

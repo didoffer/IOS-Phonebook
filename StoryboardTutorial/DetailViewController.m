@@ -15,6 +15,9 @@
 @synthesize webView;
 @synthesize bt_mobil,bt_phone;
 
+
+
+
 @synthesize lb_name, lb_LOCATION, lb_BUSINESSAREA_NAME,emp;
 
 NSData* imageData;
@@ -88,14 +91,13 @@ NSString *formatPhone;
         self.webView.hidden = TRUE;
         //self.myimageView.hidden = false;
         //NSLog(@"billede data %@",imageData);
-        UIImageView *noContact = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Contact.png"]];
-        [self.view addSubview:noContact];
+        
     }
     
 }
 //display the image
 - (void)displayImage:(UIImage *)image {
-    [imageView setImage:image];
+    [self.myimageView setImage:image];
     
 }
 
@@ -103,7 +105,7 @@ NSString *formatPhone;
 {
     lb_BUSINESSAREA_NAME = nil;
     lb_LOCATION = nil;
-    imageView = nil;
+    myimageView = nil;
     lb_name = nil;
     lb_BUSINESSAREA_NAME = nil;
     lb_LOCATION = nil;
@@ -260,9 +262,9 @@ NSString *formatPhone;
     // Adding emails  
     ABMutableMultiValueRef emailMultiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);  
     //ABMultiValueAddValueAndLabel(emailMultiValue,(__bridge_retained CFStringRef)emp.EMAIL, (CFStringRef)@"Terma", NULL);  
-    //ABMultiValueAddValueAndLabel(emailMultiValue,(__bridge_retained CFStringRef)@"test@gmail.com", (CFStringRef)@"Private", NULL);  
+    //ABMultiValueAddValueAndLabel(emailMultiValue,(__bridge_retained CFStringRef)@"test@gmail.com", (CFStringRef)@"Private", NULL);
     ABMultiValueAddValueAndLabel(emailMultiValue,(__bridge_retained CFStringRef)emp.EMAIL, kABWorkLabel, NULL);
-    ABRecordSetValue(person, kABPersonURLProperty, emailMultiValue, nil);  
+    ABRecordSetValue(person, kABPersonEmailProperty, emailMultiValue, nil);
     CFRelease(emailMultiValue);    
     
     /* Adding address  

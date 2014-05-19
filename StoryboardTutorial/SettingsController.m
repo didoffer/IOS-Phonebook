@@ -31,7 +31,7 @@ static NSString* btPress = nil;
     dataUpdates =[VersionController dataupdate];
     
     NSLog(@"Er der nye data? %@", dataUpdates);
-    if (dataUpdates ==@"YES") {
+    if ([dataUpdates  isEqual:@"YES"]) {
         [bt_upData setTitle:@"Update phonebook" forState:UIControlStateNormal];
     }
     else {
@@ -47,7 +47,7 @@ static NSString* btPress = nil;
     newestVersion =[VersionController ShowNewestVersion];
     
     NSLog(@"SKAL JEG OPDATERE App'en %@",updates);
-    if (updates ==@"YES") {
+    if ([updates  isEqual:@"YES"]) {
         [bt_upApp setTitle:@"Update to version" forState:UIControlStateNormal];
         _lb_newestAppVersion.text = newestVersion;
         
@@ -160,7 +160,7 @@ static NSString* btPress = nil;
             [self updatefunc];
         }
          else {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Nerwork error!"
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Network error!"
                                                           message:@"No VPN connection"
                                                          delegate:self
                                                 cancelButtonTitle:@"OK"
@@ -249,7 +249,7 @@ static NSString* btPress = nil;
 // Update App button action
 - (IBAction)bt_upApp:(id)sender {
     //Check if newere version exist(ref.VersionController.m). If so open webpage with download link
-    if (updates ==@"YES") {
+    if ([updates  isEqual:@"YES"]) {
         
         NSURL *url = [NSURL URLWithString:@"http://intranet2.terma.com/apps/phonebook.html"];
         
